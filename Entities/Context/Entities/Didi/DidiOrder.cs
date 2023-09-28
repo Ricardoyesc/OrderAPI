@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Entities.Context.Entities.Didi
 {
@@ -30,5 +31,7 @@ namespace Entities.Context.Entities.Didi
         public List<OrderItemInfo> order_items { get; set; }
         public List<Promotion> promotions { get; set; }
         public List<Shopper> shopper_info { get; set; }
+        [JsonIgnore]
+        public Order order { get; set; } = new Order() { provider = Catalogs.Provider.DIDI};
     }
 }

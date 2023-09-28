@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Context.Entities.Didi
+namespace Entities.Context.Entities
 {
     public class Catalogs
     {
@@ -18,6 +18,12 @@ namespace Entities.Context.Entities.Didi
             CANCEL = 170,
             REASSIGNED = 180,
             ABORTED = 190
+        }
+        public enum Provider
+        {
+            DIDI = 1,
+            UBER = 2,
+            RAPPI = 3
         }
     }
 }

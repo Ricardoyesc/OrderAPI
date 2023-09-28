@@ -1,4 +1,6 @@
-﻿namespace Entities.Context.Entities.Uber
+﻿using Entities.Context.Entities.Uber;
+
+namespace Entities.Models
 {
     public class UberWebhook
     {

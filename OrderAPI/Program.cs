@@ -1,5 +1,9 @@
 using Entities.Context;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using OrderAPI.Configuration;
+using OrderAPI.Policies.Handlers;
+using OrderAPI.Policies.Requirements;
 
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 3));
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +18,21 @@ builder.Services.AddDbContext<DatabaseContext>(options => {
                 //.EnableSensitiveDataLogging()
                 //.EnableDetailedErrors();
 });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("DiDiHeaderSignaturePolicy", policy =>
+    {
+        policy.Requirements.Add(new DiDiHeaderSignatureRequirement(builder.Configuration.GetSection("DiDiConfiguration").Get<DiDiConfiguration>().AppSecret));
+    });
+    options.AddPolicy("RappiWebhookSignaturePolicy", policy =>
+    {
+        policy.Requirements.Add(new RappiWebhookSignatureRequirement(builder.Configuration.GetSection("RappiConfiguration").Get<RappiConfiguration>().ClientSecret));
+    });
+});
+
+builder.Services.AddSingleton<IAuthorizationHandler, RappiWebhookSignatureHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, DiDiHeaderSignatureHandler>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -2,6 +2,6 @@
 {
     public partial class UberOrder
     {
-
+        public int id { get; set; }
     }
 }

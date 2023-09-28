@@ -1,7 +1,11 @@
-﻿namespace Entities.Context.Entities.Didi
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Entities.Context.Entities.Didi
 {
     public class DidiOrder
     {
+        [Key]
         public long order_id { get; set; }
         public int status { get; set; }
         public int shop_accept_status { get; set; }
@@ -22,9 +26,9 @@
         public int shop_confirm_time { get; set; }
         public PriceInfo price { get; set; }
         public ShopInfo shop { get; set; }
-        public ReceiveAddressInfo receive_address { get; set; }
+        public ReceiveAddress receive_address { get; set; }
         public List<OrderItemInfo> order_items { get; set; }
-        public List<PromotionInfo> promotions { get; set; }
-        public List<ShopperInfo> shopper_info { get; set; }
+        public List<Promotion> promotions { get; set; }
+        public List<Shopper> shopper_info { get; set; }
     }
 }

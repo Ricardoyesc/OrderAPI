@@ -1,7 +1,10 @@
-﻿namespace Entities.Context.Entities.Didi
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities.Context.Entities.Didi
 {
-    public class ReceiveAddressInfo
+    public class ReceiveAddress
     {
+        [Key]
         public int uid { get; set; }
         public string name { get; set; }
         public string first_name { get; set; }

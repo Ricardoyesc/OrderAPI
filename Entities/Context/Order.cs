@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Context.Entities.Didi
+namespace Entities.Context
 {
     public class Order
     {

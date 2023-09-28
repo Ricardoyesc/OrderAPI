@@ -1,7 +1,10 @@
-﻿namespace Entities.Context.Entities.Didi
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities.Context.Entities.Didi
 {
     public class OrderItemInfo
     {
+        [Key]
         public string app_item_id { get; set; }
         public string name { get; set; }
         public int sku_price { get; set; }

@@ -25,12 +25,12 @@ namespace Entities.Context.Entities.Didi
         public int complete_time { get; set; }
         public int cancel_time { get; set; }
         public int shop_confirm_time { get; set; }
-        public PriceInfo price { get; set; }
-        public ShopInfo shop { get; set; }
-        public ReceiveAddress receive_address { get; set; }
-        public List<OrderItemInfo> order_items { get; set; }
-        public List<Promotion> promotions { get; set; }
-        public List<Shopper> shopper_info { get; set; }
+        public virtual PriceInfo price { get; set; }
+        public virtual ShopInfo shop { get; set; }
+        public virtual ReceiveAddress receive_address { get; set; }
+        public virtual List<OrderItemInfo> order_items { get; set; }
+        public virtual List<Promotion> promotions { get; set; }
+        public virtual List<Shopper> shopper_info { get; set; }
         [JsonIgnore]
         public Order order { get; set; } = new Order() { provider = Catalogs.Provider.DIDI};
     }

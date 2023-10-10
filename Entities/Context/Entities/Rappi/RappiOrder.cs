@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static System.Formats.Asn1.AsnWriter;
 
@@ -19,13 +20,15 @@ namespace Entities.Context.Entities.Rappi
         public string created_at { get; set; }
         public string delivery_method { get; set; }
         public string payment_method { get; set; }
-        public DeliveryInformation delivery_information { get; set; }
-        public List<BillingInformation> billing_information { get; set; }
-        public Totals totals { get; set; }
-        public List<Item> items { get; set; }
         public int delivery_discount { get; set; }
-        public Customer customer { get; set; }
-        public List<Store> store { get; set; }
-        public List<Discount> discounts { get; set; }
+        public virtual Customer customer { get; set; }
+        public virtual DeliveryInformation delivery_information { get; set; }
+        public virtual Totals totals { get; set; }
+        public virtual List<BillingInformation> billing_information { get; set; }
+        public virtual List<Item> items { get; set; }
+        public virtual List<Store> store { get; set; }
+        public virtual List<Discount> discounts { get; set; }
+        [JsonIgnore]
+        public Order order { get; set; } = new Order() { provider = Catalogs.Provider.RAPPI };
     }
 }

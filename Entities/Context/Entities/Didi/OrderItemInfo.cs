@@ -11,10 +11,10 @@ namespace Entities.Context.Entities.Didi
         public int total_price { get; set; }
         public int amount { get; set; }
         public int submit_refund_amount { get; set; }
-        public List<SubItem> sub_item_list { get; set; }
         public int real_price { get; set; }
         public int promo_type { get; set; }
-        public PromotionDetail promotion_detail { get; set; }
+        public virtual List<SubItem> sub_item_list { get; set; }
+        public virtual PromotionDetail promotion_detail { get; set; }
     }
 
 

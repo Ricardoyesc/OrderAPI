@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using OrderAPI.Policies.Requirements;
+using System.Text;
 
 namespace OrderAPI.Policies.Handlers
 {
@@ -17,6 +18,11 @@ namespace OrderAPI.Policies.Handlers
 
             // Extract timestamp and signature from the header
             string headerValue = request.Request.Headers["rappi-signature"];
+            if (string.IsNullOrEmpty(headerValue))
+            {
+                context.Fail();
+                return;
+            }
             string[] elements = headerValue.Split(',');
 
             // Extract timestamp and signature
@@ -32,14 +38,15 @@ namespace OrderAPI.Policies.Handlers
             // Read the request body
             using var reader = new StreamReader(request.Request.Body);
             string requestBody = await reader.ReadToEndAsync();
-
+            
             // Create the signed_payload string
-            string signedPayload = $"{timestamp}.{requestBody}";
+            string signedPayload = timestamp + "." + requestBody;
 
             // Compute HMAC with SHA256
-            using var hmac = new System.Security.Cryptography.HMACSHA256(Convert.FromBase64String(requirement.Secret));
-            byte[] hashBytes = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(signedPayload));
-            string expectedSignature = Convert.ToBase64String(hashBytes);
+            using var hmac = new System.Security.Cryptography.HMACSHA256(Encoding.UTF8.GetBytes(requirement.Secret));
+            byte[] hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(signedPayload));
+            string expectedSignature = hashBytes.Aggregate("", (s, e) => s + String.Format("{0:x2}", e), s => s);
+            ;
 
             // Compare the signature in the header with the expected signature
             if (!string.Equals(signature, expectedSignature))
@@ -47,7 +54,6 @@ namespace OrderAPI.Policies.Handlers
                 context.Fail();
                 return;
             }
-
             context.Succeed(requirement);
         }
 

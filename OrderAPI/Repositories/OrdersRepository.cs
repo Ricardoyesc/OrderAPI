@@ -21,10 +21,11 @@ namespace OrderAPI.Repositories
             return res;
         }
 
-        public async Task<RappiOrder> StoreRappiOrder(RappiOrder order)
+        public async Task<RappiOrder?> StoreRappiOrder(RappiOrder order)
         {
-            var res = (await _context.RappiOrders.AddAsync(order)).Entity;
-            return res;
+            await _context.RappiOrders.AddAsync(order);
+            var rows = await _context.SaveChangesAsync();
+            return rows > 0 ? order : null;
         }
 
         public Task<int> StoreUberOrder(UberOrder order)

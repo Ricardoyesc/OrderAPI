@@ -8,6 +8,6 @@ namespace OrderAPI.Repositories.Interfaces
     {
         public Task<int> StoreUberOrder(UberOrder order);
         public Task<DidiOrder> StoreDidiOrder(DidiOrder order);
-        public Task<RappiOrder> StoreRappiOrder(RappiOrder order);
+        public Task<RappiOrder?> StoreRappiOrder(RappiOrder order);
     }
 }

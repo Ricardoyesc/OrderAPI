@@ -11,8 +11,8 @@ namespace Entities.Context.Entities.Rappi
         public int total_order { get; set; }
         public int total_to_pay { get; set; }
         public int discount_by_support { get; set; }
-        public virtual List<Charge> charges { get; set; }
-        public virtual List<OtherTotal> other_totals { get; set; }
+        public virtual Charge? charges { get; set; }
+        public virtual OtherTotal? other_totals { get; set; }
     }
 
 }

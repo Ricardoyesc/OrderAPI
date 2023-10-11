@@ -24,7 +24,8 @@ namespace Entities.Context
         public DbSet<Item> Items { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<OrderItemInfo> OrderItems { get; set; }
-        public DbSet<Discount> Discount { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
+        public DbSet<DeliveryDiscount> DeliveryDiscounts { get; set; }
         public DbSet<Charge> Charges { get; set; }
         public DbSet<OtherTotal> OtherTotals { get; set; }
         public DbSet<Entities.Rappi.SubItem> RappiSubItems { get; set; }

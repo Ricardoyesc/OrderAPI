@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace OrderAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231010060743_Orders")]
-    partial class Orders
+    [Migration("20231011064544_Order")]
+    partial class Order
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -348,7 +348,6 @@ namespace OrderAPI.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("type")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("id");
@@ -394,9 +393,6 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("RappiOrderorder_id")
-                        .HasColumnType("varchar(255)");
-
                     b.Property<string>("address")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -427,8 +423,6 @@ namespace OrderAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RappiOrderorder_id");
-
                     b.ToTable("BillingsInformation");
                 });
 
@@ -438,9 +432,6 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("TotalsId")
-                        .HasColumnType("int");
-
                     b.Property<int>("service_fee")
                         .HasColumnType("int");
 
@@ -448,8 +439,6 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TotalsId");
 
                     b.ToTable("Charges");
                 });
@@ -461,28 +450,40 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("document_number")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("first_name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("last_name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("phone_number")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("user_type")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Rappi.DeliveryDiscount", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("total_percentage_discount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("total_value_discount")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("DeliveryDiscounts");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Rappi.DeliveryInformation", b =>
@@ -530,7 +531,7 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("RappiOrderorder_id")
+                    b.Property<string>("OrderDetailorder_id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<int>("amount_by_partner")
@@ -540,10 +541,9 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("description")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("discount_product_unit_value")
+                    b.Property<int?>("discount_product_unit_value")
                         .HasColumnType("int");
 
                     b.Property<int>("discount_product_units")
@@ -552,7 +552,7 @@ namespace OrderAPI.Migrations
                     b.Property<bool>("includes_toppings")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("max_value")
+                    b.Property<int?>("max_value")
                         .HasColumnType("int");
 
                     b.Property<int>("percentage_by_partners")
@@ -561,36 +561,32 @@ namespace OrderAPI.Migrations
                     b.Property<int>("percentage_by_rappi")
                         .HasColumnType("int");
 
-                    b.Property<int>("product_id")
+                    b.Property<int?>("product_id")
                         .HasColumnType("int");
 
                     b.Property<int>("raw_value")
                         .HasColumnType("int");
 
                     b.Property<string>("sku")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("title")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("type")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("value")
                         .HasColumnType("int");
 
                     b.Property<string>("value_type")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RappiOrderorder_id");
+                    b.HasIndex("OrderDetailorder_id");
 
-                    b.ToTable("Discount");
+                    b.ToTable("Discounts");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Rappi.Item", b =>
@@ -598,15 +594,13 @@ namespace OrderAPI.Migrations
                     b.Property<string>("id")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("RappiOrderorder_id")
+                    b.Property<string>("OrderDetailorder_id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("comments")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("percentage_discount")
@@ -619,27 +613,70 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("sku")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("type")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("id");
 
-                    b.HasIndex("RappiOrderorder_id");
+                    b.HasIndex("OrderDetailorder_id");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Rappi.OrderDetail", b =>
+                {
+                    b.Property<string>("order_id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("billing_informationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("coooking_time")
+                        .HasColumnType("int");
+
+                    b.Property<string>("created_at")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("delivery_discountid")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("delivery_informationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("delivery_method")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("max_cooking_time")
+                        .HasColumnType("int");
+
+                    b.Property<int>("min_cooking_time")
+                        .HasColumnType("int");
+
+                    b.Property<string>("payment_method")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("totalsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("order_id");
+
+                    b.HasIndex("billing_informationId");
+
+                    b.HasIndex("delivery_discountid");
+
+                    b.HasIndex("delivery_informationId");
+
+                    b.HasIndex("totalsId");
+
+                    b.ToTable("OrderDetail");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Rappi.OtherTotal", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TotalsId")
                         .HasColumnType("int");
 
                     b.Property<int>("tip")
@@ -653,61 +690,36 @@ namespace OrderAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TotalsId");
-
                     b.ToTable("OtherTotals");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Rappi.RappiOrder", b =>
                 {
-                    b.Property<string>("order_id")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<int>("coooking_time")
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("created_at")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("customerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("delivery_discount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("delivery_informationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("delivery_method")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("max_cooking_time")
-                        .HasColumnType("int");
-
-                    b.Property<int>("min_cooking_time")
+                    b.Property<int?>("customerId")
                         .HasColumnType("int");
 
                     b.Property<int>("orderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("payment_method")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<string>("order_detailorder_id")
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<int>("totalsId")
-                        .HasColumnType("int");
+                    b.Property<string>("storeinternal_id")
+                        .HasColumnType("varchar(255)");
 
-                    b.HasKey("order_id");
+                    b.HasKey("id");
 
                     b.HasIndex("customerId");
 
-                    b.HasIndex("delivery_informationId");
-
                     b.HasIndex("orderId");
 
-                    b.HasIndex("totalsId");
+                    b.HasIndex("order_detailorder_id");
+
+                    b.HasIndex("storeinternal_id");
 
                     b.ToTable("RappiOrders");
                 });
@@ -715,9 +727,6 @@ namespace OrderAPI.Migrations
             modelBuilder.Entity("Entities.Context.Entities.Rappi.Store", b =>
                 {
                     b.Property<string>("internal_id")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("RappiOrderorder_id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("external_id")
@@ -729,8 +738,6 @@ namespace OrderAPI.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("internal_id");
-
-                    b.HasIndex("RappiOrderorder_id");
 
                     b.ToTable("Stores");
                 });
@@ -744,7 +751,6 @@ namespace OrderAPI.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("percentage_discount")
@@ -757,11 +763,9 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("sku")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("type")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("id");
@@ -777,7 +781,13 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("chargesId")
+                        .HasColumnType("int");
+
                     b.Property<int>("discount_by_support")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("other_totalsId")
                         .HasColumnType("int");
 
                     b.Property<int>("total_discounts")
@@ -793,6 +803,10 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("chargesId");
+
+                    b.HasIndex("other_totalsId");
 
                     b.ToTable("Totals");
                 });
@@ -919,54 +933,52 @@ namespace OrderAPI.Migrations
                         .HasForeignKey("OrderItemInfoapp_item_id");
                 });
 
-            modelBuilder.Entity("Entities.Context.Entities.Rappi.BillingInformation", b =>
-                {
-                    b.HasOne("Entities.Context.Entities.Rappi.RappiOrder", null)
-                        .WithMany("billing_information")
-                        .HasForeignKey("RappiOrderorder_id");
-                });
-
-            modelBuilder.Entity("Entities.Context.Entities.Rappi.Charge", b =>
-                {
-                    b.HasOne("Entities.Context.Entities.Rappi.Totals", null)
-                        .WithMany("charges")
-                        .HasForeignKey("TotalsId");
-                });
-
             modelBuilder.Entity("Entities.Context.Entities.Rappi.Discount", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Rappi.RappiOrder", null)
+                    b.HasOne("Entities.Context.Entities.Rappi.OrderDetail", null)
                         .WithMany("discounts")
-                        .HasForeignKey("RappiOrderorder_id");
+                        .HasForeignKey("OrderDetailorder_id");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Rappi.Item", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Rappi.RappiOrder", null)
+                    b.HasOne("Entities.Context.Entities.Rappi.OrderDetail", null)
                         .WithMany("items")
-                        .HasForeignKey("RappiOrderorder_id");
+                        .HasForeignKey("OrderDetailorder_id");
                 });
 
-            modelBuilder.Entity("Entities.Context.Entities.Rappi.OtherTotal", b =>
+            modelBuilder.Entity("Entities.Context.Entities.Rappi.OrderDetail", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Rappi.Totals", null)
-                        .WithMany("other_totals")
-                        .HasForeignKey("TotalsId");
+                    b.HasOne("Entities.Context.Entities.Rappi.BillingInformation", "billing_information")
+                        .WithMany()
+                        .HasForeignKey("billing_informationId");
+
+                    b.HasOne("Entities.Context.Entities.Rappi.DeliveryDiscount", "delivery_discount")
+                        .WithMany()
+                        .HasForeignKey("delivery_discountid");
+
+                    b.HasOne("Entities.Context.Entities.Rappi.DeliveryInformation", "delivery_information")
+                        .WithMany()
+                        .HasForeignKey("delivery_informationId");
+
+                    b.HasOne("Entities.Context.Entities.Rappi.Totals", "totals")
+                        .WithMany()
+                        .HasForeignKey("totalsId");
+
+                    b.Navigation("billing_information");
+
+                    b.Navigation("delivery_discount");
+
+                    b.Navigation("delivery_information");
+
+                    b.Navigation("totals");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Rappi.RappiOrder", b =>
                 {
                     b.HasOne("Entities.Context.Entities.Rappi.Customer", "customer")
                         .WithMany()
-                        .HasForeignKey("customerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Context.Entities.Rappi.DeliveryInformation", "delivery_information")
-                        .WithMany()
-                        .HasForeignKey("delivery_informationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("customerId");
 
                     b.HasOne("Entities.Context.Order", "order")
                         .WithMany()
@@ -974,26 +986,21 @@ namespace OrderAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Context.Entities.Rappi.Totals", "totals")
+                    b.HasOne("Entities.Context.Entities.Rappi.OrderDetail", "order_detail")
                         .WithMany()
-                        .HasForeignKey("totalsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("order_detailorder_id");
+
+                    b.HasOne("Entities.Context.Entities.Rappi.Store", "store")
+                        .WithMany()
+                        .HasForeignKey("storeinternal_id");
 
                     b.Navigation("customer");
 
-                    b.Navigation("delivery_information");
-
                     b.Navigation("order");
 
-                    b.Navigation("totals");
-                });
+                    b.Navigation("order_detail");
 
-            modelBuilder.Entity("Entities.Context.Entities.Rappi.Store", b =>
-                {
-                    b.HasOne("Entities.Context.Entities.Rappi.RappiOrder", null)
-                        .WithMany("store")
-                        .HasForeignKey("RappiOrderorder_id");
+                    b.Navigation("store");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Rappi.SubItem", b =>
@@ -1001,6 +1008,21 @@ namespace OrderAPI.Migrations
                     b.HasOne("Entities.Context.Entities.Rappi.Item", null)
                         .WithMany("subitems")
                         .HasForeignKey("Itemid");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Rappi.Totals", b =>
+                {
+                    b.HasOne("Entities.Context.Entities.Rappi.Charge", "charges")
+                        .WithMany()
+                        .HasForeignKey("chargesId");
+
+                    b.HasOne("Entities.Context.Entities.Rappi.OtherTotal", "other_totals")
+                        .WithMany()
+                        .HasForeignKey("other_totalsId");
+
+                    b.Navigation("charges");
+
+                    b.Navigation("other_totals");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.UberOrder", b =>
@@ -1038,22 +1060,11 @@ namespace OrderAPI.Migrations
                     b.Navigation("subitems");
                 });
 
-            modelBuilder.Entity("Entities.Context.Entities.Rappi.RappiOrder", b =>
+            modelBuilder.Entity("Entities.Context.Entities.Rappi.OrderDetail", b =>
                 {
-                    b.Navigation("billing_information");
-
                     b.Navigation("discounts");
 
                     b.Navigation("items");
-
-                    b.Navigation("store");
-                });
-
-            modelBuilder.Entity("Entities.Context.Entities.Rappi.Totals", b =>
-                {
-                    b.Navigation("charges");
-
-                    b.Navigation("other_totals");
                 });
 #pragma warning restore 612, 618
         }

@@ -36,17 +36,19 @@ namespace OrderAPI.Policies.Handlers
             string signature = elements[1].Split('=')[1].Trim();
 
             // Read the request body
-            using var reader = new StreamReader(request.Request.Body);
-            string requestBody = await reader.ReadToEndAsync();
-            
+            request.Request.EnableBuffering();
+            var requestBody = await request.Request.BodyReader.ReadAsync();
+            var str = Encoding.UTF8.GetString(requestBody.Buffer);
+
+            request.Request.Body.Position = 0;
+
             // Create the signed_payload string
-            string signedPayload = timestamp + "." + requestBody;
+            string signedPayload = timestamp + "." + str;
 
             // Compute HMAC with SHA256
             using var hmac = new System.Security.Cryptography.HMACSHA256(Encoding.UTF8.GetBytes(requirement.Secret));
             byte[] hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(signedPayload));
             string expectedSignature = hashBytes.Aggregate("", (s, e) => s + String.Format("{0:x2}", e), s => s);
-            ;
 
             // Compare the signature in the header with the expected signature
             if (!string.Equals(signature, expectedSignature))

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrderAPI.Repositories.Interfaces;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -18,7 +19,7 @@ namespace OrderAPI.Controllers
         }
         [HttpPost]
         [Consumes("application/json")]
-        //[Authorize(Policy = "RappiWebhookSignaturePolicy")]
+        [Authorize(Policy = "RappiWebhookSignaturePolicy")]
         public async Task<IActionResult> HandleWebhookEventAsync([FromBody] JsonArray jObject)
         {
             try
@@ -31,10 +32,10 @@ namespace OrderAPI.Controllers
                 }
 
                 await _orders.StoreRappiOrder(order);
-
+                
                 return Ok();
             }
-            catch
+            catch(Exception ex)
             {
                 return BadRequest();
             }

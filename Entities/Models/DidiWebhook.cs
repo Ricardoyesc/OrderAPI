@@ -12,6 +12,6 @@ namespace Entities.Models
         public string? app_shop_id { get; set; }
         public string? type { get; set; }
         public int timestamp { get; set; }
-        public T? data { get; set; }
+        public T data { get; set; } = default!;
     }
 }

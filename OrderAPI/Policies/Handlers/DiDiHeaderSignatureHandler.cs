@@ -20,8 +20,11 @@ namespace OrderAPI.Policies.Handlers
             string headerSign = request.Request.Headers["didi-header-sign"];
 
             // Read the request body
+            request.Request.EnableBuffering();
             using var reader = new StreamReader(request.Request.Body);
             string requestBody = await reader.ReadToEndAsync();
+            request.Request.Body.Position = 0;
+
 
             // Calculate the expected signature
             string expectedSignature;

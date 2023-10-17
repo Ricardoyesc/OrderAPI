@@ -7,12 +7,18 @@ using OrderAPI.Policies.Handlers;
 using OrderAPI.Policies.Requirements;
 using OrderAPI.Repositories;
 using OrderAPI.Repositories.Interfaces;
+using Serilog;
 
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 3));
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//Add serilog
+builder.Host.UseSerilog((hostContext, services, configuration) => {
+    configuration.WriteTo.Console();
+    configuration.WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day);
+});
 
+// Add services to the container.
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -51,6 +57,7 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddSingleton<IAuthorizationHandler, RappiWebhookSignatureHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, DiDiHeaderSignatureHandler>();
+builder.Services.AddSingleton<IUberConnection, UberConnectionRepository>();
 builder.Services.AddScoped<IOrdersRepository, OrdersRepository>();
 
 builder.Services.AddEndpointsApiExplorer();

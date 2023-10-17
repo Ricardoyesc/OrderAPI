@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace OrderAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231011064544_Order")]
-    partial class Order
+    [Migration("20231017013237_create-database")]
+    partial class createdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,8 +70,8 @@ namespace OrderAPI.Migrations
                     b.Property<int>("priceid")
                         .HasColumnType("int");
 
-                    b.Property<int>("receive_addressuid")
-                        .HasColumnType("int");
+                    b.Property<long>("receive_addressuid")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("remark")
                         .IsRequired()
@@ -108,14 +108,19 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.OrderItemInfo", b =>
                 {
-                    b.Property<string>("app_item_id")
-                        .HasColumnType("varchar(255)");
+                    b.Property<long>("order_item_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
                     b.Property<long?>("DidiOrderorder_id")
                         .HasColumnType("bigint");
 
                     b.Property<int>("amount")
                         .HasColumnType("int");
+
+                    b.Property<string>("app_item_id")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -124,7 +129,7 @@ namespace OrderAPI.Migrations
                     b.Property<int>("promo_type")
                         .HasColumnType("int");
 
-                    b.Property<int>("promotion_detailid")
+                    b.Property<int?>("promotion_detailId")
                         .HasColumnType("int");
 
                     b.Property<int>("real_price")
@@ -139,11 +144,11 @@ namespace OrderAPI.Migrations
                     b.Property<int>("total_price")
                         .HasColumnType("int");
 
-                    b.HasKey("app_item_id");
+                    b.HasKey("order_item_id");
 
                     b.HasIndex("DidiOrderorder_id");
 
-                    b.HasIndex("promotion_detailid");
+                    b.HasIndex("promotion_detailId");
 
                     b.ToTable("OrderItems");
                 });
@@ -201,7 +206,7 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.PromotionDetail", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -214,16 +219,16 @@ namespace OrderAPI.Migrations
                     b.Property<int>("shop_subside_price")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("PromotionDetails");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.ReceiveAddress", b =>
                 {
-                    b.Property<int>("uid")
+                    b.Property<long>("uid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
                     b.Property<string>("calling_code")
                         .IsRequired()
@@ -269,13 +274,11 @@ namespace OrderAPI.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("poi_lat")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<double>("poi_lat")
+                        .HasColumnType("double");
 
-                    b.Property<string>("poi_lng")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<double>("poi_lng")
+                        .HasColumnType("double");
 
                     b.HasKey("uid");
 
@@ -363,8 +366,8 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("OrderItemInfoapp_item_id")
-                        .HasColumnType("varchar(255)");
+                    b.Property<long?>("OrderItemInfoorder_item_id")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("amount")
                         .HasColumnType("int");
@@ -382,7 +385,7 @@ namespace OrderAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("OrderItemInfoapp_item_id");
+                    b.HasIndex("OrderItemInfoorder_item_id");
 
                     b.ToTable("DidiSubItems");
                 });
@@ -898,9 +901,7 @@ namespace OrderAPI.Migrations
 
                     b.HasOne("Entities.Context.Entities.Didi.PromotionDetail", "promotion_detail")
                         .WithMany()
-                        .HasForeignKey("promotion_detailid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("promotion_detailId");
 
                     b.Navigation("promotion_detail");
                 });
@@ -930,7 +931,7 @@ namespace OrderAPI.Migrations
                 {
                     b.HasOne("Entities.Context.Entities.Didi.OrderItemInfo", null)
                         .WithMany("sub_item_list")
-                        .HasForeignKey("OrderItemInfoapp_item_id");
+                        .HasForeignKey("OrderItemInfoorder_item_id");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Rappi.Discount", b =>

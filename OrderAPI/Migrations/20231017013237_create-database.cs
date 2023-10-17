@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OrderAPI.Migrations
 {
-    public partial class Order : Migration
+    public partial class createdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -186,7 +186,7 @@ namespace OrderAPI.Migrations
                 name: "PromotionDetails",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     promo_type = table.Column<int>(type: "int", nullable: false),
                     promo_discount = table.Column<int>(type: "int", nullable: false),
@@ -194,7 +194,7 @@ namespace OrderAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PromotionDetails", x => x.id);
+                    table.PrimaryKey("PK_PromotionDetails", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -202,7 +202,7 @@ namespace OrderAPI.Migrations
                 name: "ReceiveAddresses",
                 columns: table => new
                 {
-                    uid = table.Column<int>(type: "int", nullable: false)
+                    uid = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -222,10 +222,8 @@ namespace OrderAPI.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     house_number = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    poi_lat = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    poi_lng = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    poi_lat = table.Column<double>(type: "double", nullable: false),
+                    poi_lng = table.Column<double>(type: "double", nullable: false),
                     coordinate_type = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     poi_display_name = table.Column<string>(type: "longtext", nullable: false)
@@ -352,7 +350,7 @@ namespace OrderAPI.Migrations
                     shop_confirm_time = table.Column<int>(type: "int", nullable: false),
                     priceid = table.Column<int>(type: "int", nullable: false),
                     shopid = table.Column<int>(type: "int", nullable: false),
-                    receive_addressuid = table.Column<int>(type: "int", nullable: false),
+                    receive_addressuid = table.Column<long>(type: "bigint", nullable: false),
                     orderId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -458,7 +456,9 @@ namespace OrderAPI.Migrations
                 name: "OrderItems",
                 columns: table => new
                 {
-                    app_item_id = table.Column<string>(type: "varchar(255)", nullable: false)
+                    order_item_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    app_item_id = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -468,23 +468,22 @@ namespace OrderAPI.Migrations
                     submit_refund_amount = table.Column<int>(type: "int", nullable: false),
                     real_price = table.Column<int>(type: "int", nullable: false),
                     promo_type = table.Column<int>(type: "int", nullable: false),
-                    promotion_detailid = table.Column<int>(type: "int", nullable: false),
+                    promotion_detailId = table.Column<int>(type: "int", nullable: true),
                     DidiOrderorder_id = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItems", x => x.app_item_id);
+                    table.PrimaryKey("PK_OrderItems", x => x.order_item_id);
                     table.ForeignKey(
                         name: "FK_OrderItems_DidiOrders_DidiOrderorder_id",
                         column: x => x.DidiOrderorder_id,
                         principalTable: "DidiOrders",
                         principalColumn: "order_id");
                     table.ForeignKey(
-                        name: "FK_OrderItems_PromotionDetails_promotion_detailid",
-                        column: x => x.promotion_detailid,
+                        name: "FK_OrderItems_PromotionDetails_promotion_detailId",
+                        column: x => x.promotion_detailId,
                         principalTable: "PromotionDetails",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -657,17 +656,16 @@ namespace OrderAPI.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     sku_price = table.Column<int>(type: "int", nullable: false),
                     amount = table.Column<int>(type: "int", nullable: false),
-                    OrderItemInfoapp_item_id = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    OrderItemInfoorder_item_id = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DidiSubItems", x => x.id);
                     table.ForeignKey(
-                        name: "FK_DidiSubItems_OrderItems_OrderItemInfoapp_item_id",
-                        column: x => x.OrderItemInfoapp_item_id,
+                        name: "FK_DidiSubItems_OrderItems_OrderItemInfoorder_item_id",
+                        column: x => x.OrderItemInfoorder_item_id,
                         principalTable: "OrderItems",
-                        principalColumn: "app_item_id");
+                        principalColumn: "order_item_id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -721,9 +719,9 @@ namespace OrderAPI.Migrations
                 column: "shopid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DidiSubItems_OrderItemInfoapp_item_id",
+                name: "IX_DidiSubItems_OrderItemInfoorder_item_id",
                 table: "DidiSubItems",
-                column: "OrderItemInfoapp_item_id");
+                column: "OrderItemInfoorder_item_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Discounts_OrderDetailorder_id",
@@ -761,9 +759,9 @@ namespace OrderAPI.Migrations
                 column: "DidiOrderorder_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItems_promotion_detailid",
+                name: "IX_OrderItems_promotion_detailId",
                 table: "OrderItems",
-                column: "promotion_detailid");
+                column: "promotion_detailId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PromotionsInfo_DidiOrderorder_id",

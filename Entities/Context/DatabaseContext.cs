@@ -1,9 +1,5 @@
-﻿using Entities.Context.Entities.Didi;
-using Entities.Context.Entities.Rappi;
-using Entities.Context.Entities.Uber;
+﻿using Entities.Context.Entities.Uber;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
-using static Entities.Context.Entities.Catalogs;
 
 namespace Entities.Context
 {
@@ -29,10 +25,36 @@ namespace Entities.Context
         public DbSet<Charge> Charges { get; set; }
         public DbSet<OtherTotal> OtherTotals { get; set; }
         public DbSet<Entities.Rappi.SubItem> RappiSubItems { get; set; }
-        public DbSet<MetaInfo> MetaInfos { get; set; }
         public DbSet<RappiOrder> RappiOrders { get; set; }
         public DbSet<DidiOrder> DidiOrders { get; set; }
         public DbSet<UberOrder> UberOrders { get; set; }
+        public DbSet<TimeRange> TimeRanges { get; set; }
+        public DbSet<MetaInfo> MetaInfos { get; set; }
+        public DbSet<OAuthToken> OAuthTokens { get; set; }
+        public DbSet<Store> Stores { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Delivery> Deliveries { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Money> Monies { get; set; }
+        public DbSet<PriceBreakdown> PriceBreakdowns { get; set; }
+        public DbSet<Fee> Fees { get; set; }
+        public DbSet<Promotion> Promotions { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
+        public DbSet<Adjustment> Adjustments { get; set; }
+        public DbSet<TaxReporting> TaxReportings { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<RemittanceSummary> RemittanceSummaries { get; set; }
+        public DbSet<PreparationTime> PreparationTimes { get; set; }
+        public DbSet<EligibleActions> EligibleActions { get; set; }
+        public DbSet<FailureInfo> FailureInfos { get; set; }
+        public DbSet<RetailerLoyaltyInfo> RetailerLoyaltyInfos { get; set; }
+        public DbSet<Allergy> Allergies { get; set; }
+        public DbSet<Discounted> Discounteds { get; set; }
+        public DbSet<DiscountedItems> DiscountedItems { get; set; }
+        public DbSet<CustomerRequests> CustomerRequests { get; set; }
+        public DbSet<RestrictedItems> RestrictedItems { get; set; }
+
         public DbSet<Order> Orders { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {

@@ -6,8 +6,8 @@ namespace OrderAPI.Repositories.Interfaces
 {
     public interface IOrdersRepository
     {
-        public Task<int> StoreUberOrder(UberOrder order);
-        public Task<DidiOrder> StoreDidiOrder(DidiOrder order);
+        public Task<UberOrder?> StoreUberOrder(UberOrder order);
+        public Task<DidiOrder?> StoreDidiOrder(DidiOrder order);
         public Task<RappiOrder?> StoreRappiOrder(RappiOrder order);
     }
 }

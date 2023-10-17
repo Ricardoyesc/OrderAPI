@@ -1,4 +1,6 @@
-﻿using Entities.Context.Entities.Uber;
+﻿using Entities.Context.Entities.Rappi;
+using Entities.Context.Entities.Didi;
+using Entities.Context.Entities.Uber;
 using Microsoft.EntityFrameworkCore;
 
 namespace Entities.Context
@@ -31,16 +33,16 @@ namespace Entities.Context
         public DbSet<TimeRange> TimeRanges { get; set; }
         public DbSet<MetaInfo> MetaInfos { get; set; }
         public DbSet<OAuthToken> OAuthTokens { get; set; }
-        public DbSet<Store> Stores { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<UberStore> UberStores { get; set; }
+        public DbSet<UberCustomer> UberCustomers { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Money> Monies { get; set; }
         public DbSet<PriceBreakdown> PriceBreakdowns { get; set; }
         public DbSet<Fee> Fees { get; set; }
-        public DbSet<Promotion> Promotions { get; set; }
-        public DbSet<Discount> Discounts { get; set; }
+        public DbSet<UberPromotion> Promotions { get; set; }
+        public DbSet<UberDiscount> UberDiscounts { get; set; }
         public DbSet<Adjustment> Adjustments { get; set; }
         public DbSet<TaxReporting> TaxReportings { get; set; }
         public DbSet<Location> Locations { get; set; }

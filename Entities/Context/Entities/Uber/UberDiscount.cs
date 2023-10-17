@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Context.Entities.Uber
 {
-    public class Discount
+    public class UberDiscount
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

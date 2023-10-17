@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Context.Entities.Uber;
 
-public class Store
+public class UberStore
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -25,8 +25,8 @@ namespace Entities.Context.Entities.Uber
         public DateTime? CompletedTime { get; set; }
         public DateTime CreatedTime { get; set; }
         public bool HasMembershipPass { get; set; }
-        public virtual Store Store { get; set; }
-        public virtual List<Customer> Customers { get; set; }
+        public virtual UberStore Store { get; set; }
+        public virtual List<UberCustomer> Customers { get; set; }
         public virtual List<Delivery> Deliveries { get; set; }
         public virtual List<ShoppingCart> Carts { get; set; }
         public virtual Payment Payment { get; set; }

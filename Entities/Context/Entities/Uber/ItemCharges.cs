@@ -13,7 +13,7 @@ namespace Entities.Context.Entities.Uber
         public virtual Money SubtotalIncludingPromos { get; set; }
 
         public virtual PriceBreakdown PriceBreakdown { get; set; }
-        public virtual Discount Discount { get; set; }
+        public virtual UberDiscount Discount { get; set; }
         public virtual Money Unit { get; set; }
     }
 

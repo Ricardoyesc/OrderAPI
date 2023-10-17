@@ -16,5 +16,5 @@ public class Discounted
 
     public virtual Money Total { get; set; }
 
-    public virtual Discount Discount { get; set; }
+    public virtual UberDiscount Discount { get; set; }
 }

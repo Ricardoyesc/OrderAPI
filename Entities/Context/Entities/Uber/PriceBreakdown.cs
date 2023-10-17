@@ -12,7 +12,7 @@ public class PriceBreakdown
 
     public virtual Quantity Quantity { get; set; }
     public virtual Money Total { get; set; }
-    public virtual Discount Discount { get; set; }
+    public virtual UberDiscount Discount { get; set; }
     public virtual Money Unit { get; set; }
     public bool IsTaxInclusive { get; set; }
 }

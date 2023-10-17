@@ -10,6 +10,6 @@ public class Promotions
     public int Id { get; set; }
 
     public virtual Money Total { get; set; }
-    public virtual PromotionDetail Details { get; set; }
+    public virtual UberPromotionDetail Details { get; set; }
     public virtual Money OrderTotalExcludingPromos { get; set; }
 }

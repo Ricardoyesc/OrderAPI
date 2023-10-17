@@ -11,5 +11,5 @@ public class TaxReporting
 
     public virtual List<TaxBreakdown> Breakdown { get; set; }
     public virtual List<FeeDetail> Fees { get; set; }
-    public virtual List<PromotionDetail> Promotions { get; set; }
+    public virtual List<UberPromotionDetail> Promotions { get; set; }
 }

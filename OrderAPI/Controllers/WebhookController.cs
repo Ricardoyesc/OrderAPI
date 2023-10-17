@@ -90,11 +90,12 @@ namespace OrderAPI.Controllers
 
         [HttpPost]
         [Consumes("application/json")]
-        public async Task<IActionResult> StoreAsync([FromBody] UberOrder uberOrder)
+        public async Task<IActionResult> StoreAsync()
         {
             try
             {
                 Request.EnableBuffering();
+                Request.Body.Position = 0;
                 using var reader = new StreamReader(Request.Body);
                 string requestBody = await reader.ReadToEndAsync();
                 Request.Body.Position = 0;
@@ -110,7 +111,7 @@ namespace OrderAPI.Controllers
                 //};
 
 
-                var uberor = JsonSerializer.Deserialize<UberOrder>(requestBody);
+                var uberOrder = JsonSerializer.Deserialize<UberOrder>(requestBody);
 
                 if (uberOrder == null)
                 {

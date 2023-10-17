@@ -7,13 +7,13 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
-        public string cart_item_id { get; set; }
+        public int Id { get; set; }
+        public string? cart_item_id { get; set; }
 
         public virtual Quantity quantity { get; set; }
-        public virtual Money total { get; set; }
-        public virtual UberDiscount discount { get; set; }
-        public virtual Money unit { get; set; }
+        public virtual Money? total { get; set; }
+        public virtual UberDiscount? discount { get; set; }
+        public virtual Money? unit { get; set; }
         public bool is_tax_inclusive { get; set; }
     }
 }

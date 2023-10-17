@@ -7,14 +7,14 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
-        public string tax_ids { get; set; }
-        public string tax_id_type { get; set; }
-        public string customer_full_name { get; set; }
-        public string email { get; set; }
-        public string legal_entity_name { get; set; }
-        public string billing_address { get; set; }
-        public string country { get; set; }
+        public int Id { get; set; }
+        public string? tax_ids { get; set; }
+        public string? tax_id_type { get; set; }
+        public string? customer_full_name { get; set; }
+        public string? email { get; set; }
+        public string? legal_entity_name { get; set; }
+        public string? billing_address { get; set; }
+        public string? country { get; set; }
 
         public virtual EncryptedTaxId encrypted_tax_id { get; set; }
     }

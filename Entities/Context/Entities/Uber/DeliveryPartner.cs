@@ -6,12 +6,10 @@ namespace Entities.Context.Entities.Uber
     public class DeliveryPartner
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
-        public string partner_id { get; set; }
-        public string name { get; set; }
-        public virtual Vehicle vehicle { get; set; }
-        public virtual Contact contact { get; set; }
-        public virtual CurrentLocation current_location { get; set; }
+        public string? id { get; set; }
+        public string? name { get; set; }
+        public virtual Vehicle? vehicle { get; set; }
+        public virtual Contact? contact { get; set; }
+        public virtual CurrentLocation? current_location { get; set; }
     }
 }

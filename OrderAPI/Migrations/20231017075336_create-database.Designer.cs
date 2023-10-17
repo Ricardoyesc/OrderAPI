@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace OrderAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231017044743_create-database")]
+    [Migration("20231017075336_create-database")]
     partial class createdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,6 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("country")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("create_time")
@@ -67,15 +66,17 @@ namespace OrderAPI.Migrations
                     b.Property<int>("pay_type")
                         .HasColumnType("int");
 
-                    b.Property<int>("priceid")
+                    b.Property<int>("priceId")
                         .HasColumnType("int");
 
                     b.Property<long>("receive_addressuid")
                         .HasColumnType("bigint");
 
                     b.Property<string>("remark")
-                        .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("shopId")
+                        .HasColumnType("int");
 
                     b.Property<int>("shop_accept_status")
                         .HasColumnType("int");
@@ -83,25 +84,21 @@ namespace OrderAPI.Migrations
                     b.Property<int>("shop_confirm_time")
                         .HasColumnType("int");
 
-                    b.Property<int>("shopid")
-                        .HasColumnType("int");
-
                     b.Property<int>("status")
                         .HasColumnType("int");
 
                     b.Property<string>("timezone")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("order_id");
 
                     b.HasIndex("orderId");
 
-                    b.HasIndex("priceid");
+                    b.HasIndex("priceId");
 
                     b.HasIndex("receive_addressuid");
 
-                    b.HasIndex("shopid");
+                    b.HasIndex("shopId");
 
                     b.ToTable("DidiOrders");
                 });
@@ -119,11 +116,9 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("app_item_id")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("promo_type")
@@ -155,7 +150,7 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.PriceInfo", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -174,14 +169,14 @@ namespace OrderAPI.Migrations
                     b.Property<int>("shop_paid_money")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("PricesInfo");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.Promotion", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -197,7 +192,7 @@ namespace OrderAPI.Migrations
                     b.Property<int>("shop_subside_price")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("DidiOrderorder_id");
 
@@ -231,47 +226,36 @@ namespace OrderAPI.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("calling_code")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("city")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("coordinate_type")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("country_code")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("first_name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("house_number")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("last_name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("phone")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("poi_address")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("poi_display_name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<double>("poi_lat")
@@ -287,33 +271,30 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.ShopInfo", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("app_shop_id")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("shop_addr")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<long>("shop_id")
                         .HasColumnType("bigint");
 
                     b.Property<string>("shop_name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Shops");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.Shopper", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -321,14 +302,12 @@ namespace OrderAPI.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("phone")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("DidiOrderorder_id");
 
@@ -337,11 +316,11 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.ShopPhone", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ShopInfoid")
+                    b.Property<int?>("ShopInfoId")
                         .HasColumnType("int");
 
                     b.Property<int>("calling_code")
@@ -353,16 +332,16 @@ namespace OrderAPI.Migrations
                     b.Property<string>("type")
                         .HasColumnType("longtext");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ShopInfoid");
+                    b.HasIndex("ShopInfoId");
 
                     b.ToTable("ShopPhones");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.SubItem", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -373,17 +352,15 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("app_item_id")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("sku_price")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("OrderItemInfoorder_item_id");
 
@@ -397,31 +374,24 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("address")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("billing_type")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("document_number")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("document_type")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("email")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("phone")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -474,7 +444,7 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Rappi.DeliveryDiscount", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -484,7 +454,7 @@ namespace OrderAPI.Migrations
                     b.Property<int>("total_value_discount")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("DeliveryDiscounts");
                 });
@@ -496,31 +466,24 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("city")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("complement")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("complete_address")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("neighborhood")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("postal_code")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("street_name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("street_number")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -642,7 +605,7 @@ namespace OrderAPI.Migrations
                     b.Property<string>("created_at")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("delivery_discountid")
+                    b.Property<int?>("delivery_discountId")
                         .HasColumnType("int");
 
                     b.Property<int?>("delivery_informationId")
@@ -667,7 +630,7 @@ namespace OrderAPI.Migrations
 
                     b.HasIndex("billing_informationId");
 
-                    b.HasIndex("delivery_discountid");
+                    b.HasIndex("delivery_discountId");
 
                     b.HasIndex("delivery_informationId");
 
@@ -698,7 +661,7 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Rappi.RappiOrder", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -714,7 +677,7 @@ namespace OrderAPI.Migrations
                     b.Property<string>("storeinternal_id")
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("customerId");
 
@@ -733,11 +696,9 @@ namespace OrderAPI.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("external_id")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("internal_id");
@@ -820,13 +781,13 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("CanAdjustReadyForPickupTime")
+                    b.Property<bool>("can_adjust_ready_for_pickup_time")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("CanMarkOutOfItem")
+                    b.Property<bool>("can_mark_out_of_item")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("Cancel")
+                    b.Property<bool>("cancel")
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
@@ -840,14 +801,38 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalId")
+                    b.Property<int?>("detailsId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("totalId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TotalId");
+                    b.HasIndex("detailsId");
+
+                    b.HasIndex("totalId");
 
                     b.ToTable("Adjustments");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Uber.AdjustmentDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("amountId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("reason")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("amountId");
+
+                    b.ToTable("AdjustmentDetail");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Allergen", b =>
@@ -859,15 +844,14 @@ namespace OrderAPI.Migrations
                     b.Property<int?>("AllergyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("name")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AllergyId");
 
-                    b.ToTable("Allergen");
+                    b.ToTable("Allergens");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Allergy", b =>
@@ -877,7 +861,6 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("instructions")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -891,51 +874,45 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("CartItemId")
-                        .IsRequired()
+                    b.Property<string>("ShoppingCartid")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("cart_item_id")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("CustomerId")
-                        .IsRequired()
+                    b.Property<string>("customer_id")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("CustomerRequestsId")
+                    b.Property<int>("customer_requestsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DefaultQuantityId")
+                    b.Property<int>("default_quantityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ExternalData")
-                        .IsRequired()
+                    b.Property<string>("external_data")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("ItemId")
-                        .IsRequired()
+                    b.Property<string>("item_id")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("PictureUrl")
-                        .IsRequired()
+                    b.Property<string>("picture_url")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("QuantityId")
+                    b.Property<int>("quantityId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ShoppingCartId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
+                    b.Property<string>("title")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerRequestsId");
+                    b.HasIndex("ShoppingCartid");
 
-                    b.HasIndex("DefaultQuantityId");
+                    b.HasIndex("customer_requestsId");
 
-                    b.HasIndex("QuantityId");
+                    b.HasIndex("default_quantityId");
 
-                    b.HasIndex("ShoppingCartId");
+                    b.HasIndex("quantityId");
 
                     b.ToTable("CartItem");
                 });
@@ -946,29 +923,28 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("DisplayAmount")
-                        .IsRequired()
+                    b.Property<string>("display_amount")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("GrossId")
+                    b.Property<int?>("grossId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsTaxInclusive")
+                    b.Property<bool>("is_tax_inclusive")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("NetId")
+                    b.Property<int?>("netId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TaxId")
+                    b.Property<int?>("taxId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GrossId");
+                    b.HasIndex("grossId");
 
-                    b.HasIndex("NetId");
+                    b.HasIndex("netId");
 
-                    b.HasIndex("TaxId");
+                    b.HasIndex("taxId");
 
                     b.ToTable("CashAmountDue");
                 });
@@ -979,16 +955,13 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("CountryISO2")
-                        .IsRequired()
+                    b.Property<string>("country_iso2")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Number")
-                        .IsRequired()
+                    b.Property<string>("number")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("PinCode")
-                        .IsRequired()
+                    b.Property<string>("pin_code")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -1002,10 +975,10 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<double>("Latitude")
+                    b.Property<double>("latitude")
                         .HasColumnType("double");
 
-                    b.Property<double>("Longitude")
+                    b.Property<double>("longitude")
                         .HasColumnType("double");
 
                     b.HasKey("Id");
@@ -1019,16 +992,15 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AllergyId")
+                    b.Property<int?>("allergyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("SpecialInstructions")
-                        .IsRequired()
+                    b.Property<string>("special_instructions")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AllergyId");
+                    b.HasIndex("allergyId");
 
                     b.ToTable("CustomerRequests");
                 });
@@ -1039,139 +1011,115 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("DeliveryId")
-                        .IsRequired()
+                    b.Property<Guid?>("UberOrderId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("delivery_id")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("DeliveryPartnerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DeliveryPartnerMarkedNotReadyTime")
+                    b.Property<DateTime>("delivery_partner_marked_not_ready_time")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("EstimatedPickUpTime")
+                    b.Property<string>("delivery_partnerid")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("estimated_pick_up_time")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Instructions")
-                        .IsRequired()
+                    b.Property<string>("instructions")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("InteractionType")
-                        .IsRequired()
+                    b.Property<string>("interaction_type")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("LocationId")
-                        .HasColumnType("int");
+                    b.Property<string>("locationid")
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
+                    b.Property<string>("status")
                         .HasColumnType("longtext");
-
-                    b.Property<int?>("UberOrderId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeliveryPartnerId");
-
-                    b.HasIndex("LocationId");
-
                     b.HasIndex("UberOrderId");
+
+                    b.HasIndex("delivery_partnerid");
+
+                    b.HasIndex("locationid");
 
                     b.ToTable("Deliveries");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.DeliveryPartner", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("contactId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ContactId")
+                    b.Property<int?>("current_locationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CurrentLocationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("name")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("PartnerId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("VehicleId")
+                    b.Property<int?>("vehicleId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.HasIndex("ContactId");
+                    b.HasIndex("contactId");
 
-                    b.HasIndex("CurrentLocationId");
+                    b.HasIndex("current_locationId");
 
-                    b.HasIndex("VehicleId");
+                    b.HasIndex("vehicleId");
 
                     b.ToTable("DeliveryPartner");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Discounted", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("discountId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CartItemId")
-                        .IsRequired()
+                    b.Property<string>("price_type")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("DiscountId")
+                    b.Property<int>("quantityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PriceType")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("QuantityId")
+                    b.Property<int?>("totalId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalId")
-                        .HasColumnType("int");
+                    b.HasKey("id");
 
-                    b.HasKey("Id");
+                    b.HasIndex("discountId");
 
-                    b.HasIndex("DiscountId");
+                    b.HasIndex("quantityId");
 
-                    b.HasIndex("QuantityId");
-
-                    b.HasIndex("TotalId");
+                    b.HasIndex("totalId");
 
                     b.ToTable("Discounteds");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.DiscountedItem", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("CartItemId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("DiscountAmountId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ExternalItemDiscountId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<string>("external_id")
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int?>("UberPromotionDetailId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<string>("discount_amount_applied")
+                        .HasColumnType("longtext");
 
-                    b.HasIndex("DiscountAmountId");
+                    b.Property<string>("discounted_quantity")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("external_id");
 
                     b.HasIndex("UberPromotionDetailId");
 
@@ -1184,14 +1132,13 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DiscountAmountApplied")
+                    b.Property<int>("discount_amount_applied")
                         .HasColumnType("int");
 
-                    b.Property<int>("DiscountedQuantity")
+                    b.Property<int>("discounted_quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("ExternalId")
-                        .IsRequired()
+                    b.Property<string>("external_id")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -1205,13 +1152,13 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("CanAdjustReadyForPickupTime")
+                    b.Property<bool>("can_adjust_ready_for_pickup_time")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("CanMarkOutOfItem")
+                    b.Property<bool?>("can_mark_out_of_item")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("Cancel")
+                    b.Property<bool>("cancel")
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
@@ -1225,12 +1172,10 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("CipherText")
-                        .IsRequired()
+                    b.Property<string>("cipher_text")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Key")
-                        .IsRequired()
+                    b.Property<string>("key")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -1244,32 +1189,29 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
+                    b.Property<Guid?>("UberOrderId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("description")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("FailureAttributedToParty")
-                        .IsRequired()
+                    b.Property<string>("failure_attributed_to_party")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Reason")
-                        .IsRequired()
+                    b.Property<string>("reason")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("TimeRangeId")
+                    b.Property<int>("time_rangeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UberOrderId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("WillMerchantBePaid")
+                    b.Property<bool>("will_merchant_be_paid")
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TimeRangeId");
-
                     b.HasIndex("UberOrderId");
+
+                    b.HasIndex("time_rangeId");
 
                     b.ToTable("FailureInfos");
                 });
@@ -1280,35 +1222,38 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
+                    b.Property<int?>("TaxBreakdownId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TaxBreakdownId1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TaxBreakdownId2")
+                        .HasColumnType("int");
+
+                    b.Property<string>("description")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("FeesId")
+                    b.Property<int?>("gross_amountId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GrossAmountId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("InstanceId")
-                        .IsRequired()
+                    b.Property<string>("instance_id")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("NetAmountId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TaxReportingId")
+                    b.Property<int?>("net_amountId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FeesId");
+                    b.HasIndex("TaxBreakdownId");
 
-                    b.HasIndex("GrossAmountId");
+                    b.HasIndex("TaxBreakdownId1");
 
-                    b.HasIndex("NetAmountId");
+                    b.HasIndex("TaxBreakdownId2");
 
-                    b.HasIndex("TaxReportingId");
+                    b.HasIndex("gross_amountId");
+
+                    b.HasIndex("net_amountId");
 
                     b.ToTable("FeeDetail");
                 });
@@ -1319,12 +1264,12 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalId")
+                    b.Property<int?>("totalId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TotalId");
+                    b.HasIndex("totalId");
 
                     b.ToTable("Fees");
                 });
@@ -1335,31 +1280,27 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("ActionType")
-                        .IsRequired()
+                    b.Property<string>("ShoppingCartid")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("action_type")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("CartItemId")
-                        .IsRequired()
+                    b.Property<string>("cart_item_id")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("IssueType")
-                        .IsRequired()
+                    b.Property<string>("issue_type")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("ShoppingCartId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StoreResponse")
-                        .IsRequired()
+                    b.Property<string>("store_response")
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("SuspendUntil")
+                    b.Property<DateTime>("suspend_until")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ShoppingCartId");
+                    b.HasIndex("ShoppingCartid");
 
                     b.ToTable("FulfillmentIssue");
                 });
@@ -1370,93 +1311,100 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DiscountId")
+                    b.Property<int?>("discountId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PriceBreakdownId")
+                    b.Property<int?>("price_breakdownId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubtotalIncludingPromosId")
+                    b.Property<int?>("subtotal_including_promosId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalId")
+                    b.Property<int?>("totalId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnitId")
+                    b.Property<int?>("unitId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DiscountId");
+                    b.HasIndex("discountId");
 
-                    b.HasIndex("PriceBreakdownId");
+                    b.HasIndex("price_breakdownId");
 
-                    b.HasIndex("SubtotalIncludingPromosId");
+                    b.HasIndex("subtotal_including_promosId");
 
-                    b.HasIndex("TotalId");
+                    b.HasIndex("totalId");
 
-                    b.HasIndex("UnitId");
+                    b.HasIndex("unitId");
 
                     b.ToTable("ItemCharges");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Location", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<string>("BusinessName")
-                        .IsRequired()
+                    b.Property<string>("business_name")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("City")
-                        .IsRequired()
+                    b.Property<string>("city")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("ClientProvidedStreetAddressLineOne")
-                        .IsRequired()
+                    b.Property<string>("client_provided_street_address_line_one")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
+                    b.Property<string>("country")
                         .HasColumnType("longtext");
 
-                    b.Property<double>("Latitude")
+                    b.Property<double>("latitude")
                         .HasColumnType("double");
 
-                    b.Property<string>("LocationTypeValue")
-                        .IsRequired()
+                    b.Property<string>("location_type_value")
                         .HasColumnType("longtext");
 
-                    b.Property<double>("Longitude")
+                    b.Property<double>("longitude")
                         .HasColumnType("double");
 
-                    b.Property<string>("PlaceId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("PostalCode")
+                    b.Property<int>("postal_code")
                         .HasColumnType("int");
 
-                    b.Property<string>("StreetAddressLineOne")
-                        .IsRequired()
+                    b.Property<string>("street_address_line_one")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("StreetAddressLineTwo")
-                        .IsRequired()
+                    b.Property<string>("street_address_line_two")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
+                    b.Property<string>("type")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UnitNumber")
+                    b.Property<int>("unit_number")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Uber.MerchantFee", b =>
+                {
+                    b.Property<string>("id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int?>("FeesId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("amountId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("FeesId");
+
+                    b.HasIndex("amountId");
+
+                    b.ToTable("MerchantFee");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.MetaInfo", b =>
@@ -1465,7 +1413,6 @@ namespace OrderAPI.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("resource_href")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("resource_id");
@@ -1479,20 +1426,38 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AmountE5")
+                    b.Property<int>("amount_e5")
                         .HasColumnType("int");
 
-                    b.Property<string>("CurrencyCode")
-                        .IsRequired()
+                    b.Property<string>("currency_code")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Formatted")
-                        .IsRequired()
+                    b.Property<string>("formatted")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.ToTable("Monies");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Uber.Name", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("display_name")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("first_name")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("last_name")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Name");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.OAuthToken", b =>
@@ -1502,7 +1467,6 @@ namespace OrderAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AccessToken")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("ExpirationTime")
@@ -1513,26 +1477,34 @@ namespace OrderAPI.Migrations
                     b.ToTable("OAuthTokens");
                 });
 
-            modelBuilder.Entity("Entities.Context.Entities.Uber.PartnerIdentifier", b =>
+            modelBuilder.Entity("Entities.Context.Entities.Uber.OrderHistory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("IdentifierId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("UberStoreId")
+                    b.Property<int>("past_order_count")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UberStoreId");
+                    b.ToTable("OrderHistory");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Uber.PartnerIdentifier", b =>
+                {
+                    b.Property<string>("id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("UberStoreid")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("type")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("UberStoreid");
 
                     b.ToTable("PartnerIdentifier");
                 });
@@ -1543,47 +1515,47 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AdjustmentId")
+                    b.Property<int?>("adjustmentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CashAmountDueId")
+                    b.Property<int?>("cash_amount_dueId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FeesId")
+                    b.Property<int?>("feesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ItemChargesId")
+                    b.Property<int?>("item_chargesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PaymentDetailId")
+                    b.Property<int?>("payment_detailId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PromotionsId")
+                    b.Property<int?>("promotionsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TaxReportingId")
+                    b.Property<int?>("tax_reportingId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TipsId")
+                    b.Property<int?>("tipsId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdjustmentId");
+                    b.HasIndex("adjustmentId");
 
-                    b.HasIndex("CashAmountDueId");
+                    b.HasIndex("cash_amount_dueId");
 
-                    b.HasIndex("FeesId");
+                    b.HasIndex("feesId");
 
-                    b.HasIndex("ItemChargesId");
+                    b.HasIndex("item_chargesId");
 
-                    b.HasIndex("PaymentDetailId");
+                    b.HasIndex("payment_detailId");
 
-                    b.HasIndex("PromotionsId");
+                    b.HasIndex("promotionsId");
 
-                    b.HasIndex("TaxReportingId");
+                    b.HasIndex("tax_reportingId");
 
-                    b.HasIndex("TipsId");
+                    b.HasIndex("tipsId");
 
                     b.ToTable("Payments");
                 });
@@ -1594,29 +1566,45 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsTaxInclusive")
+                    b.Property<int>("adjustmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("cash_amount_dueId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("feesId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("is_tax_inclusive")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("OrderTotalDisplayAmount")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("OrderTotalGrossId")
+                    b.Property<int>("item_chargesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderTotalNetId")
+                    b.Property<int>("order_totalId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderTotalTaxId")
+                    b.Property<int>("promotionsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("tipsId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderTotalGrossId");
+                    b.HasIndex("adjustmentId");
 
-                    b.HasIndex("OrderTotalNetId");
+                    b.HasIndex("cash_amount_dueId");
 
-                    b.HasIndex("OrderTotalTaxId");
+                    b.HasIndex("feesId");
+
+                    b.HasIndex("item_chargesId");
+
+                    b.HasIndex("order_totalId");
+
+                    b.HasIndex("promotionsId");
+
+                    b.HasIndex("tipsId");
 
                     b.ToTable("PaymentDetail");
                 });
@@ -1627,14 +1615,13 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReadyForPickupTime")
+                    b.Property<DateTime>("ready_for_pickup_time")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("ReadyForPickupTimeSecs")
+                    b.Property<int>("ready_for_pickup_time_secs")
                         .HasColumnType("int");
 
-                    b.Property<string>("Source")
-                        .IsRequired()
+                    b.Property<string>("source")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -1648,34 +1635,33 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("CartItemId")
-                        .IsRequired()
+                    b.Property<string>("cart_item_id")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("DiscountId")
+                    b.Property<int?>("discountId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsTaxInclusive")
+                    b.Property<bool>("is_tax_inclusive")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("QuantityId")
+                    b.Property<int>("quantityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalId")
+                    b.Property<int?>("totalId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnitId")
+                    b.Property<int?>("unitId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DiscountId");
+                    b.HasIndex("discountId");
 
-                    b.HasIndex("QuantityId");
+                    b.HasIndex("quantityId");
 
-                    b.HasIndex("TotalId");
+                    b.HasIndex("totalId");
 
-                    b.HasIndex("UnitId");
+                    b.HasIndex("unitId");
 
                     b.ToTable("PriceBreakdowns");
                 });
@@ -1686,22 +1672,22 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DetailsId")
+                    b.Property<int?>("detailsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderTotalExcludingPromosId")
+                    b.Property<int?>("order_total_excluding_promosId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalId")
+                    b.Property<int?>("totalId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DetailsId");
+                    b.HasIndex("detailsId");
 
-                    b.HasIndex("OrderTotalExcludingPromosId");
+                    b.HasIndex("order_total_excluding_promosId");
 
-                    b.HasIndex("TotalId");
+                    b.HasIndex("totalId");
 
                     b.ToTable("Promotions");
                 });
@@ -1712,11 +1698,10 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Amount")
+                    b.Property<int>("amount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Unit")
-                        .IsRequired()
+                    b.Property<string>("unit")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -1730,20 +1715,23 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AmountId")
+                    b.Property<int?>("TaxReportingId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Entity")
-                        .IsRequired()
+                    b.Property<int?>("amountId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("entity")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
+                    b.Property<string>("type")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AmountId");
+                    b.HasIndex("TaxReportingId");
+
+                    b.HasIndex("amountId");
 
                     b.ToTable("RemittanceSummaries");
                 });
@@ -1754,16 +1742,15 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("ModifierItemId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<string>("SelectedModifierGroupid")
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("SelectedModifierGroupId")
-                        .HasColumnType("int");
+                    b.Property<string>("modifier_item_id")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SelectedModifierGroupId");
+                    b.HasIndex("SelectedModifierGroupid");
 
                     b.ToTable("RemovedModifierItem");
                 });
@@ -1774,10 +1761,10 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("ContainAlcoholicItem")
+                    b.Property<bool>("contain_alcoholic_item")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("ContainTobaccoProduct")
+                    b.Property<bool>("contain_tobacco_product")
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
@@ -1791,7 +1778,7 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("LoyaltyNumber")
+                    b.Property<int>("loyalty_number")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -1801,26 +1788,19 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.SelectedModifierGroup", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int?>("CartItemId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ExternalData")
-                        .IsRequired()
+                    b.Property<string>("external_data")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("ModifierGroupId")
-                        .IsRequired()
+                    b.Property<string>("title")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.HasIndex("CartItemId");
 
@@ -1833,48 +1813,41 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("ModifierItemId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<string>("SelectedModifierGroupid")
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("SelectedModifierGroupId")
-                        .HasColumnType("int");
+                    b.Property<string>("modifier_item_id")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SelectedModifierGroupId");
+                    b.HasIndex("SelectedModifierGroupid");
 
                     b.ToTable("SelectedModifierItem");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.ShoppingCart", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<string>("CartId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<Guid?>("UberOrderId")
+                        .HasColumnType("char(36)");
 
-                    b.Property<bool>("IncludeSingleUseItems")
+                    b.Property<bool>("include_single_use_items")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("RestrictedItemsId")
+                    b.Property<int>("restricted_itemsId")
                         .HasColumnType("int");
 
-                    b.Property<string>("SpecialInstructions")
-                        .IsRequired()
+                    b.Property<string>("special_instructions")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("UberOrderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RestrictedItemsId");
+                    b.HasKey("id");
 
                     b.HasIndex("UberOrderId");
+
+                    b.HasIndex("restricted_itemsId");
 
                     b.ToTable("ShoppingCarts");
                 });
@@ -1885,32 +1858,25 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("GrossAmountId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("InstanceId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("NetAmountId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TaxReportingId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("GrossAmountId");
-
-                    b.HasIndex("NetAmountId");
-
-                    b.HasIndex("TaxReportingId");
-
                     b.ToTable("TaxBreakdown");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Uber.TaxLocation", b =>
+                {
+                    b.Property<string>("id")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("country_iso2")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("postal_code")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("id");
+
+                    b.ToTable("TaxLocation");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.TaxProfile", b =>
@@ -1919,40 +1885,33 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("BillingAddress")
-                        .IsRequired()
+                    b.Property<string>("billing_address")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
+                    b.Property<string>("country")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("CustomerFullName")
-                        .IsRequired()
+                    b.Property<string>("customer_full_name")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<string>("email")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("EncryptedTaxIdId")
+                    b.Property<int>("encrypted_tax_idId")
                         .HasColumnType("int");
 
-                    b.Property<string>("LegalEntityName")
-                        .IsRequired()
+                    b.Property<string>("legal_entity_name")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("TaxIdType")
-                        .IsRequired()
+                    b.Property<string>("tax_id_type")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("TaxIds")
-                        .IsRequired()
+                    b.Property<string>("tax_ids")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EncryptedTaxIdId");
+                    b.HasIndex("encrypted_tax_idId");
 
                     b.ToTable("TaxProfile");
                 });
@@ -1963,7 +1922,22 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("breakdownId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("destinationid")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("originid")
+                        .HasColumnType("varchar(255)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("breakdownId");
+
+                    b.HasIndex("destinationid");
+
+                    b.HasIndex("originid");
 
                     b.ToTable("TaxReportings");
                 });
@@ -1974,10 +1948,10 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndTime")
+                    b.Property<DateTime>("end_time")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("StartTime")
+                    b.Property<DateTime>("start_time")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
@@ -1991,56 +1965,53 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalId")
+                    b.Property<int>("totalId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TotalId");
+                    b.HasIndex("totalId");
 
                     b.ToTable("Tips");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.UberCustomer", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<bool>("CanResponseToFulfillmentIssues")
+                    b.Property<Guid?>("UberOrderId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<bool>("can_response_to_fulfillment_issues")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("ContactId")
+                    b.Property<int>("contactId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CustomerId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("IsPrimaryCustomer")
+                    b.Property<bool>("is_primary_customer")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("OrderHistory")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("TaxProfileId")
+                    b.Property<int>("nameId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UberOrderId")
+                    b.Property<int>("order_historyId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("tax_profileId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ContactId");
-
-                    b.HasIndex("TaxProfileId");
+                    b.HasKey("id");
 
                     b.HasIndex("UberOrderId");
+
+                    b.HasIndex("contactId");
+
+                    b.HasIndex("nameId");
+
+                    b.HasIndex("order_historyId");
+
+                    b.HasIndex("tax_profileId");
 
                     b.ToTable("UberCustomers");
                 });
@@ -2051,112 +2022,106 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("QuantityId")
+                    b.Property<int>("quantityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalId")
+                    b.Property<int?>("totalId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuantityId");
+                    b.HasIndex("quantityId");
 
-                    b.HasIndex("TotalId");
+                    b.HasIndex("totalId");
 
                     b.ToTable("UberDiscounts");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.UberOrder", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("char(36)");
 
-                    b.Property<DateTime?>("CompletedTime")
+                    b.Property<DateTime?>("completed_time")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("CreatedTime")
+                    b.Property<DateTime>("created_time")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("DisplayId")
-                        .IsRequired()
+                    b.Property<string>("display_id")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("EligibleActionsId")
+                    b.Property<int?>("eligible_actionsId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ExternalId")
-                        .IsRequired()
+                    b.Property<string>("external_id")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("FulfillmentType")
-                        .IsRequired()
+                    b.Property<string>("fulfillment_type")
                         .HasColumnType("longtext");
 
-                    b.Property<bool>("HasMembershipPass")
+                    b.Property<bool>("has_membership_pass")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("IsOrderAccuracyRisk")
+                    b.Property<bool>("is_order_accuracy_risk")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("OrderId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("OrderingPlatform")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("PaymentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PreparationStatus")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("PreparationTimeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RetailerLoyaltyInfoId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ScheduledOrderTargetDeliveryEndTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("ScheduledOrderTargetDeliveryStartTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("StoreId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StoreInstructions")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<int>("orderId")
                         .HasColumnType("int");
 
+                    b.Property<string>("order_id")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ordering_platform")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("paymentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("preparation_status")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("preparation_timeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("retailer_loyalty_infoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("scheduled_order_target_delivery_end_time")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("scheduled_order_target_delivery_start_time")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("state")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("status")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("store_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("store_instructions")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("storeid")
+                        .HasColumnType("varchar(255)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("EligibleActionsId");
-
-                    b.HasIndex("PaymentId");
-
-                    b.HasIndex("PreparationTimeId");
-
-                    b.HasIndex("RetailerLoyaltyInfoId");
-
-                    b.HasIndex("StoreId");
+                    b.HasIndex("eligible_actionsId");
 
                     b.HasIndex("orderId");
+
+                    b.HasIndex("paymentId");
+
+                    b.HasIndex("preparation_timeId");
+
+                    b.HasIndex("retailer_loyalty_infoId");
+
+                    b.HasIndex("storeid");
 
                     b.ToTable("UberOrders");
                 });
@@ -2167,50 +2132,35 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DiscountDeliveryFeeValue")
+                    b.Property<int>("discount_delivery_fee_value")
                         .HasColumnType("int");
 
-                    b.Property<string>("DiscountPercentage")
-                        .IsRequired()
+                    b.Property<string>("discount_percentage")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("DiscountValue")
-                        .IsRequired()
+                    b.Property<string>("discount_value")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("ExternalPromotionId")
-                        .IsRequired()
+                    b.Property<string>("external_promotion_id")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("TaxReportingId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
+                    b.Property<string>("type")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TaxReportingId");
 
                     b.ToTable("UberPromotionDetail");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.UberStore", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("name")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("StoreId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("UberStores");
                 });
@@ -2221,35 +2171,25 @@ namespace OrderAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Color")
-                        .IsRequired()
+                    b.Property<string>("color")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("HandoffInstructions")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<bool>("IsAutonomous")
+                    b.Property<bool>("is_autonomous")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("LicensePlate")
-                        .IsRequired()
+                    b.Property<string>("license_plate")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Make")
-                        .IsRequired()
+                    b.Property<string>("make")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Model")
-                        .IsRequired()
+                    b.Property<string>("model")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Passcode")
-                        .IsRequired()
+                    b.Property<string>("passcode")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
+                    b.Property<string>("type")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -2281,7 +2221,7 @@ namespace OrderAPI.Migrations
 
                     b.HasOne("Entities.Context.Entities.Didi.PriceInfo", "price")
                         .WithMany()
-                        .HasForeignKey("priceid")
+                        .HasForeignKey("priceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2293,7 +2233,7 @@ namespace OrderAPI.Migrations
 
                     b.HasOne("Entities.Context.Entities.Didi.ShopInfo", "shop")
                         .WithMany()
-                        .HasForeignKey("shopid")
+                        .HasForeignKey("shopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2337,7 +2277,7 @@ namespace OrderAPI.Migrations
                 {
                     b.HasOne("Entities.Context.Entities.Didi.ShopInfo", null)
                         .WithMany("shop_phone")
-                        .HasForeignKey("ShopInfoid");
+                        .HasForeignKey("ShopInfoId");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.SubItem", b =>
@@ -2369,7 +2309,7 @@ namespace OrderAPI.Migrations
 
                     b.HasOne("Entities.Context.Entities.Rappi.DeliveryDiscount", "delivery_discount")
                         .WithMany()
-                        .HasForeignKey("delivery_discountid");
+                        .HasForeignKey("delivery_discountId");
 
                     b.HasOne("Entities.Context.Entities.Rappi.DeliveryInformation", "delivery_information")
                         .WithMany()
@@ -2441,13 +2381,28 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Adjustment", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Total")
+                    b.HasOne("Entities.Context.Entities.Uber.AdjustmentDetail", "details")
                         .WithMany()
-                        .HasForeignKey("TotalId")
+                        .HasForeignKey("detailsId");
+
+                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "total")
+                        .WithMany()
+                        .HasForeignKey("totalId");
+
+                    b.Navigation("details");
+
+                    b.Navigation("total");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Uber.AdjustmentDetail", b =>
+                {
+                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "amount")
+                        .WithMany()
+                        .HasForeignKey("amountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Total");
+                    b.Navigation("amount");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Allergen", b =>
@@ -2459,596 +2414,559 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.CartItem", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.CustomerRequests", "CustomerRequests")
-                        .WithMany()
-                        .HasForeignKey("CustomerRequestsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Context.Entities.Uber.Quantity", "DefaultQuantity")
-                        .WithMany()
-                        .HasForeignKey("DefaultQuantityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Context.Entities.Uber.Quantity", "Quantity")
-                        .WithMany()
-                        .HasForeignKey("QuantityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Context.Entities.Uber.ShoppingCart", null)
-                        .WithMany("Items")
-                        .HasForeignKey("ShoppingCartId");
+                        .WithMany("items")
+                        .HasForeignKey("ShoppingCartid");
 
-                    b.Navigation("CustomerRequests");
+                    b.HasOne("Entities.Context.Entities.Uber.CustomerRequests", "customer_requests")
+                        .WithMany()
+                        .HasForeignKey("customer_requestsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("DefaultQuantity");
+                    b.HasOne("Entities.Context.Entities.Uber.Quantity", "default_quantity")
+                        .WithMany()
+                        .HasForeignKey("default_quantityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Quantity");
+                    b.HasOne("Entities.Context.Entities.Uber.Quantity", "quantity")
+                        .WithMany()
+                        .HasForeignKey("quantityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("customer_requests");
+
+                    b.Navigation("default_quantity");
+
+                    b.Navigation("quantity");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.CashAmountDue", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Gross")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "gross")
                         .WithMany()
-                        .HasForeignKey("GrossId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("grossId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Net")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "net")
                         .WithMany()
-                        .HasForeignKey("NetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("netId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Tax")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "tax")
                         .WithMany()
-                        .HasForeignKey("TaxId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("taxId");
 
-                    b.Navigation("Gross");
+                    b.Navigation("gross");
 
-                    b.Navigation("Net");
+                    b.Navigation("net");
 
-                    b.Navigation("Tax");
+                    b.Navigation("tax");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.CustomerRequests", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Allergy", "Allergy")
+                    b.HasOne("Entities.Context.Entities.Uber.Allergy", "allergy")
                         .WithMany()
-                        .HasForeignKey("AllergyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("allergyId");
 
-                    b.Navigation("Allergy");
+                    b.Navigation("allergy");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Delivery", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.DeliveryPartner", "DeliveryPartner")
-                        .WithMany()
-                        .HasForeignKey("DeliveryPartnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Context.Entities.Uber.Location", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Context.Entities.Uber.UberOrder", null)
-                        .WithMany("Deliveries")
+                        .WithMany("deliveries")
                         .HasForeignKey("UberOrderId");
 
-                    b.Navigation("DeliveryPartner");
+                    b.HasOne("Entities.Context.Entities.Uber.DeliveryPartner", "delivery_partner")
+                        .WithMany()
+                        .HasForeignKey("delivery_partnerid");
 
-                    b.Navigation("Location");
+                    b.HasOne("Entities.Context.Entities.Uber.Location", "location")
+                        .WithMany()
+                        .HasForeignKey("locationid");
+
+                    b.Navigation("delivery_partner");
+
+                    b.Navigation("location");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.DeliveryPartner", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Contact", "Contact")
+                    b.HasOne("Entities.Context.Entities.Uber.Contact", "contact")
                         .WithMany()
-                        .HasForeignKey("ContactId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("contactId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.CurrentLocation", "CurrentLocation")
+                    b.HasOne("Entities.Context.Entities.Uber.CurrentLocation", "current_location")
                         .WithMany()
-                        .HasForeignKey("CurrentLocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("current_locationId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Vehicle", "Vehicle")
+                    b.HasOne("Entities.Context.Entities.Uber.Vehicle", "vehicle")
                         .WithMany()
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("vehicleId");
 
-                    b.Navigation("Contact");
+                    b.Navigation("contact");
 
-                    b.Navigation("CurrentLocation");
+                    b.Navigation("current_location");
 
-                    b.Navigation("Vehicle");
+                    b.Navigation("vehicle");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Discounted", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.UberDiscount", "Discount")
+                    b.HasOne("Entities.Context.Entities.Uber.UberDiscount", "discount")
                         .WithMany()
-                        .HasForeignKey("DiscountId")
+                        .HasForeignKey("discountId");
+
+                    b.HasOne("Entities.Context.Entities.Uber.Quantity", "quantity")
+                        .WithMany()
+                        .HasForeignKey("quantityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Context.Entities.Uber.Quantity", "Quantity")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "total")
                         .WithMany()
-                        .HasForeignKey("QuantityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("totalId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Total")
-                        .WithMany()
-                        .HasForeignKey("TotalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("discount");
 
-                    b.Navigation("Discount");
+                    b.Navigation("quantity");
 
-                    b.Navigation("Quantity");
-
-                    b.Navigation("Total");
+                    b.Navigation("total");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.DiscountedItem", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "DiscountAmount")
-                        .WithMany()
-                        .HasForeignKey("DiscountAmountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Context.Entities.Uber.UberPromotionDetail", null)
-                        .WithMany("DiscountedItems")
+                        .WithMany("discounted_items")
                         .HasForeignKey("UberPromotionDetailId");
-
-                    b.Navigation("DiscountAmount");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.FailureInfo", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.TimeRange", "TimeRange")
+                    b.HasOne("Entities.Context.Entities.Uber.UberOrder", null)
+                        .WithMany("failure_info")
+                        .HasForeignKey("UberOrderId");
+
+                    b.HasOne("Entities.Context.Entities.Uber.TimeRange", "time_range")
                         .WithMany()
-                        .HasForeignKey("TimeRangeId")
+                        .HasForeignKey("time_rangeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Context.Entities.Uber.UberOrder", null)
-                        .WithMany("FailureInfo")
-                        .HasForeignKey("UberOrderId");
-
-                    b.Navigation("TimeRange");
+                    b.Navigation("time_range");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.FeeDetail", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Fees", null)
-                        .WithMany("Details")
-                        .HasForeignKey("FeesId");
+                    b.HasOne("Entities.Context.Entities.Uber.TaxBreakdown", null)
+                        .WithMany("fees")
+                        .HasForeignKey("TaxBreakdownId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "GrossAmount")
+                    b.HasOne("Entities.Context.Entities.Uber.TaxBreakdown", null)
+                        .WithMany("items")
+                        .HasForeignKey("TaxBreakdownId1");
+
+                    b.HasOne("Entities.Context.Entities.Uber.TaxBreakdown", null)
+                        .WithMany("promotions")
+                        .HasForeignKey("TaxBreakdownId2");
+
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "gross_amount")
                         .WithMany()
-                        .HasForeignKey("GrossAmountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("gross_amountId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "NetAmount")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "net_amount")
                         .WithMany()
-                        .HasForeignKey("NetAmountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("net_amountId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.TaxReporting", null)
-                        .WithMany("Fees")
-                        .HasForeignKey("TaxReportingId");
+                    b.Navigation("gross_amount");
 
-                    b.Navigation("GrossAmount");
-
-                    b.Navigation("NetAmount");
+                    b.Navigation("net_amount");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Fees", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Total")
+                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "total")
                         .WithMany()
-                        .HasForeignKey("TotalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("totalId");
 
-                    b.Navigation("Total");
+                    b.Navigation("total");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.FulfillmentIssue", b =>
                 {
                     b.HasOne("Entities.Context.Entities.Uber.ShoppingCart", null)
-                        .WithMany("FulfillmentIssues")
-                        .HasForeignKey("ShoppingCartId");
+                        .WithMany("fulfillment_issues")
+                        .HasForeignKey("ShoppingCartid");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.ItemCharges", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.UberDiscount", "Discount")
+                    b.HasOne("Entities.Context.Entities.Uber.UberDiscount", "discount")
                         .WithMany()
-                        .HasForeignKey("DiscountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("discountId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.PriceBreakdown", "PriceBreakdown")
+                    b.HasOne("Entities.Context.Entities.Uber.PriceBreakdown", "price_breakdown")
                         .WithMany()
-                        .HasForeignKey("PriceBreakdownId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("price_breakdownId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "SubtotalIncludingPromos")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "subtotal_including_promos")
                         .WithMany()
-                        .HasForeignKey("SubtotalIncludingPromosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("subtotal_including_promosId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Total")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "total")
                         .WithMany()
-                        .HasForeignKey("TotalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("totalId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Unit")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "unit")
                         .WithMany()
-                        .HasForeignKey("UnitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("unitId");
 
-                    b.Navigation("Discount");
+                    b.Navigation("discount");
 
-                    b.Navigation("PriceBreakdown");
+                    b.Navigation("price_breakdown");
 
-                    b.Navigation("SubtotalIncludingPromos");
+                    b.Navigation("subtotal_including_promos");
 
-                    b.Navigation("Total");
+                    b.Navigation("total");
 
-                    b.Navigation("Unit");
+                    b.Navigation("unit");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Uber.MerchantFee", b =>
+                {
+                    b.HasOne("Entities.Context.Entities.Uber.Fees", null)
+                        .WithMany("details")
+                        .HasForeignKey("FeesId");
+
+                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "amount")
+                        .WithMany()
+                        .HasForeignKey("amountId");
+
+                    b.Navigation("amount");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.PartnerIdentifier", b =>
                 {
                     b.HasOne("Entities.Context.Entities.Uber.UberStore", null)
-                        .WithMany("PartnerIdentifiers")
-                        .HasForeignKey("UberStoreId");
+                        .WithMany("partner_identifiers")
+                        .HasForeignKey("UberStoreid");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Payment", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Adjustment", "Adjustment")
+                    b.HasOne("Entities.Context.Entities.Uber.Adjustment", "adjustment")
                         .WithMany()
-                        .HasForeignKey("AdjustmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("adjustmentId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "CashAmountDue")
+                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "cash_amount_due")
                         .WithMany()
-                        .HasForeignKey("CashAmountDueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("cash_amount_dueId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Fees", "Fees")
+                    b.HasOne("Entities.Context.Entities.Uber.Fees", "fees")
                         .WithMany()
-                        .HasForeignKey("FeesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("feesId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.ItemCharges", "ItemCharges")
+                    b.HasOne("Entities.Context.Entities.Uber.ItemCharges", "item_charges")
                         .WithMany()
-                        .HasForeignKey("ItemChargesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("item_chargesId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.PaymentDetail", "PaymentDetail")
+                    b.HasOne("Entities.Context.Entities.Uber.PaymentDetail", "payment_detail")
                         .WithMany()
-                        .HasForeignKey("PaymentDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("payment_detailId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Promotions", "Promotions")
+                    b.HasOne("Entities.Context.Entities.Uber.Promotions", "promotions")
                         .WithMany()
-                        .HasForeignKey("PromotionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("promotionsId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.TaxReporting", "TaxReporting")
+                    b.HasOne("Entities.Context.Entities.Uber.TaxReporting", "tax_reporting")
                         .WithMany()
-                        .HasForeignKey("TaxReportingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("tax_reportingId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Tips", "Tips")
+                    b.HasOne("Entities.Context.Entities.Uber.Tips", "tips")
                         .WithMany()
-                        .HasForeignKey("TipsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("tipsId");
 
-                    b.Navigation("Adjustment");
+                    b.Navigation("adjustment");
 
-                    b.Navigation("CashAmountDue");
+                    b.Navigation("cash_amount_due");
 
-                    b.Navigation("Fees");
+                    b.Navigation("fees");
 
-                    b.Navigation("ItemCharges");
+                    b.Navigation("item_charges");
 
-                    b.Navigation("PaymentDetail");
+                    b.Navigation("payment_detail");
 
-                    b.Navigation("Promotions");
+                    b.Navigation("promotions");
 
-                    b.Navigation("TaxReporting");
+                    b.Navigation("tax_reporting");
 
-                    b.Navigation("Tips");
+                    b.Navigation("tips");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.PaymentDetail", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "OrderTotalGross")
+                    b.HasOne("Entities.Context.Entities.Uber.Adjustment", "adjustment")
                         .WithMany()
-                        .HasForeignKey("OrderTotalGrossId")
+                        .HasForeignKey("adjustmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "OrderTotalNet")
+                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "cash_amount_due")
                         .WithMany()
-                        .HasForeignKey("OrderTotalNetId")
+                        .HasForeignKey("cash_amount_dueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "OrderTotalTax")
+                    b.HasOne("Entities.Context.Entities.Uber.Fees", "fees")
                         .WithMany()
-                        .HasForeignKey("OrderTotalTaxId")
+                        .HasForeignKey("feesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("OrderTotalGross");
+                    b.HasOne("Entities.Context.Entities.Uber.ItemCharges", "item_charges")
+                        .WithMany()
+                        .HasForeignKey("item_chargesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("OrderTotalNet");
+                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "order_total")
+                        .WithMany()
+                        .HasForeignKey("order_totalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("OrderTotalTax");
+                    b.HasOne("Entities.Context.Entities.Uber.Promotions", "promotions")
+                        .WithMany()
+                        .HasForeignKey("promotionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Context.Entities.Uber.Tips", "tips")
+                        .WithMany()
+                        .HasForeignKey("tipsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("adjustment");
+
+                    b.Navigation("cash_amount_due");
+
+                    b.Navigation("fees");
+
+                    b.Navigation("item_charges");
+
+                    b.Navigation("order_total");
+
+                    b.Navigation("promotions");
+
+                    b.Navigation("tips");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.PriceBreakdown", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.UberDiscount", "Discount")
+                    b.HasOne("Entities.Context.Entities.Uber.UberDiscount", "discount")
                         .WithMany()
-                        .HasForeignKey("DiscountId")
+                        .HasForeignKey("discountId");
+
+                    b.HasOne("Entities.Context.Entities.Uber.Quantity", "quantity")
+                        .WithMany()
+                        .HasForeignKey("quantityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Context.Entities.Uber.Quantity", "Quantity")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "total")
                         .WithMany()
-                        .HasForeignKey("QuantityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("totalId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Total")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "unit")
                         .WithMany()
-                        .HasForeignKey("TotalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("unitId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Unit")
-                        .WithMany()
-                        .HasForeignKey("UnitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("discount");
 
-                    b.Navigation("Discount");
+                    b.Navigation("quantity");
 
-                    b.Navigation("Quantity");
+                    b.Navigation("total");
 
-                    b.Navigation("Total");
-
-                    b.Navigation("Unit");
+                    b.Navigation("unit");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Promotions", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.UberPromotionDetail", "Details")
+                    b.HasOne("Entities.Context.Entities.Uber.UberPromotionDetail", "details")
                         .WithMany()
-                        .HasForeignKey("DetailsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("detailsId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "OrderTotalExcludingPromos")
+                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "order_total_excluding_promos")
                         .WithMany()
-                        .HasForeignKey("OrderTotalExcludingPromosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("order_total_excluding_promosId");
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Total")
+                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "total")
                         .WithMany()
-                        .HasForeignKey("TotalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("totalId");
 
-                    b.Navigation("Details");
+                    b.Navigation("details");
 
-                    b.Navigation("OrderTotalExcludingPromos");
+                    b.Navigation("order_total_excluding_promos");
 
-                    b.Navigation("Total");
+                    b.Navigation("total");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.RemittanceSummary", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Amount")
-                        .WithMany()
-                        .HasForeignKey("AmountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Entities.Context.Entities.Uber.TaxReporting", null)
+                        .WithMany("remittance_info")
+                        .HasForeignKey("TaxReportingId");
 
-                    b.Navigation("Amount");
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "amount")
+                        .WithMany()
+                        .HasForeignKey("amountId");
+
+                    b.Navigation("amount");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.RemovedModifierItem", b =>
                 {
                     b.HasOne("Entities.Context.Entities.Uber.SelectedModifierGroup", null)
-                        .WithMany("RemovedItems")
-                        .HasForeignKey("SelectedModifierGroupId");
+                        .WithMany("removed_items")
+                        .HasForeignKey("SelectedModifierGroupid");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.SelectedModifierGroup", b =>
                 {
                     b.HasOne("Entities.Context.Entities.Uber.CartItem", null)
-                        .WithMany("SelectedModifierGroups")
+                        .WithMany("selected_modifier_groups")
                         .HasForeignKey("CartItemId");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.SelectedModifierItem", b =>
                 {
                     b.HasOne("Entities.Context.Entities.Uber.SelectedModifierGroup", null)
-                        .WithMany("SelectedItems")
-                        .HasForeignKey("SelectedModifierGroupId");
+                        .WithMany("selected_items")
+                        .HasForeignKey("SelectedModifierGroupid");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.ShoppingCart", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.RestrictedItems", "RestrictedItems")
-                        .WithMany()
-                        .HasForeignKey("RestrictedItemsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Context.Entities.Uber.UberOrder", null)
-                        .WithMany("Carts")
+                        .WithMany("carts")
                         .HasForeignKey("UberOrderId");
 
-                    b.Navigation("RestrictedItems");
-                });
-
-            modelBuilder.Entity("Entities.Context.Entities.Uber.TaxBreakdown", b =>
-                {
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "GrossAmount")
+                    b.HasOne("Entities.Context.Entities.Uber.RestrictedItems", "restricted_items")
                         .WithMany()
-                        .HasForeignKey("GrossAmountId")
+                        .HasForeignKey("restricted_itemsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "NetAmount")
-                        .WithMany()
-                        .HasForeignKey("NetAmountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Context.Entities.Uber.TaxReporting", null)
-                        .WithMany("Breakdown")
-                        .HasForeignKey("TaxReportingId");
-
-                    b.Navigation("GrossAmount");
-
-                    b.Navigation("NetAmount");
+                    b.Navigation("restricted_items");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.TaxProfile", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.EncryptedTaxId", "EncryptedTaxId")
+                    b.HasOne("Entities.Context.Entities.Uber.EncryptedTaxId", "encrypted_tax_id")
                         .WithMany()
-                        .HasForeignKey("EncryptedTaxIdId")
+                        .HasForeignKey("encrypted_tax_idId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("EncryptedTaxId");
+                    b.Navigation("encrypted_tax_id");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Uber.TaxReporting", b =>
+                {
+                    b.HasOne("Entities.Context.Entities.Uber.TaxBreakdown", "breakdown")
+                        .WithMany()
+                        .HasForeignKey("breakdownId");
+
+                    b.HasOne("Entities.Context.Entities.Uber.TaxLocation", "destination")
+                        .WithMany()
+                        .HasForeignKey("destinationid");
+
+                    b.HasOne("Entities.Context.Entities.Uber.TaxLocation", "origin")
+                        .WithMany()
+                        .HasForeignKey("originid");
+
+                    b.Navigation("breakdown");
+
+                    b.Navigation("destination");
+
+                    b.Navigation("origin");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Tips", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Total")
+                    b.HasOne("Entities.Context.Entities.Uber.CashAmountDue", "total")
                         .WithMany()
-                        .HasForeignKey("TotalId")
+                        .HasForeignKey("totalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Total");
+                    b.Navigation("total");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.UberCustomer", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Contact", "Contact")
-                        .WithMany()
-                        .HasForeignKey("ContactId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Context.Entities.Uber.TaxProfile", "TaxProfile")
-                        .WithMany()
-                        .HasForeignKey("TaxProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Context.Entities.Uber.UberOrder", null)
-                        .WithMany("Customers")
+                        .WithMany("customers")
                         .HasForeignKey("UberOrderId");
 
-                    b.Navigation("Contact");
+                    b.HasOne("Entities.Context.Entities.Uber.Contact", "contact")
+                        .WithMany()
+                        .HasForeignKey("contactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("TaxProfile");
+                    b.HasOne("Entities.Context.Entities.Uber.Name", "name")
+                        .WithMany()
+                        .HasForeignKey("nameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Context.Entities.Uber.OrderHistory", "order_history")
+                        .WithMany()
+                        .HasForeignKey("order_historyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Context.Entities.Uber.TaxProfile", "tax_profile")
+                        .WithMany()
+                        .HasForeignKey("tax_profileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("contact");
+
+                    b.Navigation("name");
+
+                    b.Navigation("order_history");
+
+                    b.Navigation("tax_profile");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.UberDiscount", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.Quantity", "Quantity")
+                    b.HasOne("Entities.Context.Entities.Uber.Quantity", "quantity")
                         .WithMany()
-                        .HasForeignKey("QuantityId")
+                        .HasForeignKey("quantityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Context.Entities.Uber.Money", "Total")
+                    b.HasOne("Entities.Context.Entities.Uber.Money", "total")
                         .WithMany()
-                        .HasForeignKey("TotalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("totalId");
 
-                    b.Navigation("Quantity");
+                    b.Navigation("quantity");
 
-                    b.Navigation("Total");
+                    b.Navigation("total");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.UberOrder", b =>
                 {
-                    b.HasOne("Entities.Context.Entities.Uber.ActionEligibility", "EligibleActions")
+                    b.HasOne("Entities.Context.Entities.Uber.ActionEligibility", "eligible_actions")
                         .WithMany()
-                        .HasForeignKey("EligibleActionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Context.Entities.Uber.Payment", "Payment")
-                        .WithMany()
-                        .HasForeignKey("PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Context.Entities.Uber.PreparationTime", "PreparationTime")
-                        .WithMany()
-                        .HasForeignKey("PreparationTimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Context.Entities.Uber.RetailerLoyaltyInfo", "RetailerLoyaltyInfo")
-                        .WithMany()
-                        .HasForeignKey("RetailerLoyaltyInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Context.Entities.Uber.UberStore", "Store")
-                        .WithMany()
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("eligible_actionsId");
 
                     b.HasOne("Entities.Context.Order", "order")
                         .WithMany()
@@ -3056,24 +2974,33 @@ namespace OrderAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("EligibleActions");
+                    b.HasOne("Entities.Context.Entities.Uber.Payment", "payment")
+                        .WithMany()
+                        .HasForeignKey("paymentId");
 
-                    b.Navigation("Payment");
+                    b.HasOne("Entities.Context.Entities.Uber.PreparationTime", "preparation_time")
+                        .WithMany()
+                        .HasForeignKey("preparation_timeId");
 
-                    b.Navigation("PreparationTime");
+                    b.HasOne("Entities.Context.Entities.Uber.RetailerLoyaltyInfo", "retailer_loyalty_info")
+                        .WithMany()
+                        .HasForeignKey("retailer_loyalty_infoId");
 
-                    b.Navigation("RetailerLoyaltyInfo");
+                    b.HasOne("Entities.Context.Entities.Uber.UberStore", "store")
+                        .WithMany()
+                        .HasForeignKey("storeid");
 
-                    b.Navigation("Store");
+                    b.Navigation("eligible_actions");
 
                     b.Navigation("order");
-                });
 
-            modelBuilder.Entity("Entities.Context.Entities.Uber.UberPromotionDetail", b =>
-                {
-                    b.HasOne("Entities.Context.Entities.Uber.TaxReporting", null)
-                        .WithMany("Promotions")
-                        .HasForeignKey("TaxReportingId");
+                    b.Navigation("payment");
+
+                    b.Navigation("preparation_time");
+
+                    b.Navigation("retailer_loyalty_info");
+
+                    b.Navigation("store");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.DidiOrder", b =>
@@ -3114,56 +3041,61 @@ namespace OrderAPI.Migrations
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.CartItem", b =>
                 {
-                    b.Navigation("SelectedModifierGroups");
+                    b.Navigation("selected_modifier_groups");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.Fees", b =>
                 {
-                    b.Navigation("Details");
+                    b.Navigation("details");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.SelectedModifierGroup", b =>
                 {
-                    b.Navigation("RemovedItems");
+                    b.Navigation("removed_items");
 
-                    b.Navigation("SelectedItems");
+                    b.Navigation("selected_items");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.ShoppingCart", b =>
                 {
-                    b.Navigation("FulfillmentIssues");
+                    b.Navigation("fulfillment_issues");
 
-                    b.Navigation("Items");
+                    b.Navigation("items");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Uber.TaxBreakdown", b =>
+                {
+                    b.Navigation("fees");
+
+                    b.Navigation("items");
+
+                    b.Navigation("promotions");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.TaxReporting", b =>
                 {
-                    b.Navigation("Breakdown");
-
-                    b.Navigation("Fees");
-
-                    b.Navigation("Promotions");
+                    b.Navigation("remittance_info");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.UberOrder", b =>
                 {
-                    b.Navigation("Carts");
+                    b.Navigation("carts");
 
-                    b.Navigation("Customers");
+                    b.Navigation("customers");
 
-                    b.Navigation("Deliveries");
+                    b.Navigation("deliveries");
 
-                    b.Navigation("FailureInfo");
+                    b.Navigation("failure_info");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.UberPromotionDetail", b =>
                 {
-                    b.Navigation("DiscountedItems");
+                    b.Navigation("discounted_items");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Uber.UberStore", b =>
                 {
-                    b.Navigation("PartnerIdentifiers");
+                    b.Navigation("partner_identifiers");
                 });
 #pragma warning restore 612, 618
         }

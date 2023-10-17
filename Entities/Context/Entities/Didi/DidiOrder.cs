@@ -12,10 +12,10 @@ namespace Entities.Context.Entities.Didi
         public int shop_accept_status { get; set; }
         public int before_status { get; set; }
         public int order_index { get; set; }
-        public string remark { get; set; }
+        public string? remark { get; set; }
         public int city_id { get; set; }
-        public string country { get; set; }
-        public string timezone { get; set; }
+        public string? country { get; set; }
+        public string? timezone { get; set; }
         public int pay_type { get; set; }
         public int delivery_type { get; set; }
         public int expected_cook_eta { get; set; }

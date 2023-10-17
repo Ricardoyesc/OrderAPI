@@ -14,7 +14,7 @@ namespace Entities.Context.Entities.Rappi
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         public virtual OrderDetail? order_detail { get; set; }
         public virtual Store? store { get; set; }
         public virtual Customer? customer { get; set; }

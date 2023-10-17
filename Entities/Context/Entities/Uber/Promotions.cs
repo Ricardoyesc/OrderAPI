@@ -7,10 +7,10 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public virtual Money total { get; set; }
-        public virtual UberPromotionDetail details { get; set; }
-        public virtual Money order_total_excluding_promos { get; set; }
+        public virtual CashAmountDue? total { get; set; }
+        public virtual UberPromotionDetail? details { get; set; }
+        public virtual CashAmountDue? order_total_excluding_promos { get; set; }
     }
 }

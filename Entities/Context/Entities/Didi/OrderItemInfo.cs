@@ -8,8 +8,8 @@ namespace Entities.Context.Entities.Didi
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long order_item_id { get; set; }
-        public string app_item_id { get; set; }
-        public string name { get; set; }
+        public string? app_item_id { get; set; }
+        public string? name { get; set; }
         public int sku_price { get; set; }
         public int total_price { get; set; }
         public int amount { get; set; }

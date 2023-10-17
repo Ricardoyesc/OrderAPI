@@ -7,7 +7,7 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         public bool contain_alcoholic_item { get; set; }
         public bool contain_tobacco_product { get; set; }

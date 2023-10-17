@@ -7,9 +7,9 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public virtual Money total { get; set; }
-        public virtual List<FeeDetail> details { get; set; }
+        public virtual CashAmountDue? total { get; set; }
+        public virtual List<MerchantFee>? details { get; set; }
     }
 }

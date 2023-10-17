@@ -7,10 +7,11 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public virtual List<TaxBreakdown> breakdown { get; set; }
-        public virtual List<FeeDetail> fees { get; set; }
-        public virtual List<UberPromotionDetail> promotions { get; set; }
+        public virtual TaxBreakdown? breakdown { get; set; }
+        public virtual TaxLocation? origin { get; set; }
+        public virtual TaxLocation? destination { get; set; }
+        public virtual List<RemittanceSummary>? remittance_info { get; set; }
     }
 }

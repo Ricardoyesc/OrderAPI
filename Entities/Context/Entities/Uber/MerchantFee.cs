@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Context.Entities.Uber
 {
-    public class PartnerIdentifier
+    public class MerchantFee
     {
         [Key]
         public string? id { get; set; }
-        public string? type { get; set; }
+        public CashAmountDue? amount { get; set; }
     }
 }

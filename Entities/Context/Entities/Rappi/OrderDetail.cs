@@ -10,7 +10,7 @@ namespace Entities.Context.Entities.Rappi
     public class OrderDetail
     {
         [Key]
-        public string order_id { get; set; }
+        public string? order_id { get; set; }
         public int coooking_time { get; set; }
         public int min_cooking_time { get; set; }
         public int max_cooking_time { get; set; }

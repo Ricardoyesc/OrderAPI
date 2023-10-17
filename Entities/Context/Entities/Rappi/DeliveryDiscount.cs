@@ -7,7 +7,7 @@ namespace Entities.Context.Entities.Rappi
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
         public int total_percentage_discount { get; set; }
         public int total_value_discount { get; set; }
     }

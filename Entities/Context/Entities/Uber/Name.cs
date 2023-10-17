@@ -3,11 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Context.Entities.Uber
 {
-    public class Allergen
+    public class Name
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-        public string? name { get; set; }
+        public int Id { get; set; }
+        public string? display_name { get; set; }
+        public string? first_name {get; set;}
+        public string? last_name {get; set;}
     }
 }

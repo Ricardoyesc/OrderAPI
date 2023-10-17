@@ -7,13 +7,11 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
-
-        public virtual Money total { get; set; }
-        public virtual Money subtotal_including_promos { get; set; }
-
-        public virtual PriceBreakdown price_breakdown { get; set; }
-        public virtual UberDiscount discount { get; set; }
-        public virtual Money unit { get; set; }
+        public int Id { get; set; }
+        public virtual Money? total { get; set; }
+        public virtual Money? subtotal_including_promos { get; set; }
+        public virtual PriceBreakdown? price_breakdown { get; set; }
+        public virtual UberDiscount? discount { get; set; }
+        public virtual Money? unit { get; set; }
     }
 }

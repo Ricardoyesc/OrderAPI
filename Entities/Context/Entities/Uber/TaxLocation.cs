@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Context.Entities.Uber
 {
-    public class PartnerIdentifier
+    public class TaxLocation
     {
         [Key]
         public string? id { get; set; }
-        public string? type { get; set; }
+        public string? country_iso2 { get; set; }
+        public string? postal_code { get; set; }
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Entities.Context.Entities.Uber
@@ -11,7 +12,8 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         public int Id { get; set; }
-        public string AccessToken { get; set; }
+        public string? AccessToken { get; set; }
+        [JsonConverter(typeof(DateTimeConverter))]
         public DateTime ExpirationTime { get; set; }
     }
 

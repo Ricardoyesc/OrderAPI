@@ -3,11 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Context.Entities.Uber
 {
-    public class Allergen
+    public class AdjustmentDetail
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-        public string? name { get; set; }
+        public int Id { get; set; }
+        public string? reason { get; set; }
+        public virtual CashAmountDue amount { get; set; }
     }
 }

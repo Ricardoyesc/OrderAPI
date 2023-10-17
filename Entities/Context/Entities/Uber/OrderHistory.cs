@@ -3,11 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Context.Entities.Uber
 {
-    public class Allergen
+    public class OrderHistory
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-        public string? name { get; set; }
+        public int Id { get; set; }
+        public int past_order_count { get; set; }
     }
 }

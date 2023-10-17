@@ -15,8 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Add serilog
 builder.Host.UseSerilog((hostContext, services, configuration) => {
-    configuration.WriteTo.Console();
-    configuration.WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day);
+    //configuration.WriteTo.Console();
+    //configuration.WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day);
 });
 
 // Add services to the container.
@@ -25,7 +25,10 @@ builder.Services.AddControllers()
     {
         options.SuppressModelStateInvalidFilter = true;
     }
-    );
+    ).AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
+    });
 
 
 builder.Services.AddDbContext<DatabaseContext>(options => {

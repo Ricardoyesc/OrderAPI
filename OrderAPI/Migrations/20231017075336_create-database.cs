@@ -19,9 +19,9 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CanAdjustReadyForPickupTime = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    CanMarkOutOfItem = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Cancel = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    can_adjust_ready_for_pickup_time = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    can_mark_out_of_item = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    cancel = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,7 +35,7 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    instructions = table.Column<string>(type: "longtext", nullable: false)
+                    instructions = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -50,19 +50,19 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    address = table.Column<string>(type: "longtext", nullable: false)
+                    address = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    billing_type = table.Column<string>(type: "longtext", nullable: false)
+                    billing_type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    document_number = table.Column<string>(type: "longtext", nullable: false)
+                    document_number = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    document_type = table.Column<string>(type: "longtext", nullable: false)
+                    document_type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    email = table.Column<string>(type: "longtext", nullable: false)
+                    email = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: false)
+                    name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone = table.Column<string>(type: "longtext", nullable: false)
+                    phone = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -92,11 +92,11 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Number = table.Column<string>(type: "longtext", nullable: false)
+                    number = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PinCode = table.Column<string>(type: "longtext", nullable: false)
+                    pin_code = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CountryISO2 = table.Column<string>(type: "longtext", nullable: false)
+                    country_iso2 = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -111,8 +111,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Latitude = table.Column<double>(type: "double", nullable: false),
-                    Longitude = table.Column<double>(type: "double", nullable: false)
+                    latitude = table.Column<double>(type: "double", nullable: false),
+                    longitude = table.Column<double>(type: "double", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -149,19 +149,19 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    city = table.Column<string>(type: "longtext", nullable: false)
+                    city = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    complete_address = table.Column<string>(type: "longtext", nullable: false)
+                    complete_address = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    street_number = table.Column<string>(type: "longtext", nullable: false)
+                    street_number = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    neighborhood = table.Column<string>(type: "longtext", nullable: false)
+                    neighborhood = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    complement = table.Column<string>(type: "longtext", nullable: false)
+                    complement = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    postal_code = table.Column<string>(type: "longtext", nullable: false)
+                    postal_code = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    street_name = table.Column<string>(type: "longtext", nullable: false)
+                    street_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -174,14 +174,14 @@ namespace OrderAPI.Migrations
                 name: "DeliveryDiscounts",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     total_percentage_discount = table.Column<int>(type: "int", nullable: false),
                     total_value_discount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DeliveryDiscounts", x => x.id);
+                    table.PrimaryKey("PK_DeliveryDiscounts", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -191,10 +191,10 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ExternalId = table.Column<string>(type: "longtext", nullable: false)
+                    external_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DiscountedQuantity = table.Column<int>(type: "int", nullable: false),
-                    DiscountAmountApplied = table.Column<int>(type: "int", nullable: false)
+                    discounted_quantity = table.Column<int>(type: "int", nullable: false),
+                    discount_amount_applied = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -208,9 +208,9 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CanAdjustReadyForPickupTime = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    CanMarkOutOfItem = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Cancel = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    can_adjust_ready_for_pickup_time = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    can_mark_out_of_item = table.Column<bool>(type: "tinyint(1)", nullable: true),
+                    cancel = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -224,9 +224,9 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Key = table.Column<string>(type: "longtext", nullable: false)
+                    key = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CipherText = table.Column<string>(type: "longtext", nullable: false)
+                    cipher_text = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -239,34 +239,32 @@ namespace OrderAPI.Migrations
                 name: "Locations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Type = table.Column<string>(type: "longtext", nullable: false)
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PlaceId = table.Column<string>(type: "longtext", nullable: false)
+                    type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    StreetAddressLineOne = table.Column<string>(type: "longtext", nullable: false)
+                    street_address_line_one = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    StreetAddressLineTwo = table.Column<string>(type: "longtext", nullable: false)
+                    street_address_line_two = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Latitude = table.Column<double>(type: "double", nullable: false),
-                    Longitude = table.Column<double>(type: "double", nullable: false),
-                    UnitNumber = table.Column<int>(type: "int", nullable: false),
-                    BusinessName = table.Column<string>(type: "longtext", nullable: false)
+                    latitude = table.Column<double>(type: "double", nullable: false),
+                    longitude = table.Column<double>(type: "double", nullable: false),
+                    unit_number = table.Column<int>(type: "int", nullable: false),
+                    business_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    City = table.Column<string>(type: "longtext", nullable: false)
+                    city = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Country = table.Column<string>(type: "longtext", nullable: false)
+                    country = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PostalCode = table.Column<int>(type: "int", nullable: false),
-                    LocationTypeValue = table.Column<string>(type: "longtext", nullable: false)
+                    postal_code = table.Column<int>(type: "int", nullable: false),
+                    location_type_value = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ClientProvidedStreetAddressLineOne = table.Column<string>(type: "longtext", nullable: false)
+                    client_provided_street_address_line_one = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Locations", x => x.Id);
+                    table.PrimaryKey("PK_Locations", x => x.id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -276,7 +274,7 @@ namespace OrderAPI.Migrations
                 {
                     resource_id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    resource_href = table.Column<string>(type: "longtext", nullable: false)
+                    resource_href = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -291,10 +289,10 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    AmountE5 = table.Column<int>(type: "int", nullable: false),
-                    CurrencyCode = table.Column<string>(type: "longtext", nullable: false)
+                    amount_e5 = table.Column<int>(type: "int", nullable: false),
+                    currency_code = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Formatted = table.Column<string>(type: "longtext", nullable: false)
+                    formatted = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -304,18 +302,51 @@ namespace OrderAPI.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Name",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    display_name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    first_name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    last_name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Name", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "OAuthTokens",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    AccessToken = table.Column<string>(type: "longtext", nullable: false)
+                    AccessToken = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ExpirationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OAuthTokens", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "OrderHistory",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    past_order_count = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderHistory", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -355,10 +386,10 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ReadyForPickupTimeSecs = table.Column<int>(type: "int", nullable: false),
-                    Source = table.Column<string>(type: "longtext", nullable: false)
+                    ready_for_pickup_time_secs = table.Column<int>(type: "int", nullable: false),
+                    source = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ReadyForPickupTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    ready_for_pickup_time = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -370,7 +401,7 @@ namespace OrderAPI.Migrations
                 name: "PricesInfo",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     order_price = table.Column<int>(type: "int", nullable: false),
                     shop_paid_money = table.Column<int>(type: "int", nullable: false),
@@ -380,7 +411,7 @@ namespace OrderAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PricesInfo", x => x.id);
+                    table.PrimaryKey("PK_PricesInfo", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -406,8 +437,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Amount = table.Column<int>(type: "int", nullable: false),
-                    Unit = table.Column<string>(type: "longtext", nullable: false)
+                    amount = table.Column<int>(type: "int", nullable: false),
+                    unit = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -422,29 +453,29 @@ namespace OrderAPI.Migrations
                 {
                     uid = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "longtext", nullable: false)
+                    name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    first_name = table.Column<string>(type: "longtext", nullable: false)
+                    first_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    last_name = table.Column<string>(type: "longtext", nullable: false)
+                    last_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    calling_code = table.Column<string>(type: "longtext", nullable: false)
+                    calling_code = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone = table.Column<string>(type: "longtext", nullable: false)
+                    phone = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    city = table.Column<string>(type: "longtext", nullable: false)
+                    city = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    country_code = table.Column<string>(type: "longtext", nullable: false)
+                    country_code = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    poi_address = table.Column<string>(type: "longtext", nullable: false)
+                    poi_address = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    house_number = table.Column<string>(type: "longtext", nullable: false)
+                    house_number = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     poi_lat = table.Column<double>(type: "double", nullable: false),
                     poi_lng = table.Column<double>(type: "double", nullable: false),
-                    coordinate_type = table.Column<string>(type: "longtext", nullable: false)
+                    coordinate_type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    poi_display_name = table.Column<string>(type: "longtext", nullable: false)
+                    poi_display_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -459,8 +490,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ContainAlcoholicItem = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    ContainTobaccoProduct = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    contain_alcoholic_item = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    contain_tobacco_product = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -474,7 +505,7 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    LoyaltyNumber = table.Column<int>(type: "int", nullable: false)
+                    loyalty_number = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -486,19 +517,19 @@ namespace OrderAPI.Migrations
                 name: "Shops",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     shop_id = table.Column<long>(type: "bigint", nullable: false),
-                    app_shop_id = table.Column<string>(type: "longtext", nullable: false)
+                    app_shop_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    shop_addr = table.Column<string>(type: "longtext", nullable: false)
+                    shop_addr = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    shop_name = table.Column<string>(type: "longtext", nullable: false)
+                    shop_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shops", x => x.id);
+                    table.PrimaryKey("PK_Shops", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -508,9 +539,9 @@ namespace OrderAPI.Migrations
                 {
                     internal_id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    external_id = table.Column<string>(type: "longtext", nullable: false)
+                    external_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: false)
+                    name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -520,7 +551,7 @@ namespace OrderAPI.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "TaxReportings",
+                name: "TaxBreakdown",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -528,7 +559,24 @@ namespace OrderAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaxReportings", x => x.Id);
+                    table.PrimaryKey("PK_TaxBreakdown", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "TaxLocation",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    country_iso2 = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    postal_code = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TaxLocation", x => x.id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -538,8 +586,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    StartTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    start_time = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    end_time = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -548,19 +596,39 @@ namespace OrderAPI.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "UberStores",
+                name: "UberPromotionDetail",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    StoreId = table.Column<string>(type: "longtext", nullable: false)
+                    external_promotion_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
+                    type = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    discount_value = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    discount_percentage = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    discount_delivery_fee_value = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UberPromotionDetail", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "UberStores",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UberStores", x => x.Id);
+                    table.PrimaryKey("PK_UberStores", x => x.id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -570,20 +638,18 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Type = table.Column<string>(type: "longtext", nullable: false)
+                    type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Make = table.Column<string>(type: "longtext", nullable: false)
+                    make = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Model = table.Column<string>(type: "longtext", nullable: false)
+                    model = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Color = table.Column<string>(type: "longtext", nullable: false)
+                    color = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    LicensePlate = table.Column<string>(type: "longtext", nullable: false)
+                    license_plate = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    IsAutonomous = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    HandoffInstructions = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Passcode = table.Column<string>(type: "longtext", nullable: false)
+                    is_autonomous = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    passcode = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -593,20 +659,20 @@ namespace OrderAPI.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Allergen",
+                name: "Allergens",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
+                    name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     AllergyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Allergen", x => x.Id);
+                    table.PrimaryKey("PK_Allergens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Allergen_Allergies_AllergyId",
+                        name: "FK_Allergens_Allergies_AllergyId",
                         column: x => x.AllergyId,
                         principalTable: "Allergies",
                         principalColumn: "Id");
@@ -619,19 +685,18 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    SpecialInstructions = table.Column<string>(type: "longtext", nullable: false)
+                    special_instructions = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    AllergyId = table.Column<int>(type: "int", nullable: false)
+                    allergyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CustomerRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CustomerRequests_Allergies_AllergyId",
-                        column: x => x.AllergyId,
+                        name: "FK_CustomerRequests_Allergies_allergyId",
+                        column: x => x.allergyId,
                         principalTable: "Allergies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -641,49 +706,29 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TaxIds = table.Column<string>(type: "longtext", nullable: false)
+                    tax_ids = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    TaxIdType = table.Column<string>(type: "longtext", nullable: false)
+                    tax_id_type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CustomerFullName = table.Column<string>(type: "longtext", nullable: false)
+                    customer_full_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
+                    email = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    LegalEntityName = table.Column<string>(type: "longtext", nullable: false)
+                    legal_entity_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BillingAddress = table.Column<string>(type: "longtext", nullable: false)
+                    billing_address = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Country = table.Column<string>(type: "longtext", nullable: false)
+                    country = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    EncryptedTaxIdId = table.Column<int>(type: "int", nullable: false)
+                    encrypted_tax_idId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TaxProfile", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TaxProfile_EncryptedTaxId_EncryptedTaxIdId",
-                        column: x => x.EncryptedTaxIdId,
+                        name: "FK_TaxProfile_EncryptedTaxId_encrypted_tax_idId",
+                        column: x => x.encrypted_tax_idId,
                         principalTable: "EncryptedTaxId",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Adjustments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TotalId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Adjustments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Adjustments_Monies_TotalId",
-                        column: x => x.TotalId,
-                        principalTable: "Monies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -695,135 +740,31 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    DisplayAmount = table.Column<string>(type: "longtext", nullable: false)
+                    display_amount = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    NetId = table.Column<int>(type: "int", nullable: false),
-                    TaxId = table.Column<int>(type: "int", nullable: false),
-                    GrossId = table.Column<int>(type: "int", nullable: false),
-                    IsTaxInclusive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    netId = table.Column<int>(type: "int", nullable: true),
+                    taxId = table.Column<int>(type: "int", nullable: true),
+                    grossId = table.Column<int>(type: "int", nullable: true),
+                    is_tax_inclusive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CashAmountDue", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CashAmountDue_Monies_GrossId",
-                        column: x => x.GrossId,
+                        name: "FK_CashAmountDue_Monies_grossId",
+                        column: x => x.grossId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_CashAmountDue_Monies_NetId",
-                        column: x => x.NetId,
+                        name: "FK_CashAmountDue_Monies_netId",
+                        column: x => x.netId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_CashAmountDue_Monies_TaxId",
-                        column: x => x.TaxId,
+                        name: "FK_CashAmountDue_Monies_taxId",
+                        column: x => x.taxId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Fees",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TotalId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Fees", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Fees_Monies_TotalId",
-                        column: x => x.TotalId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "PaymentDetail",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    OrderTotalDisplayAmount = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    OrderTotalNetId = table.Column<int>(type: "int", nullable: false),
-                    OrderTotalTaxId = table.Column<int>(type: "int", nullable: false),
-                    OrderTotalGrossId = table.Column<int>(type: "int", nullable: false),
-                    IsTaxInclusive = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PaymentDetail", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PaymentDetail_Monies_OrderTotalGrossId",
-                        column: x => x.OrderTotalGrossId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PaymentDetail_Monies_OrderTotalNetId",
-                        column: x => x.OrderTotalNetId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PaymentDetail_Monies_OrderTotalTaxId",
-                        column: x => x.OrderTotalTaxId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "RemittanceSummaries",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Entity = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Type = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    AmountId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RemittanceSummaries", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RemittanceSummaries_Monies_AmountId",
-                        column: x => x.AmountId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Tips",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TotalId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tips", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Tips_Monies_TotalId",
-                        column: x => x.TotalId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -863,21 +804,20 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TotalId = table.Column<int>(type: "int", nullable: false),
-                    QuantityId = table.Column<int>(type: "int", nullable: false)
+                    totalId = table.Column<int>(type: "int", nullable: true),
+                    quantityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UberDiscounts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UberDiscounts_Monies_TotalId",
-                        column: x => x.TotalId,
+                        name: "FK_UberDiscounts_Monies_totalId",
+                        column: x => x.totalId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_UberDiscounts_Quantity_QuantityId",
-                        column: x => x.QuantityId,
+                        name: "FK_UberDiscounts_Quantity_quantityId",
+                        column: x => x.quantityId,
                         principalTable: "Quantity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -894,12 +834,12 @@ namespace OrderAPI.Migrations
                     shop_accept_status = table.Column<int>(type: "int", nullable: false),
                     before_status = table.Column<int>(type: "int", nullable: false),
                     order_index = table.Column<int>(type: "int", nullable: false),
-                    remark = table.Column<string>(type: "longtext", nullable: false)
+                    remark = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     city_id = table.Column<int>(type: "int", nullable: false),
-                    country = table.Column<string>(type: "longtext", nullable: false)
+                    country = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    timezone = table.Column<string>(type: "longtext", nullable: false)
+                    timezone = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     pay_type = table.Column<int>(type: "int", nullable: false),
                     delivery_type = table.Column<int>(type: "int", nullable: false),
@@ -910,8 +850,8 @@ namespace OrderAPI.Migrations
                     complete_time = table.Column<int>(type: "int", nullable: false),
                     cancel_time = table.Column<int>(type: "int", nullable: false),
                     shop_confirm_time = table.Column<int>(type: "int", nullable: false),
-                    priceid = table.Column<int>(type: "int", nullable: false),
-                    shopid = table.Column<int>(type: "int", nullable: false),
+                    priceId = table.Column<int>(type: "int", nullable: false),
+                    shopId = table.Column<int>(type: "int", nullable: false),
                     receive_addressuid = table.Column<long>(type: "bigint", nullable: false),
                     orderId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -925,10 +865,10 @@ namespace OrderAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DidiOrders_PricesInfo_priceid",
-                        column: x => x.priceid,
+                        name: "FK_DidiOrders_PricesInfo_priceId",
+                        column: x => x.priceId,
                         principalTable: "PricesInfo",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DidiOrders_ReceiveAddresses_receive_addressuid",
@@ -937,10 +877,10 @@ namespace OrderAPI.Migrations
                         principalColumn: "uid",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DidiOrders_Shops_shopid",
-                        column: x => x.shopid,
+                        name: "FK_DidiOrders_Shops_shopId",
+                        column: x => x.shopId,
                         principalTable: "Shops",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -949,148 +889,22 @@ namespace OrderAPI.Migrations
                 name: "ShopPhones",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     calling_code = table.Column<int>(type: "int", nullable: false),
                     phone = table.Column<long>(type: "bigint", nullable: false),
                     type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ShopInfoid = table.Column<int>(type: "int", nullable: true)
+                    ShopInfoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShopPhones", x => x.id);
+                    table.PrimaryKey("PK_ShopPhones", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ShopPhones_Shops_ShopInfoid",
-                        column: x => x.ShopInfoid,
+                        name: "FK_ShopPhones_Shops_ShopInfoId",
+                        column: x => x.ShopInfoId,
                         principalTable: "Shops",
-                        principalColumn: "id");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "TaxBreakdown",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    InstanceId = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    GrossAmountId = table.Column<int>(type: "int", nullable: false),
-                    NetAmountId = table.Column<int>(type: "int", nullable: false),
-                    TaxReportingId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TaxBreakdown", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TaxBreakdown_Monies_GrossAmountId",
-                        column: x => x.GrossAmountId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TaxBreakdown_Monies_NetAmountId",
-                        column: x => x.NetAmountId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TaxBreakdown_TaxReportings_TaxReportingId",
-                        column: x => x.TaxReportingId,
-                        principalTable: "TaxReportings",
                         principalColumn: "Id");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "UberPromotionDetail",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ExternalPromotionId = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Type = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DiscountValue = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DiscountPercentage = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DiscountDeliveryFeeValue = table.Column<int>(type: "int", nullable: false),
-                    TaxReportingId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UberPromotionDetail", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UberPromotionDetail_TaxReportings_TaxReportingId",
-                        column: x => x.TaxReportingId,
-                        principalTable: "TaxReportings",
-                        principalColumn: "Id");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "PartnerIdentifier",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdentifierId = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Type = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    UberStoreId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PartnerIdentifier", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PartnerIdentifier_UberStores_UberStoreId",
-                        column: x => x.UberStoreId,
-                        principalTable: "UberStores",
-                        principalColumn: "Id");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "DeliveryPartner",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PartnerId = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    VehicleId = table.Column<int>(type: "int", nullable: false),
-                    ContactId = table.Column<int>(type: "int", nullable: false),
-                    CurrentLocationId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DeliveryPartner", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DeliveryPartner_Contact_ContactId",
-                        column: x => x.ContactId,
-                        principalTable: "Contact",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DeliveryPartner_CurrentLocation_CurrentLocationId",
-                        column: x => x.CurrentLocationId,
-                        principalTable: "CurrentLocation",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DeliveryPartner_Vehicle_VehicleId",
-                        column: x => x.VehicleId,
-                        principalTable: "Vehicle",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -1100,40 +914,247 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    InstanceId = table.Column<string>(type: "longtext", nullable: false)
+                    instance_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "longtext", nullable: false)
+                    description = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    GrossAmountId = table.Column<int>(type: "int", nullable: false),
-                    NetAmountId = table.Column<int>(type: "int", nullable: false),
-                    FeesId = table.Column<int>(type: "int", nullable: true),
-                    TaxReportingId = table.Column<int>(type: "int", nullable: true)
+                    gross_amountId = table.Column<int>(type: "int", nullable: true),
+                    net_amountId = table.Column<int>(type: "int", nullable: true),
+                    TaxBreakdownId = table.Column<int>(type: "int", nullable: true),
+                    TaxBreakdownId1 = table.Column<int>(type: "int", nullable: true),
+                    TaxBreakdownId2 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FeeDetail", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FeeDetail_Fees_FeesId",
-                        column: x => x.FeesId,
-                        principalTable: "Fees",
+                        name: "FK_FeeDetail_Monies_gross_amountId",
+                        column: x => x.gross_amountId,
+                        principalTable: "Monies",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_FeeDetail_Monies_GrossAmountId",
-                        column: x => x.GrossAmountId,
+                        name: "FK_FeeDetail_Monies_net_amountId",
+                        column: x => x.net_amountId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_FeeDetail_Monies_NetAmountId",
-                        column: x => x.NetAmountId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_FeeDetail_TaxReportings_TaxReportingId",
-                        column: x => x.TaxReportingId,
-                        principalTable: "TaxReportings",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FeeDetail_TaxBreakdown_TaxBreakdownId",
+                        column: x => x.TaxBreakdownId,
+                        principalTable: "TaxBreakdown",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FeeDetail_TaxBreakdown_TaxBreakdownId1",
+                        column: x => x.TaxBreakdownId1,
+                        principalTable: "TaxBreakdown",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FeeDetail_TaxBreakdown_TaxBreakdownId2",
+                        column: x => x.TaxBreakdownId2,
+                        principalTable: "TaxBreakdown",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "TaxReportings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    breakdownId = table.Column<int>(type: "int", nullable: true),
+                    originid = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    destinationid = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TaxReportings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TaxReportings_TaxBreakdown_breakdownId",
+                        column: x => x.breakdownId,
+                        principalTable: "TaxBreakdown",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TaxReportings_TaxLocation_destinationid",
+                        column: x => x.destinationid,
+                        principalTable: "TaxLocation",
+                        principalColumn: "id");
+                    table.ForeignKey(
+                        name: "FK_TaxReportings_TaxLocation_originid",
+                        column: x => x.originid,
+                        principalTable: "TaxLocation",
+                        principalColumn: "id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "DiscountedItem",
+                columns: table => new
+                {
+                    external_id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    discounted_quantity = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    discount_amount_applied = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UberPromotionDetailId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DiscountedItem", x => x.external_id);
+                    table.ForeignKey(
+                        name: "FK_DiscountedItem_UberPromotionDetail_UberPromotionDetailId",
+                        column: x => x.UberPromotionDetailId,
+                        principalTable: "UberPromotionDetail",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PartnerIdentifier",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    type = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UberStoreid = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PartnerIdentifier", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_PartnerIdentifier_UberStores_UberStoreid",
+                        column: x => x.UberStoreid,
+                        principalTable: "UberStores",
+                        principalColumn: "id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "DeliveryPartner",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    vehicleId = table.Column<int>(type: "int", nullable: true),
+                    contactId = table.Column<int>(type: "int", nullable: true),
+                    current_locationId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeliveryPartner", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_DeliveryPartner_Contact_contactId",
+                        column: x => x.contactId,
+                        principalTable: "Contact",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_DeliveryPartner_CurrentLocation_current_locationId",
+                        column: x => x.current_locationId,
+                        principalTable: "CurrentLocation",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_DeliveryPartner_Vehicle_vehicleId",
+                        column: x => x.vehicleId,
+                        principalTable: "Vehicle",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "AdjustmentDetail",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    reason = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    amountId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdjustmentDetail", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AdjustmentDetail_CashAmountDue_amountId",
+                        column: x => x.amountId,
+                        principalTable: "CashAmountDue",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Fees",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    totalId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Fees", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Fees_CashAmountDue_totalId",
+                        column: x => x.totalId,
+                        principalTable: "CashAmountDue",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Promotions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    totalId = table.Column<int>(type: "int", nullable: true),
+                    detailsId = table.Column<int>(type: "int", nullable: true),
+                    order_total_excluding_promosId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Promotions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Promotions_CashAmountDue_order_total_excluding_promosId",
+                        column: x => x.order_total_excluding_promosId,
+                        principalTable: "CashAmountDue",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Promotions_CashAmountDue_totalId",
+                        column: x => x.totalId,
+                        principalTable: "CashAmountDue",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Promotions_UberPromotionDetail_detailsId",
+                        column: x => x.detailsId,
+                        principalTable: "UberPromotionDetail",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Tips",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    totalId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tips", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tips_CashAmountDue_totalId",
+                        column: x => x.totalId,
+                        principalTable: "CashAmountDue",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -1152,7 +1173,7 @@ namespace OrderAPI.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     payment_method = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    delivery_discountid = table.Column<int>(type: "int", nullable: true),
+                    delivery_discountId = table.Column<int>(type: "int", nullable: true),
                     delivery_informationId = table.Column<int>(type: "int", nullable: true),
                     totalsId = table.Column<int>(type: "int", nullable: true),
                     billing_informationId = table.Column<int>(type: "int", nullable: true)
@@ -1171,10 +1192,10 @@ namespace OrderAPI.Migrations
                         principalTable: "DeliveriesInformation",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_OrderDetail_DeliveryDiscounts_delivery_discountid",
-                        column: x => x.delivery_discountid,
+                        name: "FK_OrderDetail_DeliveryDiscounts_delivery_discountId",
+                        column: x => x.delivery_discountId,
                         principalTable: "DeliveryDiscounts",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_OrderDetail_Totals_totalsId",
                         column: x => x.totalsId,
@@ -1187,37 +1208,33 @@ namespace OrderAPI.Migrations
                 name: "Discounteds",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CartItemId = table.Column<string>(type: "longtext", nullable: false)
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PriceType = table.Column<string>(type: "longtext", nullable: false)
+                    price_type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    QuantityId = table.Column<int>(type: "int", nullable: false),
-                    TotalId = table.Column<int>(type: "int", nullable: false),
-                    DiscountId = table.Column<int>(type: "int", nullable: false)
+                    quantityId = table.Column<int>(type: "int", nullable: false),
+                    totalId = table.Column<int>(type: "int", nullable: true),
+                    discountId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Discounteds", x => x.Id);
+                    table.PrimaryKey("PK_Discounteds", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Discounteds_Monies_TotalId",
-                        column: x => x.TotalId,
+                        name: "FK_Discounteds_Monies_totalId",
+                        column: x => x.totalId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Discounteds_Quantity_QuantityId",
-                        column: x => x.QuantityId,
+                        name: "FK_Discounteds_Quantity_quantityId",
+                        column: x => x.quantityId,
                         principalTable: "Quantity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Discounteds_UberDiscounts_DiscountId",
-                        column: x => x.DiscountId,
+                        name: "FK_Discounteds_UberDiscounts_discountId",
+                        column: x => x.discountId,
                         principalTable: "UberDiscounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -1227,41 +1244,38 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CartItemId = table.Column<string>(type: "longtext", nullable: false)
+                    cart_item_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    QuantityId = table.Column<int>(type: "int", nullable: false),
-                    TotalId = table.Column<int>(type: "int", nullable: false),
-                    DiscountId = table.Column<int>(type: "int", nullable: false),
-                    UnitId = table.Column<int>(type: "int", nullable: false),
-                    IsTaxInclusive = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    quantityId = table.Column<int>(type: "int", nullable: false),
+                    totalId = table.Column<int>(type: "int", nullable: true),
+                    discountId = table.Column<int>(type: "int", nullable: true),
+                    unitId = table.Column<int>(type: "int", nullable: true),
+                    is_tax_inclusive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PriceBreakdowns", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PriceBreakdowns_Monies_TotalId",
-                        column: x => x.TotalId,
+                        name: "FK_PriceBreakdowns_Monies_totalId",
+                        column: x => x.totalId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_PriceBreakdowns_Monies_UnitId",
-                        column: x => x.UnitId,
+                        name: "FK_PriceBreakdowns_Monies_unitId",
+                        column: x => x.unitId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_PriceBreakdowns_Quantity_QuantityId",
-                        column: x => x.QuantityId,
+                        name: "FK_PriceBreakdowns_Quantity_quantityId",
+                        column: x => x.quantityId,
                         principalTable: "Quantity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PriceBreakdowns_UberDiscounts_DiscountId",
-                        column: x => x.DiscountId,
+                        name: "FK_PriceBreakdowns_UberDiscounts_discountId",
+                        column: x => x.discountId,
                         principalTable: "UberDiscounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -1271,9 +1285,9 @@ namespace OrderAPI.Migrations
                 {
                     order_item_id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    app_item_id = table.Column<string>(type: "longtext", nullable: false)
+                    app_item_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: false)
+                    name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     sku_price = table.Column<int>(type: "int", nullable: false),
                     total_price = table.Column<int>(type: "int", nullable: false),
@@ -1304,7 +1318,7 @@ namespace OrderAPI.Migrations
                 name: "PromotionsInfo",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     promo_type = table.Column<int>(type: "int", nullable: false),
                     promo_discount = table.Column<int>(type: "int", nullable: false),
@@ -1313,7 +1327,7 @@ namespace OrderAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PromotionsInfo", x => x.id);
+                    table.PrimaryKey("PK_PromotionsInfo", x => x.Id);
                     table.ForeignKey(
                         name: "FK_PromotionsInfo_DidiOrders_DidiOrderorder_id",
                         column: x => x.DidiOrderorder_id,
@@ -1326,17 +1340,17 @@ namespace OrderAPI.Migrations
                 name: "Shoppers",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "longtext", nullable: false)
+                    name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone = table.Column<string>(type: "longtext", nullable: false)
+                    phone = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DidiOrderorder_id = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shoppers", x => x.id);
+                    table.PrimaryKey("PK_Shoppers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Shoppers_DidiOrders_DidiOrderorder_id",
                         column: x => x.DidiOrderorder_id,
@@ -1346,66 +1360,81 @@ namespace OrderAPI.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "DiscountedItem",
+                name: "RemittanceSummaries",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CartItemId = table.Column<string>(type: "longtext", nullable: false)
+                    entity = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DiscountAmountId = table.Column<int>(type: "int", nullable: false),
-                    ExternalItemDiscountId = table.Column<string>(type: "longtext", nullable: false)
+                    type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    UberPromotionDetailId = table.Column<int>(type: "int", nullable: true)
+                    amountId = table.Column<int>(type: "int", nullable: true),
+                    TaxReportingId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DiscountedItem", x => x.Id);
+                    table.PrimaryKey("PK_RemittanceSummaries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DiscountedItem_Monies_DiscountAmountId",
-                        column: x => x.DiscountAmountId,
+                        name: "FK_RemittanceSummaries_Monies_amountId",
+                        column: x => x.amountId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_DiscountedItem_UberPromotionDetail_UberPromotionDetailId",
-                        column: x => x.UberPromotionDetailId,
-                        principalTable: "UberPromotionDetail",
+                        name: "FK_RemittanceSummaries_TaxReportings_TaxReportingId",
+                        column: x => x.TaxReportingId,
+                        principalTable: "TaxReportings",
                         principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Promotions",
+                name: "Adjustments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TotalId = table.Column<int>(type: "int", nullable: false),
-                    DetailsId = table.Column<int>(type: "int", nullable: false),
-                    OrderTotalExcludingPromosId = table.Column<int>(type: "int", nullable: false)
+                    totalId = table.Column<int>(type: "int", nullable: true),
+                    detailsId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Promotions", x => x.Id);
+                    table.PrimaryKey("PK_Adjustments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Promotions_Monies_OrderTotalExcludingPromosId",
-                        column: x => x.OrderTotalExcludingPromosId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Adjustments_AdjustmentDetail_detailsId",
+                        column: x => x.detailsId,
+                        principalTable: "AdjustmentDetail",
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Promotions_Monies_TotalId",
-                        column: x => x.TotalId,
-                        principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Adjustments_CashAmountDue_totalId",
+                        column: x => x.totalId,
+                        principalTable: "CashAmountDue",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "MerchantFee",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    amountId = table.Column<int>(type: "int", nullable: true),
+                    FeesId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MerchantFee", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Promotions_UberPromotionDetail_DetailsId",
-                        column: x => x.DetailsId,
-                        principalTable: "UberPromotionDetail",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_MerchantFee_CashAmountDue_amountId",
+                        column: x => x.amountId,
+                        principalTable: "CashAmountDue",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_MerchantFee_Fees_FeesId",
+                        column: x => x.FeesId,
+                        principalTable: "Fees",
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -1485,7 +1514,7 @@ namespace OrderAPI.Migrations
                 name: "RappiOrders",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     order_detailorder_id = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -1496,7 +1525,7 @@ namespace OrderAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RappiOrders", x => x.id);
+                    table.PrimaryKey("PK_RappiOrders", x => x.Id);
                     table.ForeignKey(
                         name: "FK_RappiOrders_Customers_customerId",
                         column: x => x.customerId,
@@ -1527,45 +1556,40 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TotalId = table.Column<int>(type: "int", nullable: false),
-                    SubtotalIncludingPromosId = table.Column<int>(type: "int", nullable: false),
-                    PriceBreakdownId = table.Column<int>(type: "int", nullable: false),
-                    DiscountId = table.Column<int>(type: "int", nullable: false),
-                    UnitId = table.Column<int>(type: "int", nullable: false)
+                    totalId = table.Column<int>(type: "int", nullable: true),
+                    subtotal_including_promosId = table.Column<int>(type: "int", nullable: true),
+                    price_breakdownId = table.Column<int>(type: "int", nullable: true),
+                    discountId = table.Column<int>(type: "int", nullable: true),
+                    unitId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ItemCharges", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ItemCharges_Monies_SubtotalIncludingPromosId",
-                        column: x => x.SubtotalIncludingPromosId,
+                        name: "FK_ItemCharges_Monies_subtotal_including_promosId",
+                        column: x => x.subtotal_including_promosId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_ItemCharges_Monies_TotalId",
-                        column: x => x.TotalId,
+                        name: "FK_ItemCharges_Monies_totalId",
+                        column: x => x.totalId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_ItemCharges_Monies_UnitId",
-                        column: x => x.UnitId,
+                        name: "FK_ItemCharges_Monies_unitId",
+                        column: x => x.unitId,
                         principalTable: "Monies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_ItemCharges_PriceBreakdowns_PriceBreakdownId",
-                        column: x => x.PriceBreakdownId,
+                        name: "FK_ItemCharges_PriceBreakdowns_price_breakdownId",
+                        column: x => x.price_breakdownId,
                         principalTable: "PriceBreakdowns",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_ItemCharges_UberDiscounts_DiscountId",
-                        column: x => x.DiscountId,
+                        name: "FK_ItemCharges_UberDiscounts_discountId",
+                        column: x => x.discountId,
                         principalTable: "UberDiscounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -1573,11 +1597,11 @@ namespace OrderAPI.Migrations
                 name: "DidiSubItems",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    app_item_id = table.Column<string>(type: "longtext", nullable: false)
+                    app_item_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: false)
+                    name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     sku_price = table.Column<int>(type: "int", nullable: false),
                     amount = table.Column<int>(type: "int", nullable: false),
@@ -1585,7 +1609,7 @@ namespace OrderAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DidiSubItems", x => x.id);
+                    table.PrimaryKey("PK_DidiSubItems", x => x.Id);
                     table.ForeignKey(
                         name: "FK_DidiSubItems_OrderItems_OrderItemInfoorder_item_id",
                         column: x => x.OrderItemInfoorder_item_id,
@@ -1624,68 +1648,62 @@ namespace OrderAPI.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Payments",
+                name: "PaymentDetail",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PaymentDetailId = table.Column<int>(type: "int", nullable: false),
-                    ItemChargesId = table.Column<int>(type: "int", nullable: false),
-                    FeesId = table.Column<int>(type: "int", nullable: false),
-                    TipsId = table.Column<int>(type: "int", nullable: false),
-                    PromotionsId = table.Column<int>(type: "int", nullable: false),
-                    AdjustmentId = table.Column<int>(type: "int", nullable: false),
-                    CashAmountDueId = table.Column<int>(type: "int", nullable: false),
-                    TaxReportingId = table.Column<int>(type: "int", nullable: false)
+                    is_tax_inclusive = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    cash_amount_dueId = table.Column<int>(type: "int", nullable: false),
+                    order_totalId = table.Column<int>(type: "int", nullable: false),
+                    item_chargesId = table.Column<int>(type: "int", nullable: false),
+                    feesId = table.Column<int>(type: "int", nullable: false),
+                    tipsId = table.Column<int>(type: "int", nullable: false),
+                    promotionsId = table.Column<int>(type: "int", nullable: false),
+                    adjustmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Payments", x => x.Id);
+                    table.PrimaryKey("PK_PaymentDetail", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Payments_Adjustments_AdjustmentId",
-                        column: x => x.AdjustmentId,
+                        name: "FK_PaymentDetail_Adjustments_adjustmentId",
+                        column: x => x.adjustmentId,
                         principalTable: "Adjustments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payments_CashAmountDue_CashAmountDueId",
-                        column: x => x.CashAmountDueId,
+                        name: "FK_PaymentDetail_CashAmountDue_cash_amount_dueId",
+                        column: x => x.cash_amount_dueId,
                         principalTable: "CashAmountDue",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payments_Fees_FeesId",
-                        column: x => x.FeesId,
+                        name: "FK_PaymentDetail_CashAmountDue_order_totalId",
+                        column: x => x.order_totalId,
+                        principalTable: "CashAmountDue",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PaymentDetail_Fees_feesId",
+                        column: x => x.feesId,
                         principalTable: "Fees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payments_ItemCharges_ItemChargesId",
-                        column: x => x.ItemChargesId,
+                        name: "FK_PaymentDetail_ItemCharges_item_chargesId",
+                        column: x => x.item_chargesId,
                         principalTable: "ItemCharges",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payments_PaymentDetail_PaymentDetailId",
-                        column: x => x.PaymentDetailId,
-                        principalTable: "PaymentDetail",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Payments_Promotions_PromotionsId",
-                        column: x => x.PromotionsId,
+                        name: "FK_PaymentDetail_Promotions_promotionsId",
+                        column: x => x.promotionsId,
                         principalTable: "Promotions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payments_TaxReportings_TaxReportingId",
-                        column: x => x.TaxReportingId,
-                        principalTable: "TaxReportings",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Payments_Tips_TipsId",
-                        column: x => x.TipsId,
+                        name: "FK_PaymentDetail_Tips_tipsId",
+                        column: x => x.tipsId,
                         principalTable: "Tips",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -1693,51 +1711,112 @@ namespace OrderAPI.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "UberOrders",
+                name: "Payments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    OrderId = table.Column<string>(type: "longtext", nullable: false)
+                    payment_detailId = table.Column<int>(type: "int", nullable: true),
+                    item_chargesId = table.Column<int>(type: "int", nullable: true),
+                    feesId = table.Column<int>(type: "int", nullable: true),
+                    tipsId = table.Column<int>(type: "int", nullable: true),
+                    promotionsId = table.Column<int>(type: "int", nullable: true),
+                    adjustmentId = table.Column<int>(type: "int", nullable: true),
+                    cash_amount_dueId = table.Column<int>(type: "int", nullable: true),
+                    tax_reportingId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Payments_Adjustments_adjustmentId",
+                        column: x => x.adjustmentId,
+                        principalTable: "Adjustments",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Payments_CashAmountDue_cash_amount_dueId",
+                        column: x => x.cash_amount_dueId,
+                        principalTable: "CashAmountDue",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Payments_Fees_feesId",
+                        column: x => x.feesId,
+                        principalTable: "Fees",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Payments_ItemCharges_item_chargesId",
+                        column: x => x.item_chargesId,
+                        principalTable: "ItemCharges",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Payments_PaymentDetail_payment_detailId",
+                        column: x => x.payment_detailId,
+                        principalTable: "PaymentDetail",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Payments_Promotions_promotionsId",
+                        column: x => x.promotionsId,
+                        principalTable: "Promotions",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Payments_TaxReportings_tax_reportingId",
+                        column: x => x.tax_reportingId,
+                        principalTable: "TaxReportings",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Payments_Tips_tipsId",
+                        column: x => x.tipsId,
+                        principalTable: "Tips",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "UberOrders",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    order_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DisplayId = table.Column<string>(type: "longtext", nullable: false)
+                    display_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ExternalId = table.Column<string>(type: "longtext", nullable: false)
+                    external_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    State = table.Column<string>(type: "longtext", nullable: false)
+                    state = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Status = table.Column<string>(type: "longtext", nullable: false)
+                    status = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PreparationStatus = table.Column<string>(type: "longtext", nullable: false)
+                    preparation_status = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    OrderingPlatform = table.Column<string>(type: "longtext", nullable: false)
+                    ordering_platform = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    FulfillmentType = table.Column<string>(type: "longtext", nullable: false)
+                    fulfillment_type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ScheduledOrderTargetDeliveryStartTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    ScheduledOrderTargetDeliveryEndTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    StoreId = table.Column<int>(type: "int", nullable: false),
-                    IsOrderAccuracyRisk = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    StoreInstructions = table.Column<string>(type: "longtext", nullable: false)
+                    scheduled_order_target_delivery_start_time = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    scheduled_order_target_delivery_end_time = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    store_id = table.Column<int>(type: "int", nullable: false),
+                    is_order_accuracy_risk = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    store_instructions = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CompletedTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    HasMembershipPass = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    PaymentId = table.Column<int>(type: "int", nullable: false),
-                    PreparationTimeId = table.Column<int>(type: "int", nullable: false),
-                    EligibleActionsId = table.Column<int>(type: "int", nullable: false),
-                    RetailerLoyaltyInfoId = table.Column<int>(type: "int", nullable: false),
+                    completed_time = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    created_time = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    has_membership_pass = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    storeid = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    paymentId = table.Column<int>(type: "int", nullable: true),
+                    preparation_timeId = table.Column<int>(type: "int", nullable: true),
+                    eligible_actionsId = table.Column<int>(type: "int", nullable: true),
+                    retailer_loyalty_infoId = table.Column<int>(type: "int", nullable: true),
                     orderId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UberOrders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UberOrders_ActionEligibility_EligibleActionsId",
-                        column: x => x.EligibleActionsId,
+                        name: "FK_UberOrders_ActionEligibility_eligible_actionsId",
+                        column: x => x.eligible_actionsId,
                         principalTable: "ActionEligibility",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_UberOrders_Orders_orderId",
                         column: x => x.orderId,
@@ -1745,29 +1824,25 @@ namespace OrderAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UberOrders_Payments_PaymentId",
-                        column: x => x.PaymentId,
+                        name: "FK_UberOrders_Payments_paymentId",
+                        column: x => x.paymentId,
                         principalTable: "Payments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_UberOrders_PreparationTimes_PreparationTimeId",
-                        column: x => x.PreparationTimeId,
+                        name: "FK_UberOrders_PreparationTimes_preparation_timeId",
+                        column: x => x.preparation_timeId,
                         principalTable: "PreparationTimes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_UberOrders_RetailerLoyaltyInfos_RetailerLoyaltyInfoId",
-                        column: x => x.RetailerLoyaltyInfoId,
+                        name: "FK_UberOrders_RetailerLoyaltyInfos_retailer_loyalty_infoId",
+                        column: x => x.retailer_loyalty_infoId,
                         principalTable: "RetailerLoyaltyInfos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_UberOrders_UberStores_StoreId",
-                        column: x => x.StoreId,
+                        name: "FK_UberOrders_UberStores_storeid",
+                        column: x => x.storeid,
                         principalTable: "UberStores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -1777,35 +1852,35 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    DeliveryId = table.Column<string>(type: "longtext", nullable: false)
+                    delivery_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Status = table.Column<string>(type: "longtext", nullable: false)
+                    status = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    EstimatedPickUpTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    InteractionType = table.Column<string>(type: "longtext", nullable: false)
+                    estimated_pick_up_time = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    interaction_type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DeliveryPartnerMarkedNotReadyTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Instructions = table.Column<string>(type: "longtext", nullable: false)
+                    delivery_partner_marked_not_ready_time = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    instructions = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    LocationId = table.Column<int>(type: "int", nullable: false),
-                    DeliveryPartnerId = table.Column<int>(type: "int", nullable: false),
-                    UberOrderId = table.Column<int>(type: "int", nullable: true)
+                    locationid = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    delivery_partnerid = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UberOrderId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Deliveries", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Deliveries_DeliveryPartner_DeliveryPartnerId",
-                        column: x => x.DeliveryPartnerId,
+                        name: "FK_Deliveries_DeliveryPartner_delivery_partnerid",
+                        column: x => x.delivery_partnerid,
                         principalTable: "DeliveryPartner",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id");
                     table.ForeignKey(
-                        name: "FK_Deliveries_Locations_LocationId",
-                        column: x => x.LocationId,
+                        name: "FK_Deliveries_Locations_locationid",
+                        column: x => x.locationid,
                         principalTable: "Locations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_Deliveries_UberOrders_UberOrderId",
                         column: x => x.UberOrderId,
@@ -1820,22 +1895,22 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Reason = table.Column<string>(type: "longtext", nullable: false)
+                    reason = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    FailureAttributedToParty = table.Column<string>(type: "longtext", nullable: false)
+                    failure_attributed_to_party = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    WillMerchantBePaid = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Description = table.Column<string>(type: "longtext", nullable: false)
+                    will_merchant_be_paid = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    description = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    TimeRangeId = table.Column<int>(type: "int", nullable: false),
-                    UberOrderId = table.Column<int>(type: "int", nullable: true)
+                    time_rangeId = table.Column<int>(type: "int", nullable: false),
+                    UberOrderId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FailureInfos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FailureInfos_TimeRanges_TimeRangeId",
-                        column: x => x.TimeRangeId,
+                        name: "FK_FailureInfos_TimeRanges_time_rangeId",
+                        column: x => x.time_rangeId,
                         principalTable: "TimeRanges",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -1851,22 +1926,20 @@ namespace OrderAPI.Migrations
                 name: "ShoppingCarts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CartId = table.Column<string>(type: "longtext", nullable: false)
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SpecialInstructions = table.Column<string>(type: "longtext", nullable: false)
+                    special_instructions = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    IncludeSingleUseItems = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    RestrictedItemsId = table.Column<int>(type: "int", nullable: false),
-                    UberOrderId = table.Column<int>(type: "int", nullable: true)
+                    include_single_use_items = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    restricted_itemsId = table.Column<int>(type: "int", nullable: false),
+                    UberOrderId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.id);
                     table.ForeignKey(
-                        name: "FK_ShoppingCarts_RestrictedItems_RestrictedItemsId",
-                        column: x => x.RestrictedItemsId,
+                        name: "FK_ShoppingCarts_RestrictedItems_restricted_itemsId",
+                        column: x => x.restricted_itemsId,
                         principalTable: "RestrictedItems",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -1882,32 +1955,40 @@ namespace OrderAPI.Migrations
                 name: "UberCustomers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CustomerId = table.Column<string>(type: "longtext", nullable: false)
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    OrderHistory = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ContactId = table.Column<int>(type: "int", nullable: false),
-                    IsPrimaryCustomer = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    TaxProfileId = table.Column<int>(type: "int", nullable: false),
-                    CanResponseToFulfillmentIssues = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    UberOrderId = table.Column<int>(type: "int", nullable: true)
+                    nameId = table.Column<int>(type: "int", nullable: false),
+                    order_historyId = table.Column<int>(type: "int", nullable: false),
+                    contactId = table.Column<int>(type: "int", nullable: false),
+                    is_primary_customer = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    tax_profileId = table.Column<int>(type: "int", nullable: false),
+                    can_response_to_fulfillment_issues = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    UberOrderId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UberCustomers", x => x.Id);
+                    table.PrimaryKey("PK_UberCustomers", x => x.id);
                     table.ForeignKey(
-                        name: "FK_UberCustomers_Contact_ContactId",
-                        column: x => x.ContactId,
+                        name: "FK_UberCustomers_Contact_contactId",
+                        column: x => x.contactId,
                         principalTable: "Contact",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UberCustomers_TaxProfile_TaxProfileId",
-                        column: x => x.TaxProfileId,
+                        name: "FK_UberCustomers_Name_nameId",
+                        column: x => x.nameId,
+                        principalTable: "Name",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UberCustomers_OrderHistory_order_historyId",
+                        column: x => x.order_historyId,
+                        principalTable: "OrderHistory",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UberCustomers_TaxProfile_tax_profileId",
+                        column: x => x.tax_profileId,
                         principalTable: "TaxProfile",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -1925,49 +2006,50 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ItemId = table.Column<string>(type: "longtext", nullable: false)
+                    item_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CartItemId = table.Column<string>(type: "longtext", nullable: false)
+                    cart_item_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Title = table.Column<string>(type: "longtext", nullable: false)
+                    title = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ExternalData = table.Column<string>(type: "longtext", nullable: false)
+                    external_data = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CustomerId = table.Column<string>(type: "longtext", nullable: false)
+                    customer_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    QuantityId = table.Column<int>(type: "int", nullable: false),
-                    DefaultQuantityId = table.Column<int>(type: "int", nullable: false),
-                    CustomerRequestsId = table.Column<int>(type: "int", nullable: false),
-                    PictureUrl = table.Column<string>(type: "longtext", nullable: false)
+                    quantityId = table.Column<int>(type: "int", nullable: false),
+                    default_quantityId = table.Column<int>(type: "int", nullable: false),
+                    customer_requestsId = table.Column<int>(type: "int", nullable: false),
+                    picture_url = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ShoppingCartId = table.Column<int>(type: "int", nullable: true)
+                    ShoppingCartid = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CartItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CartItem_CustomerRequests_CustomerRequestsId",
-                        column: x => x.CustomerRequestsId,
+                        name: "FK_CartItem_CustomerRequests_customer_requestsId",
+                        column: x => x.customer_requestsId,
                         principalTable: "CustomerRequests",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CartItem_Quantity_DefaultQuantityId",
-                        column: x => x.DefaultQuantityId,
+                        name: "FK_CartItem_Quantity_default_quantityId",
+                        column: x => x.default_quantityId,
                         principalTable: "Quantity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CartItem_Quantity_QuantityId",
-                        column: x => x.QuantityId,
+                        name: "FK_CartItem_Quantity_quantityId",
+                        column: x => x.quantityId,
                         principalTable: "Quantity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CartItem_ShoppingCarts_ShoppingCartId",
-                        column: x => x.ShoppingCartId,
+                        name: "FK_CartItem_ShoppingCarts_ShoppingCartid",
+                        column: x => x.ShoppingCartid,
                         principalTable: "ShoppingCarts",
-                        principalColumn: "Id");
+                        principalColumn: "id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -1977,25 +2059,26 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IssueType = table.Column<string>(type: "longtext", nullable: false)
+                    issue_type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ActionType = table.Column<string>(type: "longtext", nullable: false)
+                    action_type = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CartItemId = table.Column<string>(type: "longtext", nullable: false)
+                    cart_item_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SuspendUntil = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    StoreResponse = table.Column<string>(type: "longtext", nullable: false)
+                    suspend_until = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    store_response = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ShoppingCartId = table.Column<int>(type: "int", nullable: true)
+                    ShoppingCartid = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FulfillmentIssue", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FulfillmentIssue_ShoppingCarts_ShoppingCartId",
-                        column: x => x.ShoppingCartId,
+                        name: "FK_FulfillmentIssue_ShoppingCarts_ShoppingCartid",
+                        column: x => x.ShoppingCartid,
                         principalTable: "ShoppingCarts",
-                        principalColumn: "Id");
+                        principalColumn: "id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -2003,19 +2086,17 @@ namespace OrderAPI.Migrations
                 name: "SelectedModifierGroup",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ModifierGroupId = table.Column<string>(type: "longtext", nullable: false)
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Title = table.Column<string>(type: "longtext", nullable: false)
+                    title = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ExternalData = table.Column<string>(type: "longtext", nullable: false)
+                    external_data = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CartItemId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SelectedModifierGroup", x => x.Id);
+                    table.PrimaryKey("PK_SelectedModifierGroup", x => x.id);
                     table.ForeignKey(
                         name: "FK_SelectedModifierGroup_CartItem_CartItemId",
                         column: x => x.CartItemId,
@@ -2030,18 +2111,19 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ModifierItemId = table.Column<string>(type: "longtext", nullable: false)
+                    modifier_item_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SelectedModifierGroupId = table.Column<int>(type: "int", nullable: true)
+                    SelectedModifierGroupid = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RemovedModifierItem", x => x.Id);
                     table.ForeignKey(
                         name: "FK_RemovedModifierItem_SelectedModifierGroup_SelectedModifierGr~",
-                        column: x => x.SelectedModifierGroupId,
+                        column: x => x.SelectedModifierGroupid,
                         principalTable: "SelectedModifierGroup",
-                        principalColumn: "Id");
+                        principalColumn: "id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -2051,80 +2133,91 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ModifierItemId = table.Column<string>(type: "longtext", nullable: false)
+                    modifier_item_id = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SelectedModifierGroupId = table.Column<int>(type: "int", nullable: true)
+                    SelectedModifierGroupid = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SelectedModifierItem", x => x.Id);
                     table.ForeignKey(
                         name: "FK_SelectedModifierItem_SelectedModifierGroup_SelectedModifierG~",
-                        column: x => x.SelectedModifierGroupId,
+                        column: x => x.SelectedModifierGroupid,
                         principalTable: "SelectedModifierGroup",
-                        principalColumn: "Id");
+                        principalColumn: "id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Adjustments_TotalId",
+                name: "IX_AdjustmentDetail_amountId",
+                table: "AdjustmentDetail",
+                column: "amountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Adjustments_detailsId",
                 table: "Adjustments",
-                column: "TotalId");
+                column: "detailsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Allergen_AllergyId",
-                table: "Allergen",
+                name: "IX_Adjustments_totalId",
+                table: "Adjustments",
+                column: "totalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Allergens_AllergyId",
+                table: "Allergens",
                 column: "AllergyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItem_CustomerRequestsId",
+                name: "IX_CartItem_customer_requestsId",
                 table: "CartItem",
-                column: "CustomerRequestsId");
+                column: "customer_requestsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItem_DefaultQuantityId",
+                name: "IX_CartItem_default_quantityId",
                 table: "CartItem",
-                column: "DefaultQuantityId");
+                column: "default_quantityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItem_QuantityId",
+                name: "IX_CartItem_quantityId",
                 table: "CartItem",
-                column: "QuantityId");
+                column: "quantityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItem_ShoppingCartId",
+                name: "IX_CartItem_ShoppingCartid",
                 table: "CartItem",
-                column: "ShoppingCartId");
+                column: "ShoppingCartid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CashAmountDue_GrossId",
+                name: "IX_CashAmountDue_grossId",
                 table: "CashAmountDue",
-                column: "GrossId");
+                column: "grossId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CashAmountDue_NetId",
+                name: "IX_CashAmountDue_netId",
                 table: "CashAmountDue",
-                column: "NetId");
+                column: "netId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CashAmountDue_TaxId",
+                name: "IX_CashAmountDue_taxId",
                 table: "CashAmountDue",
-                column: "TaxId");
+                column: "taxId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerRequests_AllergyId",
+                name: "IX_CustomerRequests_allergyId",
                 table: "CustomerRequests",
-                column: "AllergyId");
+                column: "allergyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Deliveries_DeliveryPartnerId",
+                name: "IX_Deliveries_delivery_partnerid",
                 table: "Deliveries",
-                column: "DeliveryPartnerId");
+                column: "delivery_partnerid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Deliveries_LocationId",
+                name: "IX_Deliveries_locationid",
                 table: "Deliveries",
-                column: "LocationId");
+                column: "locationid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Deliveries_UberOrderId",
@@ -2132,19 +2225,19 @@ namespace OrderAPI.Migrations
                 column: "UberOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeliveryPartner_ContactId",
+                name: "IX_DeliveryPartner_contactId",
                 table: "DeliveryPartner",
-                column: "ContactId");
+                column: "contactId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeliveryPartner_CurrentLocationId",
+                name: "IX_DeliveryPartner_current_locationId",
                 table: "DeliveryPartner",
-                column: "CurrentLocationId");
+                column: "current_locationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeliveryPartner_VehicleId",
+                name: "IX_DeliveryPartner_vehicleId",
                 table: "DeliveryPartner",
-                column: "VehicleId");
+                column: "vehicleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DidiOrders_orderId",
@@ -2152,9 +2245,9 @@ namespace OrderAPI.Migrations
                 column: "orderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DidiOrders_priceid",
+                name: "IX_DidiOrders_priceId",
                 table: "DidiOrders",
-                column: "priceid");
+                column: "priceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DidiOrders_receive_addressuid",
@@ -2162,9 +2255,9 @@ namespace OrderAPI.Migrations
                 column: "receive_addressuid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DidiOrders_shopid",
+                name: "IX_DidiOrders_shopId",
                 table: "DidiOrders",
-                column: "shopid");
+                column: "shopId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DidiSubItems_OrderItemInfoorder_item_id",
@@ -2172,29 +2265,24 @@ namespace OrderAPI.Migrations
                 column: "OrderItemInfoorder_item_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DiscountedItem_DiscountAmountId",
-                table: "DiscountedItem",
-                column: "DiscountAmountId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DiscountedItem_UberPromotionDetailId",
                 table: "DiscountedItem",
                 column: "UberPromotionDetailId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discounteds_DiscountId",
+                name: "IX_Discounteds_discountId",
                 table: "Discounteds",
-                column: "DiscountId");
+                column: "discountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discounteds_QuantityId",
+                name: "IX_Discounteds_quantityId",
                 table: "Discounteds",
-                column: "QuantityId");
+                column: "quantityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discounteds_TotalId",
+                name: "IX_Discounteds_totalId",
                 table: "Discounteds",
-                column: "TotalId");
+                column: "totalId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Discounts_OrderDetailorder_id",
@@ -2202,9 +2290,9 @@ namespace OrderAPI.Migrations
                 column: "OrderDetailorder_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FailureInfos_TimeRangeId",
+                name: "IX_FailureInfos_time_rangeId",
                 table: "FailureInfos",
-                column: "TimeRangeId");
+                column: "time_rangeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FailureInfos_UberOrderId",
@@ -2212,59 +2300,64 @@ namespace OrderAPI.Migrations
                 column: "UberOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FeeDetail_FeesId",
+                name: "IX_FeeDetail_gross_amountId",
                 table: "FeeDetail",
-                column: "FeesId");
+                column: "gross_amountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FeeDetail_GrossAmountId",
+                name: "IX_FeeDetail_net_amountId",
                 table: "FeeDetail",
-                column: "GrossAmountId");
+                column: "net_amountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FeeDetail_NetAmountId",
+                name: "IX_FeeDetail_TaxBreakdownId",
                 table: "FeeDetail",
-                column: "NetAmountId");
+                column: "TaxBreakdownId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FeeDetail_TaxReportingId",
+                name: "IX_FeeDetail_TaxBreakdownId1",
                 table: "FeeDetail",
-                column: "TaxReportingId");
+                column: "TaxBreakdownId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Fees_TotalId",
+                name: "IX_FeeDetail_TaxBreakdownId2",
+                table: "FeeDetail",
+                column: "TaxBreakdownId2");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Fees_totalId",
                 table: "Fees",
-                column: "TotalId");
+                column: "totalId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FulfillmentIssue_ShoppingCartId",
+                name: "IX_FulfillmentIssue_ShoppingCartid",
                 table: "FulfillmentIssue",
-                column: "ShoppingCartId");
+                column: "ShoppingCartid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ItemCharges_DiscountId",
+                name: "IX_ItemCharges_discountId",
                 table: "ItemCharges",
-                column: "DiscountId");
+                column: "discountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ItemCharges_PriceBreakdownId",
+                name: "IX_ItemCharges_price_breakdownId",
                 table: "ItemCharges",
-                column: "PriceBreakdownId");
+                column: "price_breakdownId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ItemCharges_SubtotalIncludingPromosId",
+                name: "IX_ItemCharges_subtotal_including_promosId",
                 table: "ItemCharges",
-                column: "SubtotalIncludingPromosId");
+                column: "subtotal_including_promosId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ItemCharges_TotalId",
+                name: "IX_ItemCharges_totalId",
                 table: "ItemCharges",
-                column: "TotalId");
+                column: "totalId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ItemCharges_UnitId",
+                name: "IX_ItemCharges_unitId",
                 table: "ItemCharges",
-                column: "UnitId");
+                column: "unitId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Items_OrderDetailorder_id",
@@ -2272,14 +2365,24 @@ namespace OrderAPI.Migrations
                 column: "OrderDetailorder_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MerchantFee_amountId",
+                table: "MerchantFee",
+                column: "amountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MerchantFee_FeesId",
+                table: "MerchantFee",
+                column: "FeesId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderDetail_billing_informationId",
                 table: "OrderDetail",
                 column: "billing_informationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetail_delivery_discountid",
+                name: "IX_OrderDetail_delivery_discountId",
                 table: "OrderDetail",
-                column: "delivery_discountid");
+                column: "delivery_discountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetail_delivery_informationId",
@@ -2302,99 +2405,119 @@ namespace OrderAPI.Migrations
                 column: "promotion_detailId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PartnerIdentifier_UberStoreId",
+                name: "IX_PartnerIdentifier_UberStoreid",
                 table: "PartnerIdentifier",
-                column: "UberStoreId");
+                column: "UberStoreid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PaymentDetail_OrderTotalGrossId",
+                name: "IX_PaymentDetail_adjustmentId",
                 table: "PaymentDetail",
-                column: "OrderTotalGrossId");
+                column: "adjustmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PaymentDetail_OrderTotalNetId",
+                name: "IX_PaymentDetail_cash_amount_dueId",
                 table: "PaymentDetail",
-                column: "OrderTotalNetId");
+                column: "cash_amount_dueId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PaymentDetail_OrderTotalTaxId",
+                name: "IX_PaymentDetail_feesId",
                 table: "PaymentDetail",
-                column: "OrderTotalTaxId");
+                column: "feesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_AdjustmentId",
+                name: "IX_PaymentDetail_item_chargesId",
+                table: "PaymentDetail",
+                column: "item_chargesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentDetail_order_totalId",
+                table: "PaymentDetail",
+                column: "order_totalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentDetail_promotionsId",
+                table: "PaymentDetail",
+                column: "promotionsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentDetail_tipsId",
+                table: "PaymentDetail",
+                column: "tipsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payments_adjustmentId",
                 table: "Payments",
-                column: "AdjustmentId");
+                column: "adjustmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_CashAmountDueId",
+                name: "IX_Payments_cash_amount_dueId",
                 table: "Payments",
-                column: "CashAmountDueId");
+                column: "cash_amount_dueId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_FeesId",
+                name: "IX_Payments_feesId",
                 table: "Payments",
-                column: "FeesId");
+                column: "feesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_ItemChargesId",
+                name: "IX_Payments_item_chargesId",
                 table: "Payments",
-                column: "ItemChargesId");
+                column: "item_chargesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_PaymentDetailId",
+                name: "IX_Payments_payment_detailId",
                 table: "Payments",
-                column: "PaymentDetailId");
+                column: "payment_detailId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_PromotionsId",
+                name: "IX_Payments_promotionsId",
                 table: "Payments",
-                column: "PromotionsId");
+                column: "promotionsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_TaxReportingId",
+                name: "IX_Payments_tax_reportingId",
                 table: "Payments",
-                column: "TaxReportingId");
+                column: "tax_reportingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_TipsId",
+                name: "IX_Payments_tipsId",
                 table: "Payments",
-                column: "TipsId");
+                column: "tipsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PriceBreakdowns_DiscountId",
+                name: "IX_PriceBreakdowns_discountId",
                 table: "PriceBreakdowns",
-                column: "DiscountId");
+                column: "discountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PriceBreakdowns_QuantityId",
+                name: "IX_PriceBreakdowns_quantityId",
                 table: "PriceBreakdowns",
-                column: "QuantityId");
+                column: "quantityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PriceBreakdowns_TotalId",
+                name: "IX_PriceBreakdowns_totalId",
                 table: "PriceBreakdowns",
-                column: "TotalId");
+                column: "totalId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PriceBreakdowns_UnitId",
+                name: "IX_PriceBreakdowns_unitId",
                 table: "PriceBreakdowns",
-                column: "UnitId");
+                column: "unitId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Promotions_DetailsId",
+                name: "IX_Promotions_detailsId",
                 table: "Promotions",
-                column: "DetailsId");
+                column: "detailsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Promotions_OrderTotalExcludingPromosId",
+                name: "IX_Promotions_order_total_excluding_promosId",
                 table: "Promotions",
-                column: "OrderTotalExcludingPromosId");
+                column: "order_total_excluding_promosId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Promotions_TotalId",
+                name: "IX_Promotions_totalId",
                 table: "Promotions",
-                column: "TotalId");
+                column: "totalId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PromotionsInfo_DidiOrderorder_id",
@@ -2427,14 +2550,19 @@ namespace OrderAPI.Migrations
                 column: "Itemid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RemittanceSummaries_AmountId",
+                name: "IX_RemittanceSummaries_amountId",
                 table: "RemittanceSummaries",
-                column: "AmountId");
+                column: "amountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RemovedModifierItem_SelectedModifierGroupId",
+                name: "IX_RemittanceSummaries_TaxReportingId",
+                table: "RemittanceSummaries",
+                column: "TaxReportingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RemovedModifierItem_SelectedModifierGroupid",
                 table: "RemovedModifierItem",
-                column: "SelectedModifierGroupId");
+                column: "SelectedModifierGroupid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SelectedModifierGroup_CartItemId",
@@ -2442,9 +2570,9 @@ namespace OrderAPI.Migrations
                 column: "CartItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SelectedModifierItem_SelectedModifierGroupId",
+                name: "IX_SelectedModifierItem_SelectedModifierGroupid",
                 table: "SelectedModifierItem",
-                column: "SelectedModifierGroupId");
+                column: "SelectedModifierGroupid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shoppers_DidiOrderorder_id",
@@ -2452,14 +2580,14 @@ namespace OrderAPI.Migrations
                 column: "DidiOrderorder_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShopPhones_ShopInfoid",
+                name: "IX_ShopPhones_ShopInfoId",
                 table: "ShopPhones",
-                column: "ShopInfoid");
+                column: "ShopInfoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCarts_RestrictedItemsId",
+                name: "IX_ShoppingCarts_restricted_itemsId",
                 table: "ShoppingCarts",
-                column: "RestrictedItemsId");
+                column: "restricted_itemsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCarts_UberOrderId",
@@ -2467,29 +2595,29 @@ namespace OrderAPI.Migrations
                 column: "UberOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaxBreakdown_GrossAmountId",
-                table: "TaxBreakdown",
-                column: "GrossAmountId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaxBreakdown_NetAmountId",
-                table: "TaxBreakdown",
-                column: "NetAmountId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaxBreakdown_TaxReportingId",
-                table: "TaxBreakdown",
-                column: "TaxReportingId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaxProfile_EncryptedTaxIdId",
+                name: "IX_TaxProfile_encrypted_tax_idId",
                 table: "TaxProfile",
-                column: "EncryptedTaxIdId");
+                column: "encrypted_tax_idId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tips_TotalId",
+                name: "IX_TaxReportings_breakdownId",
+                table: "TaxReportings",
+                column: "breakdownId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaxReportings_destinationid",
+                table: "TaxReportings",
+                column: "destinationid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaxReportings_originid",
+                table: "TaxReportings",
+                column: "originid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tips_totalId",
                 table: "Tips",
-                column: "TotalId");
+                column: "totalId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Totals_chargesId",
@@ -2502,14 +2630,24 @@ namespace OrderAPI.Migrations
                 column: "other_totalsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UberCustomers_ContactId",
+                name: "IX_UberCustomers_contactId",
                 table: "UberCustomers",
-                column: "ContactId");
+                column: "contactId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UberCustomers_TaxProfileId",
+                name: "IX_UberCustomers_nameId",
                 table: "UberCustomers",
-                column: "TaxProfileId");
+                column: "nameId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UberCustomers_order_historyId",
+                table: "UberCustomers",
+                column: "order_historyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UberCustomers_tax_profileId",
+                table: "UberCustomers",
+                column: "tax_profileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UberCustomers_UberOrderId",
@@ -2517,19 +2655,19 @@ namespace OrderAPI.Migrations
                 column: "UberOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UberDiscounts_QuantityId",
+                name: "IX_UberDiscounts_quantityId",
                 table: "UberDiscounts",
-                column: "QuantityId");
+                column: "quantityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UberDiscounts_TotalId",
+                name: "IX_UberDiscounts_totalId",
                 table: "UberDiscounts",
-                column: "TotalId");
+                column: "totalId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UberOrders_EligibleActionsId",
+                name: "IX_UberOrders_eligible_actionsId",
                 table: "UberOrders",
-                column: "EligibleActionsId");
+                column: "eligible_actionsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UberOrders_orderId",
@@ -2537,35 +2675,30 @@ namespace OrderAPI.Migrations
                 column: "orderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UberOrders_PaymentId",
+                name: "IX_UberOrders_paymentId",
                 table: "UberOrders",
-                column: "PaymentId");
+                column: "paymentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UberOrders_PreparationTimeId",
+                name: "IX_UberOrders_preparation_timeId",
                 table: "UberOrders",
-                column: "PreparationTimeId");
+                column: "preparation_timeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UberOrders_RetailerLoyaltyInfoId",
+                name: "IX_UberOrders_retailer_loyalty_infoId",
                 table: "UberOrders",
-                column: "RetailerLoyaltyInfoId");
+                column: "retailer_loyalty_infoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UberOrders_StoreId",
+                name: "IX_UberOrders_storeid",
                 table: "UberOrders",
-                column: "StoreId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UberPromotionDetail_TaxReportingId",
-                table: "UberPromotionDetail",
-                column: "TaxReportingId");
+                column: "storeid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Allergen");
+                name: "Allergens");
 
             migrationBuilder.DropTable(
                 name: "Deliveries");
@@ -2596,6 +2729,9 @@ namespace OrderAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "FulfillmentIssue");
+
+            migrationBuilder.DropTable(
+                name: "MerchantFee");
 
             migrationBuilder.DropTable(
                 name: "MetaInfos");
@@ -2631,9 +2767,6 @@ namespace OrderAPI.Migrations
                 name: "ShopPhones");
 
             migrationBuilder.DropTable(
-                name: "TaxBreakdown");
-
-            migrationBuilder.DropTable(
                 name: "UberCustomers");
 
             migrationBuilder.DropTable(
@@ -2659,6 +2792,12 @@ namespace OrderAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "SelectedModifierGroup");
+
+            migrationBuilder.DropTable(
+                name: "Name");
+
+            migrationBuilder.DropTable(
+                name: "OrderHistory");
 
             migrationBuilder.DropTable(
                 name: "TaxProfile");
@@ -2748,10 +2887,13 @@ namespace OrderAPI.Migrations
                 name: "UberStores");
 
             migrationBuilder.DropTable(
-                name: "Adjustments");
+                name: "PaymentDetail");
 
             migrationBuilder.DropTable(
-                name: "CashAmountDue");
+                name: "TaxReportings");
+
+            migrationBuilder.DropTable(
+                name: "Adjustments");
 
             migrationBuilder.DropTable(
                 name: "Fees");
@@ -2760,13 +2902,19 @@ namespace OrderAPI.Migrations
                 name: "ItemCharges");
 
             migrationBuilder.DropTable(
-                name: "PaymentDetail");
-
-            migrationBuilder.DropTable(
                 name: "Promotions");
 
             migrationBuilder.DropTable(
                 name: "Tips");
+
+            migrationBuilder.DropTable(
+                name: "TaxBreakdown");
+
+            migrationBuilder.DropTable(
+                name: "TaxLocation");
+
+            migrationBuilder.DropTable(
+                name: "AdjustmentDetail");
 
             migrationBuilder.DropTable(
                 name: "PriceBreakdowns");
@@ -2775,10 +2923,10 @@ namespace OrderAPI.Migrations
                 name: "UberPromotionDetail");
 
             migrationBuilder.DropTable(
-                name: "UberDiscounts");
+                name: "CashAmountDue");
 
             migrationBuilder.DropTable(
-                name: "TaxReportings");
+                name: "UberDiscounts");
 
             migrationBuilder.DropTable(
                 name: "Monies");

@@ -7,15 +7,11 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string PartnerId { get; set; }
-
-        public string Name { get; set; }
-
-        public virtual Vehicle Vehicle { get; set; }
-
-        public virtual Contact Contact { get; set; }
-
-        public virtual CurrentLocation CurrentLocation { get; set; }
+        public int id { get; set; }
+        public string partner_id { get; set; }
+        public string name { get; set; }
+        public virtual Vehicle vehicle { get; set; }
+        public virtual Contact contact { get; set; }
+        public virtual CurrentLocation current_location { get; set; }
     }
 }

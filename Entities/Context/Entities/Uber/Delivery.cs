@@ -8,13 +8,13 @@ namespace Entities.Context.Entities.Uber
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string DeliveryId { get; set; }
-        public string Status { get; set; }
-        public DateTime EstimatedPickUpTime { get; set; }
-        public string InteractionType { get; set; }
-        public DateTime DeliveryPartnerMarkedNotReadyTime { get; set; }
-        public string Instructions { get; set; }
-        public virtual Location Location { get; set; }
-        public virtual DeliveryPartner DeliveryPartner { get; set; }
+        public string delivery_id { get; set; }
+        public string status { get; set; }
+        public DateTime estimated_pick_up_time { get; set; }
+        public string interaction_type { get; set; }
+        public DateTime delivery_partner_marked_not_ready_time { get; set; }
+        public string instructions { get; set; }
+        public virtual Location location { get; set; }
+        public virtual DeliveryPartner delivery_partner { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using OrderAPI.Policies.Requirements;
 using OrderAPI.Repositories;
 using OrderAPI.Repositories.Interfaces;
 using Serilog;
+using System.Text.Json;
 
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 3));
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +24,8 @@ builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
         options.SuppressModelStateInvalidFilter = true;
-    });
+    }
+    );
 
 
 builder.Services.AddDbContext<DatabaseContext>(options => {
@@ -32,6 +34,8 @@ builder.Services.AddDbContext<DatabaseContext>(options => {
                 //.EnableSensitiveDataLogging()
                 //.EnableDetailedErrors();
 });
+
+
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
@@ -57,7 +61,7 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddSingleton<IAuthorizationHandler, RappiWebhookSignatureHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, DiDiHeaderSignatureHandler>();
-builder.Services.AddSingleton<IUberConnection, UberConnectionRepository>();
+builder.Services.AddScoped<IUberConnection, UberConnectionRepository>();
 builder.Services.AddScoped<IOrdersRepository, OrdersRepository>();
 
 builder.Services.AddEndpointsApiExplorer();

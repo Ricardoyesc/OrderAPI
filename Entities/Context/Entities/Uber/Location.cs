@@ -7,23 +7,20 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Type { get; set; }
-        public string PlaceId { get; set; }
-        public string StreetAddressLineOne { get; set; }
-        public string StreetAddressLineTwo { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-        public int UnitNumber
-        {
-            get; set;
-        }
+        public int id { get; set; }
+        public string type { get; set; }
+        public string place_id { get; set; }
+        public string street_address_line_one { get; set; }
+        public string street_address_line_two { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
+        public int unit_number { get; set; }
 
-        public string BusinessName { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
-        public int PostalCode { get; set; }
-        public string LocationTypeValue { get; set; }
-        public string ClientProvidedStreetAddressLineOne { get; set; }
+        public string business_name { get; set; }
+        public string city { get; set; }
+        public string country { get; set; }
+        public int postal_code { get; set; }
+        public string location_type_value { get; set; }
+        public string client_provided_street_address_line_one { get; set; }
     }
 }

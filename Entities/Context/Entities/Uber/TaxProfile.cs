@@ -1,20 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Context.Entities.Uber;
-
-public class TaxProfile
+namespace Entities.Context.Entities.Uber
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
-    public string TaxIds { get; set; }
-    public string TaxIdType { get; set; }
-    public string CustomerFullName { get; set; }
-    public string Email { get; set; }
-    public string LegalEntityName { get; set; }
-    public string BillingAddress { get; set; }
-    public string Country { get; set; }
+    public class TaxProfile
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+        public string tax_ids { get; set; }
+        public string tax_id_type { get; set; }
+        public string customer_full_name { get; set; }
+        public string email { get; set; }
+        public string legal_entity_name { get; set; }
+        public string billing_address { get; set; }
+        public string country { get; set; }
 
-    public virtual EncryptedTaxId EncryptedTaxId { get; set; }
+        public virtual EncryptedTaxId encrypted_tax_id { get; set; }
+    }
 }

@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Entities.Context.Entities.Didi;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Entities.Context.Entities.Uber
 {
@@ -8,7 +10,23 @@ namespace Entities.Context.Entities.Uber
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Instructions { get; set; }
-        public virtual List<string> Allergens { get; set; }
+        public string instructions { get; set; }
+        [NotMapped]
+        public List<string> Allergens
+        {
+            get
+            {
+                // Convert the list of Allergen entities to a list of strings
+                return AllergensNames.Select(allergen => allergen.Name).ToList();
+            }
+            set
+            {
+                // Convert the list of strings to a list of Allergen entities
+                AllergensNames = value.Select(name => new Allergen { Name = name }).ToList();
+            }
+        }
+        [JsonIgnore]
+        public virtual List<Allergen> AllergensNames { get; set; }
     }
+
 }

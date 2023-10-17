@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Context.Entities.Uber;
-
-public class TimeRange
+namespace Entities.Context.Entities.Uber
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
-    public DateTime StartTime { get; set; }
-    public DateTime EndTime { get; set; }
+    public class TimeRange
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+        public DateTime start_time { get; set; }
+        public DateTime end_time { get; set; }
+    }
 }

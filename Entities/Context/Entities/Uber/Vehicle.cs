@@ -1,19 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Context.Entities.Uber;
-
-public class Vehicle
+namespace Entities.Context.Entities.Uber
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
-    public string Type { get; set; }
-    public string Make { get; set; }
-    public string Model { get; set; }
-    public string Color { get; set; }
-    public string LicensePlate { get; set; }
-    public bool IsAutonomous { get; set; }
-    public string HandoffInstructions { get; set; }
-    public string Passcode { get; set; }
+    public class Vehicle
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+        public string type { get; set; }
+        public string make { get; set; }
+        public string model { get; set; }
+        public string color { get; set; }
+        public string license_plate { get; set; }
+        public bool is_autonomous { get; set; }
+        public string handoff_instructions { get; set; }
+        public string passcode { get; set; }
+    }
 }

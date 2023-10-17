@@ -8,32 +8,32 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string OrderId { get; set; }
-        public string DisplayId { get; set; }
-        public string ExternalId { get; set; }
-        public string State { get; set; }
-        public string Status { get; set; }
-        public string PreparationStatus { get; set; }
-        public string OrderingPlatform { get; set; }
-        public string FulfillmentType { get; set; }
-        public DateTime? ScheduledOrderTargetDeliveryStartTime { get; set; }
-        public DateTime? ScheduledOrderTargetDeliveryEndTime { get; set; }
-        public int StoreId { get; set; }
-        public bool IsOrderAccuracyRisk { get; set; }
-        public string StoreInstructions { get; set; }
-        public DateTime? CompletedTime { get; set; }
-        public DateTime CreatedTime { get; set; }
-        public bool HasMembershipPass { get; set; }
-        public virtual UberStore Store { get; set; }
-        public virtual List<UberCustomer> Customers { get; set; }
-        public virtual List<Delivery> Deliveries { get; set; }
-        public virtual List<ShoppingCart> Carts { get; set; }
-        public virtual Payment Payment { get; set; }
-        public virtual PreparationTime PreparationTime { get; set; }
-        public virtual ActionEligibility EligibleActions { get; set; }
-        public virtual List<FailureInfo> FailureInfo { get; set; }
-        public virtual RetailerLoyaltyInfo RetailerLoyaltyInfo { get; set; }
+        public string id { get; set; }
+        public string order_id { get; set; }
+        public string display_id { get; set; }
+        public string external_id { get; set; }
+        public string state { get; set; }
+        public string status { get; set; }
+        public string preparation_status { get; set; }
+        public string ordering_platform { get; set; }
+        public string fulfillment_type { get; set; }
+        public DateTime? scheduled_order_target_delivery_start_time { get; set; }
+        public DateTime? scheduled_order_target_delivery_end_time { get; set; }
+        public int store_id { get; set; }
+        public bool is_order_accuracy_risk { get; set; }
+        public string store_instructions { get; set; }
+        public DateTime? completed_time { get; set; }
+        public DateTime created_time { get; set; }
+        public bool has_membership_pass { get; set; }
+        public virtual UberStore store { get; set; }
+        public virtual List<UberCustomer> customers { get; set; }
+        public virtual List<Delivery> deliveries { get; set; }
+        public virtual List<ShoppingCart> carts { get; set; }
+        public virtual Payment payment { get; set; }
+        public virtual PreparationTime preparation_time { get; set; }
+        public virtual ActionEligibility eligible_actions { get; set; }
+        public virtual List<FailureInfo> failure_info { get; set; }
+        public virtual RetailerLoyaltyInfo retailer_loyalty_info { get; set; }
         [JsonIgnore]
         public Order order { get; set; } = new Order() { provider = Catalogs.Provider.UBER };
     }

@@ -1,20 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Context.Entities.Uber;
-
-public class ShoppingCart
+namespace Entities.Context.Entities.Uber
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
-    public string CartId { get; set; }
-
-    public virtual List<CartItem> Items { get; set; }
-
-    public virtual List<FulfillmentIssue> FulfillmentIssues { get; set; }
-    public string SpecialInstructions { get; set; }
-    public bool IncludeSingleUseItems { get; set; }
-
-    public virtual RestrictedItems RestrictedItems { get; set; }
+    public class ShoppingCart
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+        public string cart_id { get; set; }
+        public virtual List<CartItem> items { get; set; }
+        public virtual List<FulfillmentIssue> fulfillment_issues { get; set; }
+        public string special_instructions { get; set; }
+        public bool include_single_use_items { get; set; }
+        public virtual RestrictedItems restricted_items { get; set; }
+    }
 }

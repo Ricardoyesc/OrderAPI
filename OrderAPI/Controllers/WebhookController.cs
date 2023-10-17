@@ -4,10 +4,12 @@ using Entities.Context.Entities.Uber;
 using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using OrderAPI.Repositories.Interfaces;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using System.Xml;
 
 namespace OrderAPI.Controllers
 {
@@ -79,6 +81,43 @@ namespace OrderAPI.Controllers
                 }
 
                 return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message + " | " + ex.StackTrace + " | " + ex.InnerException?.Message);
+            }
+        }
+
+        [HttpPost]
+        [Consumes("application/json")]
+        public async Task<IActionResult> StoreAsync([FromBody] UberOrder uberOrder)
+        {
+            try
+            {
+                Request.EnableBuffering();
+                using var reader = new StreamReader(Request.Body);
+                string requestBody = await reader.ReadToEndAsync();
+                Request.Body.Position = 0;
+
+
+                //var settings = new JsonSerializerSettings
+                //{
+                //    ContractResolver = new DefaultContractResolver
+                //    {
+                //        NamingStrategy = new SnakeCaseNamingStrategy { ProcessDictionaryKeys = true }
+                //    },
+                //    Formatting = Formatting.Indented
+                //};
+
+
+                var uberor = JsonSerializer.Deserialize<UberOrder>(requestBody);
+
+                if (uberOrder == null)
+                {
+                    return BadRequest();
+                }
+                var uber = await _orders.StoreUberOrder(uberOrder);
+                return Ok(uber);
             }
             catch (Exception ex)
             {

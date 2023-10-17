@@ -7,12 +7,12 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Reason { get; set; }
-        public string FailureAttributedToParty { get; set; }
-        public bool WillMerchantBePaid { get; set; }
-        public string Description { get; set; }
+        public int id { get; set; }
+        public string reason { get; set; }
+        public string failure_attributed_to_party { get; set; }
+        public bool will_merchant_be_paid { get; set; }
+        public string description { get; set; }
 
-        public virtual TimeRange TimeRange { get; set; }
+        public virtual TimeRange time_range { get; set; }
     }
 }

@@ -8,18 +8,18 @@ namespace Entities.Context.Entities.Uber
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string ItemId { get; set; }
-        public string CartItemId { get; set; }
-        public string Title { get; set; }
-        public string ExternalData { get; set; }
+        public string item_id { get; set; }
+        public string cart_item_id { get; set; }
+        public string title { get; set; }
+        public string external_data { get; set; }
 
-        public string CustomerId { get; set; }
-        public virtual Quantity Quantity { get; set; }
-        public virtual Quantity DefaultQuantity { get; set; }
+        public string customer_id { get; set; }
+        public virtual Quantity quantity { get; set; }
+        public virtual Quantity default_quantity { get; set; }
 
-        public virtual CustomerRequests CustomerRequests { get; set; }
+        public virtual CustomerRequests customer_requests { get; set; }
 
-        public virtual List<SelectedModifierGroup> SelectedModifierGroups { get; set; }
-        public string PictureUrl { get; set; }
+        public virtual List<SelectedModifierGroup> selected_modifier_groups { get; set; }
+        public string picture_url { get; set; }
     }
 }

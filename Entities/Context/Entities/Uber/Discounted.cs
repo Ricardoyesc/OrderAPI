@@ -1,20 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Context.Entities.Uber;
-
-public class Discounted
+namespace Entities.Context.Entities.Uber
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public class Discounted
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
 
-    public string CartItemId { get; set; }
-    public string PriceType { get; set; }
+        public string cart_item_id { get; set; }
+        public string price_type { get; set; }
 
-    public virtual Quantity Quantity { get; set; }
+        public virtual Quantity quantity { get; set; }
 
-    public virtual Money Total { get; set; }
+        public virtual Money total { get; set; }
 
-    public virtual UberDiscount Discount { get; set; }
+        public virtual UberDiscount discount { get; set; }
+    }
 }

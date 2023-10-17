@@ -8,7 +8,7 @@ namespace Entities.Context.Entities.Uber
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
     }
 }

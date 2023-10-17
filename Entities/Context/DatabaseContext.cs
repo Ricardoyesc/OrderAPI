@@ -40,8 +40,8 @@ namespace Entities.Context
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Money> Monies { get; set; }
         public DbSet<PriceBreakdown> PriceBreakdowns { get; set; }
-        public DbSet<Fee> Fees { get; set; }
-        public DbSet<UberPromotion> Promotions { get; set; }
+        public DbSet<Fees> Fees { get; set; }
+        public DbSet<Promotions> Promotions { get; set; }
         public DbSet<UberDiscount> UberDiscounts { get; set; }
         public DbSet<Adjustment> Adjustments { get; set; }
         public DbSet<TaxReporting> TaxReportings { get; set; }
@@ -56,7 +56,7 @@ namespace Entities.Context
         public DbSet<DiscountedItems> DiscountedItems { get; set; }
         public DbSet<CustomerRequests> CustomerRequests { get; set; }
         public DbSet<RestrictedItems> RestrictedItems { get; set; }
-
+        public DbSet<Allergen> Allergens { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {

@@ -8,9 +8,8 @@ namespace Entities.Context.Entities.Uber
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string CartItemId { get; set; }
-
-        public virtual Money DiscountAmount { get; set; }
-        public string ExternalItemDiscountId { get; set; }
+        public string cart_item_id { get; set; }
+        public virtual Money discount_amount { get; set; }
+        public string external_item_discount_id { get; set; }
     }
 }

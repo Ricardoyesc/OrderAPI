@@ -7,16 +7,16 @@ namespace Entities.Context.Entities.Uber
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string CustomerId { get; set; }
+        public int id { get; set; }
+        public string customer_id { get; set; }
 
-        public string Name { get; set; }
-        public string OrderHistory { get; set; }
+        public string name { get; set; }
+        public string order_history { get; set; }
 
-        public virtual Contact Contact { get; set; }
-        public bool IsPrimaryCustomer { get; set; }
+        public virtual Contact contact { get; set; }
+        public bool is_primary_customer { get; set; }
 
-        public virtual TaxProfile TaxProfile { get; set; }
-        public bool CanResponseToFulfillmentIssues { get; set; }
+        public virtual TaxProfile tax_profile { get; set; }
+        public bool can_response_to_fulfillment_issues { get; set; }
     }
 }

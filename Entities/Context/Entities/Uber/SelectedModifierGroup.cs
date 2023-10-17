@@ -1,17 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Context.Entities.Uber;
-
-public class SelectedModifierGroup
+namespace Entities.Context.Entities.Uber
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
-    public string ModifierGroupId { get; set; }
-    public string Title { get; set; }
-    public string ExternalData { get; set; }
+    public class SelectedModifierGroup
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+        public string modifier_group_id { get; set; }
+        public string title { get; set; }
+        public string external_data { get; set; }
 
-    public virtual List<SelectedModifierItem> SelectedItems { get; set; }
-    public virtual List<RemovedModifierItem> RemovedItems { get; set; }
+        public virtual List<SelectedModifierItem> selected_items { get; set; }
+        public virtual List<RemovedModifierItem> removed_items { get; set; }
+    }
 }

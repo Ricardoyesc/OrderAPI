@@ -47,6 +47,7 @@ namespace OrderAPI.Controllers
         }
         [HttpPost]
         [Consumes("application/json")]
+        [Authorize(Policy = "DidiHeaderSignaturePolicy")]
         public async Task<ActionResult<DidiResponse>> DidiWebhookAsync([FromBody] DidiWebhook<DidiOrderModel> order)
         {
             try

@@ -39,7 +39,6 @@ namespace OrderAPI.Policies.Handlers
             request.Request.EnableBuffering();
             var requestBody = await request.Request.BodyReader.ReadAsync();
             var str = Encoding.UTF8.GetString(requestBody.Buffer);
-
             request.Request.Body.Position = 0;
 
             // Create the signed_payload string

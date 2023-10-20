@@ -88,43 +88,43 @@ namespace OrderAPI.Controllers
             }
         }
 
-        [HttpPost]
-        [Consumes("application/json")]
-        public async Task<IActionResult> StoreAsync()
-        {
-            try
-            {
-                Request.EnableBuffering();
-                Request.Body.Position = 0;
-                using var reader = new StreamReader(Request.Body);
-                string requestBody = await reader.ReadToEndAsync();
-                Request.Body.Position = 0;
+        //[HttpPost]
+        //[Consumes("application/json")]
+        //public async Task<IActionResult> StoreAsync()
+        //{
+        //    try
+        //    {
+        //        Request.EnableBuffering();
+        //        Request.Body.Position = 0;
+        //        using var reader = new StreamReader(Request.Body);
+        //        string requestBody = await reader.ReadToEndAsync();
+        //        Request.Body.Position = 0;
 
 
-                //var settings = new JsonSerializerSettings
-                //{
-                //    ContractResolver = new DefaultContractResolver
-                //    {
-                //        NamingStrategy = new SnakeCaseNamingStrategy { ProcessDictionaryKeys = true }
-                //    },
-                //    Formatting = Formatting.Indented
-                //};
+        //        //var settings = new JsonSerializerSettings
+        //        //{
+        //        //    ContractResolver = new DefaultContractResolver
+        //        //    {
+        //        //        NamingStrategy = new SnakeCaseNamingStrategy { ProcessDictionaryKeys = true }
+        //        //    },
+        //        //    Formatting = Formatting.Indented
+        //        //};
 
 
-                var uberOrder = JsonSerializer.Deserialize<UberOrder>(requestBody);
+        //        var uberOrder = JsonSerializer.Deserialize<UberOrder>(requestBody);
 
-                if (uberOrder == null)
-                {
-                    return BadRequest();
-                }
-                var uber = await _orders.StoreUberOrder(uberOrder);
-                return Ok(uber);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message + " | " + ex.StackTrace + " | " + ex.InnerException?.Message);
-            }
-        }
+        //        if (uberOrder == null)
+        //        {
+        //            return BadRequest();
+        //        }
+        //        var uber = await _orders.StoreUberOrder(uberOrder);
+        //        return Ok(uber);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message + " | " + ex.StackTrace + " | " + ex.InnerException?.Message);
+        //    }
+        //}
 
 
     }

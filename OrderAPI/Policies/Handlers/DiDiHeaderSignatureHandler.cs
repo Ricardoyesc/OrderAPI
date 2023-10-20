@@ -23,8 +23,7 @@ namespace OrderAPI.Policies.Handlers
             request.Request.EnableBuffering();
             using var reader = new StreamReader(request.Request.Body);
             string requestBody = await reader.ReadToEndAsync();
-            request.Request.Body.Position = 0;
-
+            reader.Close();
 
             // Calculate the expected signature
             string expectedSignature;
@@ -47,7 +46,9 @@ namespace OrderAPI.Policies.Handlers
             {
                 context.Fail();
             }
+
+            // Reset the request body position
+            request.Request.Body.Position = 0;
         }
     }
-
 }

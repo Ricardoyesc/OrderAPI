@@ -10,7 +10,7 @@ using OrderAPI.Repositories.Interfaces;
 using Serilog;
 using System.Text.Json;
 
-var serverVersion = new MySqlServerVersion(new Version(8, 0, 3));
+var serverVersion = new MySqlServerVersion(new Version(5, 7, 43));
 var builder = WebApplication.CreateBuilder(args);
 
 //Add serilog

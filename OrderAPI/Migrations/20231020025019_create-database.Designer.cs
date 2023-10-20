@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace OrderAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231017075336_create-database")]
+    [Migration("20231020025019_create-database")]
     partial class createdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

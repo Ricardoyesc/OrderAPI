@@ -6,13 +6,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OrderAPI.Migrations
 {
+    /// <inheritdoc />
     public partial class createdatabase : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateTable(
                 name: "ActionEligibility",
                 columns: table => new
@@ -27,7 +26,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_ActionEligibility", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Allergies",
@@ -35,14 +34,13 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    instructions = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    instructions = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Allergies", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "BillingsInformation",
@@ -50,26 +48,19 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    address = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    billing_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    document_number = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    document_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    email = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    address = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    billing_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    document_number = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    document_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    email = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    phone = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BillingsInformation", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Charges",
@@ -84,7 +75,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_Charges", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Contact",
@@ -92,18 +83,15 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    number = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    pin_code = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    country_iso2 = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    number = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    pin_code = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    country_iso2 = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Contact", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "CurrentLocation",
@@ -118,7 +106,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_CurrentLocation", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Customers",
@@ -126,22 +114,17 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    first_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    last_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone_number = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    document_number = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    user_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    first_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    last_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    phone_number = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    document_number = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    user_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "DeliveriesInformation",
@@ -149,26 +132,19 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    city = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    complete_address = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    street_number = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    neighborhood = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    complement = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    postal_code = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    street_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    city = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    complete_address = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    street_number = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    neighborhood = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    complement = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    postal_code = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    street_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DeliveriesInformation", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "DeliveryDiscounts",
@@ -183,7 +159,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_DeliveryDiscounts", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "DiscountedItems",
@@ -191,8 +167,7 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    external_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    external_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     discounted_quantity = table.Column<int>(type: "int", nullable: false),
                     discount_amount_applied = table.Column<int>(type: "int", nullable: false)
                 },
@@ -200,7 +175,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_DiscountedItems", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "EligibleActions",
@@ -216,7 +191,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_EligibleActions", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "EncryptedTaxId",
@@ -224,64 +199,51 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    key = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    cipher_text = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    key = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    cipher_text = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EncryptedTaxId", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    street_address_line_one = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    street_address_line_two = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    street_address_line_one = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    street_address_line_two = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     latitude = table.Column<double>(type: "double", nullable: false),
                     longitude = table.Column<double>(type: "double", nullable: false),
                     unit_number = table.Column<int>(type: "int", nullable: false),
-                    business_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    city = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    country = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    business_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    city = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    country = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     postal_code = table.Column<int>(type: "int", nullable: false),
-                    location_type_value = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    client_provided_street_address_line_one = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    location_type_value = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    client_provided_street_address_line_one = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Locations", x => x.id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "MetaInfos",
                 columns: table => new
                 {
-                    resource_id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    resource_href = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    resource_id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    resource_href = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MetaInfos", x => x.resource_id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Monies",
@@ -290,16 +252,14 @@ namespace OrderAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     amount_e5 = table.Column<int>(type: "int", nullable: false),
-                    currency_code = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    formatted = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    currency_code = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    formatted = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Monies", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Name",
@@ -307,18 +267,15 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    display_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    first_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    last_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    display_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    first_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    last_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Name", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "OAuthTokens",
@@ -326,15 +283,14 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    AccessToken = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AccessToken = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     ExpirationTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OAuthTokens", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "OrderHistory",
@@ -348,7 +304,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_OrderHistory", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Orders",
@@ -362,7 +318,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "OtherTotals",
@@ -378,7 +334,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_OtherTotals", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "PreparationTimes",
@@ -387,15 +343,14 @@ namespace OrderAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ready_for_pickup_time_secs = table.Column<int>(type: "int", nullable: false),
-                    source = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    source = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     ready_for_pickup_time = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PreparationTimes", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "PricesInfo",
@@ -413,7 +368,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_PricesInfo", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "PromotionDetails",
@@ -429,7 +384,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_PromotionDetails", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Quantity",
@@ -438,14 +393,13 @@ namespace OrderAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     amount = table.Column<int>(type: "int", nullable: false),
-                    unit = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    unit = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Quantity", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "ReceiveAddresses",
@@ -453,36 +407,25 @@ namespace OrderAPI.Migrations
                 {
                     uid = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    first_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    last_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    calling_code = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    city = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    country_code = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    poi_address = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    house_number = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    first_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    last_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    calling_code = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    phone = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    city = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    country_code = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    poi_address = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    house_number = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     poi_lat = table.Column<double>(type: "double", nullable: false),
                     poi_lng = table.Column<double>(type: "double", nullable: false),
-                    coordinate_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    poi_display_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    coordinate_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    poi_display_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ReceiveAddresses", x => x.uid);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "RestrictedItems",
@@ -497,7 +440,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_RestrictedItems", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "RetailerLoyaltyInfos",
@@ -511,7 +454,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_RetailerLoyaltyInfos", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Shops",
@@ -520,35 +463,29 @@ namespace OrderAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     shop_id = table.Column<long>(type: "bigint", nullable: false),
-                    app_shop_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    shop_addr = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    shop_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    app_shop_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    shop_addr = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    shop_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Shops", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Stores",
                 columns: table => new
                 {
-                    internal_id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    external_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    internal_id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    external_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Stores", x => x.internal_id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "TaxBreakdown",
@@ -561,24 +498,21 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_TaxBreakdown", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "TaxLocation",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    country_iso2 = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    postal_code = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    country_iso2 = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    postal_code = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TaxLocation", x => x.id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "TimeRanges",
@@ -593,7 +527,7 @@ namespace OrderAPI.Migrations
                 {
                     table.PrimaryKey("PK_TimeRanges", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "UberPromotionDetail",
@@ -601,36 +535,30 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    external_promotion_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    discount_value = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    discount_percentage = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    external_promotion_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    discount_value = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    discount_percentage = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     discount_delivery_fee_value = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UberPromotionDetail", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "UberStores",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UberStores", x => x.id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Vehicle",
@@ -638,25 +566,19 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    make = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    model = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    color = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    license_plate = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    make = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    model = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    color = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    license_plate = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     is_autonomous = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    passcode = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    passcode = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vehicle", x => x.Id);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Allergens",
@@ -664,8 +586,7 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     AllergyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -677,7 +598,7 @@ namespace OrderAPI.Migrations
                         principalTable: "Allergies",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "CustomerRequests",
@@ -685,8 +606,7 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    special_instructions = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    special_instructions = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     allergyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -698,7 +618,7 @@ namespace OrderAPI.Migrations
                         principalTable: "Allergies",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "TaxProfile",
@@ -706,20 +626,13 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    tax_ids = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    tax_id_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    customer_full_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    email = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    legal_entity_name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    billing_address = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    country = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    tax_ids = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    tax_id_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    customer_full_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    email = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    legal_entity_name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    billing_address = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    country = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     encrypted_tax_idId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -732,7 +645,7 @@ namespace OrderAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "CashAmountDue",
@@ -740,8 +653,7 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    display_amount = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    display_amount = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     netId = table.Column<int>(type: "int", nullable: true),
                     taxId = table.Column<int>(type: "int", nullable: true),
                     grossId = table.Column<int>(type: "int", nullable: true),
@@ -766,7 +678,7 @@ namespace OrderAPI.Migrations
                         principalTable: "Monies",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Totals",
@@ -796,7 +708,7 @@ namespace OrderAPI.Migrations
                         principalTable: "OtherTotals",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "UberDiscounts",
@@ -822,7 +734,7 @@ namespace OrderAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "DidiOrders",
@@ -834,13 +746,10 @@ namespace OrderAPI.Migrations
                     shop_accept_status = table.Column<int>(type: "int", nullable: false),
                     before_status = table.Column<int>(type: "int", nullable: false),
                     order_index = table.Column<int>(type: "int", nullable: false),
-                    remark = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    remark = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     city_id = table.Column<int>(type: "int", nullable: false),
-                    country = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    timezone = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    country = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    timezone = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     pay_type = table.Column<int>(type: "int", nullable: false),
                     delivery_type = table.Column<int>(type: "int", nullable: false),
                     expected_cook_eta = table.Column<int>(type: "int", nullable: false),
@@ -883,7 +792,7 @@ namespace OrderAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "ShopPhones",
@@ -893,8 +802,7 @@ namespace OrderAPI.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     calling_code = table.Column<int>(type: "int", nullable: false),
                     phone = table.Column<long>(type: "bigint", nullable: false),
-                    type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     ShopInfoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -906,7 +814,7 @@ namespace OrderAPI.Migrations
                         principalTable: "Shops",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "FeeDetail",
@@ -914,10 +822,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    instance_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    description = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    instance_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    description = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     gross_amountId = table.Column<int>(type: "int", nullable: true),
                     net_amountId = table.Column<int>(type: "int", nullable: true),
                     TaxBreakdownId = table.Column<int>(type: "int", nullable: true),
@@ -953,7 +859,7 @@ namespace OrderAPI.Migrations
                         principalTable: "TaxBreakdown",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "TaxReportings",
@@ -962,10 +868,8 @@ namespace OrderAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     breakdownId = table.Column<int>(type: "int", nullable: true),
-                    originid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    destinationid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    originid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci"),
+                    destinationid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
@@ -986,18 +890,15 @@ namespace OrderAPI.Migrations
                         principalTable: "TaxLocation",
                         principalColumn: "id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "DiscountedItem",
                 columns: table => new
                 {
-                    external_id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    discounted_quantity = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    discount_amount_applied = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    external_id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    discounted_quantity = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    discount_amount_applied = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     UberPromotionDetailId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -1009,18 +910,15 @@ namespace OrderAPI.Migrations
                         principalTable: "UberPromotionDetail",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "PartnerIdentifier",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    UberStoreid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    UberStoreid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
@@ -1031,16 +929,14 @@ namespace OrderAPI.Migrations
                         principalTable: "UberStores",
                         principalColumn: "id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "DeliveryPartner",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     vehicleId = table.Column<int>(type: "int", nullable: true),
                     contactId = table.Column<int>(type: "int", nullable: true),
                     current_locationId = table.Column<int>(type: "int", nullable: true)
@@ -1064,7 +960,7 @@ namespace OrderAPI.Migrations
                         principalTable: "Vehicle",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "AdjustmentDetail",
@@ -1072,8 +968,7 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    reason = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    reason = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     amountId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -1086,7 +981,7 @@ namespace OrderAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Fees",
@@ -1105,7 +1000,7 @@ namespace OrderAPI.Migrations
                         principalTable: "CashAmountDue",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Promotions",
@@ -1136,7 +1031,7 @@ namespace OrderAPI.Migrations
                         principalTable: "UberPromotionDetail",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Tips",
@@ -1156,23 +1051,19 @@ namespace OrderAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "OrderDetail",
                 columns: table => new
                 {
-                    order_id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    order_id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
                     coooking_time = table.Column<int>(type: "int", nullable: false),
                     min_cooking_time = table.Column<int>(type: "int", nullable: false),
                     max_cooking_time = table.Column<int>(type: "int", nullable: false),
-                    created_at = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    delivery_method = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    payment_method = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    created_at = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    delivery_method = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    payment_method = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     delivery_discountId = table.Column<int>(type: "int", nullable: true),
                     delivery_informationId = table.Column<int>(type: "int", nullable: true),
                     totalsId = table.Column<int>(type: "int", nullable: true),
@@ -1202,16 +1093,14 @@ namespace OrderAPI.Migrations
                         principalTable: "Totals",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Discounteds",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    price_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    price_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     quantityId = table.Column<int>(type: "int", nullable: false),
                     totalId = table.Column<int>(type: "int", nullable: true),
                     discountId = table.Column<int>(type: "int", nullable: true)
@@ -1236,7 +1125,7 @@ namespace OrderAPI.Migrations
                         principalTable: "UberDiscounts",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "PriceBreakdowns",
@@ -1244,8 +1133,7 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    cart_item_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    cart_item_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     quantityId = table.Column<int>(type: "int", nullable: false),
                     totalId = table.Column<int>(type: "int", nullable: true),
                     discountId = table.Column<int>(type: "int", nullable: true),
@@ -1277,7 +1165,7 @@ namespace OrderAPI.Migrations
                         principalTable: "UberDiscounts",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "OrderItems",
@@ -1285,10 +1173,8 @@ namespace OrderAPI.Migrations
                 {
                     order_item_id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    app_item_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    app_item_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     sku_price = table.Column<int>(type: "int", nullable: false),
                     total_price = table.Column<int>(type: "int", nullable: false),
                     amount = table.Column<int>(type: "int", nullable: false),
@@ -1312,7 +1198,7 @@ namespace OrderAPI.Migrations
                         principalTable: "PromotionDetails",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "PromotionsInfo",
@@ -1334,7 +1220,7 @@ namespace OrderAPI.Migrations
                         principalTable: "DidiOrders",
                         principalColumn: "order_id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Shoppers",
@@ -1342,10 +1228,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    phone = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     DidiOrderorder_id = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
@@ -1357,7 +1241,7 @@ namespace OrderAPI.Migrations
                         principalTable: "DidiOrders",
                         principalColumn: "order_id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "RemittanceSummaries",
@@ -1365,10 +1249,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    entity = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    entity = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     amountId = table.Column<int>(type: "int", nullable: true),
                     TaxReportingId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -1386,7 +1268,7 @@ namespace OrderAPI.Migrations
                         principalTable: "TaxReportings",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Adjustments",
@@ -1411,14 +1293,13 @@ namespace OrderAPI.Migrations
                         principalTable: "CashAmountDue",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "MerchantFee",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
                     amountId = table.Column<int>(type: "int", nullable: true),
                     FeesId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -1436,7 +1317,7 @@ namespace OrderAPI.Migrations
                         principalTable: "Fees",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Discounts",
@@ -1445,18 +1326,13 @@ namespace OrderAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     value = table.Column<int>(type: "int", nullable: false),
-                    description = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    title = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    description = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    title = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     product_id = table.Column<int>(type: "int", nullable: true),
-                    sku = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    sku = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     raw_value = table.Column<int>(type: "int", nullable: false),
-                    value_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    value_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     max_value = table.Column<int>(type: "int", nullable: true),
                     includes_toppings = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     percentage_by_rappi = table.Column<int>(type: "int", nullable: false),
@@ -1465,8 +1341,7 @@ namespace OrderAPI.Migrations
                     amount_by_partner = table.Column<int>(type: "int", nullable: false),
                     discount_product_units = table.Column<int>(type: "int", nullable: false),
                     discount_product_unit_value = table.Column<int>(type: "int", nullable: true),
-                    OrderDetailorder_id = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    OrderDetailorder_id = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
@@ -1477,27 +1352,21 @@ namespace OrderAPI.Migrations
                         principalTable: "OrderDetail",
                         principalColumn: "order_id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Items",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    sku = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    comments = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    sku = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    comments = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     price = table.Column<int>(type: "int", nullable: false),
                     percentage_discount = table.Column<int>(type: "int", nullable: false),
                     quantity = table.Column<int>(type: "int", nullable: false),
-                    OrderDetailorder_id = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    OrderDetailorder_id = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
@@ -1508,7 +1377,7 @@ namespace OrderAPI.Migrations
                         principalTable: "OrderDetail",
                         principalColumn: "order_id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "RappiOrders",
@@ -1516,10 +1385,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    order_detailorder_id = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    storeinternal_id = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    order_detailorder_id = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci"),
+                    storeinternal_id = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci"),
                     customerId = table.Column<int>(type: "int", nullable: true),
                     orderId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -1548,7 +1415,7 @@ namespace OrderAPI.Migrations
                         principalTable: "Stores",
                         principalColumn: "internal_id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "ItemCharges",
@@ -1591,7 +1458,7 @@ namespace OrderAPI.Migrations
                         principalTable: "UberDiscounts",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "DidiSubItems",
@@ -1599,10 +1466,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    app_item_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    app_item_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     sku_price = table.Column<int>(type: "int", nullable: false),
                     amount = table.Column<int>(type: "int", nullable: false),
                     OrderItemInfoorder_item_id = table.Column<long>(type: "bigint", nullable: true)
@@ -1616,25 +1481,20 @@ namespace OrderAPI.Migrations
                         principalTable: "OrderItems",
                         principalColumn: "order_item_id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "RappiSubItems",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    sku = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    sku = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    name = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     price = table.Column<int>(type: "int", nullable: false),
                     percentage_discount = table.Column<int>(type: "int", nullable: false),
                     quantity = table.Column<int>(type: "int", nullable: false),
-                    Itemid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Itemid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
@@ -1645,7 +1505,7 @@ namespace OrderAPI.Migrations
                         principalTable: "Items",
                         principalColumn: "id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "PaymentDetail",
@@ -1708,7 +1568,7 @@ namespace OrderAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Payments",
@@ -1769,40 +1629,30 @@ namespace OrderAPI.Migrations
                         principalTable: "Tips",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "UberOrders",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    order_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    display_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    external_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    state = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    status = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    preparation_status = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ordering_platform = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    fulfillment_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    order_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    display_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    external_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    state = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    status = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    preparation_status = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    ordering_platform = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    fulfillment_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     scheduled_order_target_delivery_start_time = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     scheduled_order_target_delivery_end_time = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     store_id = table.Column<int>(type: "int", nullable: false),
                     is_order_accuracy_risk = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    store_instructions = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    store_instructions = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     completed_time = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     created_time = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     has_membership_pass = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    storeid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    storeid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci"),
                     paymentId = table.Column<int>(type: "int", nullable: true),
                     preparation_timeId = table.Column<int>(type: "int", nullable: true),
                     eligible_actionsId = table.Column<int>(type: "int", nullable: true),
@@ -1844,7 +1694,7 @@ namespace OrderAPI.Migrations
                         principalTable: "UberStores",
                         principalColumn: "id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "Deliveries",
@@ -1852,20 +1702,14 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    delivery_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    status = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    delivery_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    status = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     estimated_pick_up_time = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    interaction_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    interaction_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     delivery_partner_marked_not_ready_time = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    instructions = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    locationid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    delivery_partnerid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    instructions = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    locationid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci"),
+                    delivery_partnerid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci"),
                     UberOrderId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
                 },
                 constraints: table =>
@@ -1887,7 +1731,7 @@ namespace OrderAPI.Migrations
                         principalTable: "UberOrders",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "FailureInfos",
@@ -1895,13 +1739,10 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    reason = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    failure_attributed_to_party = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    reason = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    failure_attributed_to_party = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     will_merchant_be_paid = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    description = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    description = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     time_rangeId = table.Column<int>(type: "int", nullable: false),
                     UberOrderId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
                 },
@@ -1920,16 +1761,14 @@ namespace OrderAPI.Migrations
                         principalTable: "UberOrders",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "ShoppingCarts",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    special_instructions = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    special_instructions = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     include_single_use_items = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     restricted_itemsId = table.Column<int>(type: "int", nullable: false),
                     UberOrderId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
@@ -1949,14 +1788,13 @@ namespace OrderAPI.Migrations
                         principalTable: "UberOrders",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "UberCustomers",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
                     nameId = table.Column<int>(type: "int", nullable: false),
                     order_historyId = table.Column<int>(type: "int", nullable: false),
                     contactId = table.Column<int>(type: "int", nullable: false),
@@ -1998,7 +1836,7 @@ namespace OrderAPI.Migrations
                         principalTable: "UberOrders",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "CartItem",
@@ -2006,23 +1844,16 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    item_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    cart_item_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    title = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    external_data = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    customer_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    item_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    cart_item_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    title = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    external_data = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    customer_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     quantityId = table.Column<int>(type: "int", nullable: false),
                     default_quantityId = table.Column<int>(type: "int", nullable: false),
                     customer_requestsId = table.Column<int>(type: "int", nullable: false),
-                    picture_url = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ShoppingCartid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    picture_url = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    ShoppingCartid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
@@ -2051,7 +1882,7 @@ namespace OrderAPI.Migrations
                         principalTable: "ShoppingCarts",
                         principalColumn: "id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "FulfillmentIssue",
@@ -2059,17 +1890,12 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    issue_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    action_type = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    cart_item_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    issue_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    action_type = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    cart_item_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     suspend_until = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    store_response = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ShoppingCartid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    store_response = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    ShoppingCartid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
@@ -2080,18 +1906,15 @@ namespace OrderAPI.Migrations
                         principalTable: "ShoppingCarts",
                         principalColumn: "id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "SelectedModifierGroup",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    title = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    external_data = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    id = table.Column<string>(type: "varchar(255)", nullable: false, collation: "latin1_spanish_ci"),
+                    title = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    external_data = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
                     CartItemId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -2103,7 +1926,7 @@ namespace OrderAPI.Migrations
                         principalTable: "CartItem",
                         principalColumn: "Id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "RemovedModifierItem",
@@ -2111,10 +1934,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    modifier_item_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SelectedModifierGroupid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    modifier_item_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    SelectedModifierGroupid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
@@ -2125,7 +1946,7 @@ namespace OrderAPI.Migrations
                         principalTable: "SelectedModifierGroup",
                         principalColumn: "id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateTable(
                 name: "SelectedModifierItem",
@@ -2133,10 +1954,8 @@ namespace OrderAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    modifier_item_id = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SelectedModifierGroupid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    modifier_item_id = table.Column<string>(type: "longtext", nullable: true, collation: "latin1_spanish_ci"),
+                    SelectedModifierGroupid = table.Column<string>(type: "varchar(255)", nullable: true, collation: "latin1_spanish_ci")
                 },
                 constraints: table =>
                 {
@@ -2147,7 +1966,7 @@ namespace OrderAPI.Migrations
                         principalTable: "SelectedModifierGroup",
                         principalColumn: "id");
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("Relational:Collation", "latin1_spanish_ci");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AdjustmentDetail_amountId",
@@ -2695,6 +2514,7 @@ namespace OrderAPI.Migrations
                 column: "storeid");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

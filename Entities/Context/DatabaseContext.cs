@@ -65,6 +65,7 @@ namespace Entities.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.UseCollation("latin1_spanish_ci");
             base.OnModelCreating(modelBuilder);
         }
 

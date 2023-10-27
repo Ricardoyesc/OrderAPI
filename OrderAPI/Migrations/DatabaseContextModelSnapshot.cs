@@ -16,7 +16,8 @@ namespace OrderAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.22")
+                .UseCollation("latin1_spanish_ci")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.DidiOrder", b =>
@@ -290,28 +291,6 @@ namespace OrderAPI.Migrations
                     b.ToTable("Shops");
                 });
 
-            modelBuilder.Entity("Entities.Context.Entities.Didi.Shopper", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DidiOrderorder_id")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("name")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("phone")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DidiOrderorder_id");
-
-                    b.ToTable("Shoppers");
-                });
-
             modelBuilder.Entity("Entities.Context.Entities.Didi.ShopPhone", b =>
                 {
                     b.Property<int>("Id")
@@ -335,6 +314,28 @@ namespace OrderAPI.Migrations
                     b.HasIndex("ShopInfoId");
 
                     b.ToTable("ShopPhones");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Didi.Shopper", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<long?>("DidiOrderorder_id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("name")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("phone")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DidiOrderorder_id");
+
+                    b.ToTable("Shoppers");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.SubItem", b =>
@@ -2264,18 +2265,18 @@ namespace OrderAPI.Migrations
                         .HasForeignKey("DidiOrderorder_id");
                 });
 
-            modelBuilder.Entity("Entities.Context.Entities.Didi.Shopper", b =>
-                {
-                    b.HasOne("Entities.Context.Entities.Didi.DidiOrder", null)
-                        .WithMany("shopper_info")
-                        .HasForeignKey("DidiOrderorder_id");
-                });
-
             modelBuilder.Entity("Entities.Context.Entities.Didi.ShopPhone", b =>
                 {
                     b.HasOne("Entities.Context.Entities.Didi.ShopInfo", null)
                         .WithMany("shop_phone")
                         .HasForeignKey("ShopInfoId");
+                });
+
+            modelBuilder.Entity("Entities.Context.Entities.Didi.Shopper", b =>
+                {
+                    b.HasOne("Entities.Context.Entities.Didi.DidiOrder", null)
+                        .WithMany("shopper_info")
+                        .HasForeignKey("DidiOrderorder_id");
                 });
 
             modelBuilder.Entity("Entities.Context.Entities.Didi.SubItem", b =>
